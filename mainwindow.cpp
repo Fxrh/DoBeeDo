@@ -81,6 +81,7 @@ void MainWindow::newTodo()
   }
   TodoObject object( name, date );
   model->addTodo(object);
+  doEdit->setText("");
 }
 
 void MainWindow::showContextMenu(QPoint point)
@@ -142,7 +143,7 @@ void MainWindow::setupGui()
   view->setContextMenuPolicy(Qt::CustomContextMenu);
   
   doEdit = new KLineEdit(this);
-  doEdit->setClickMessage("neue Aufgabe...");
+  doEdit->setClickMessage("new task...");
   view->setFocusProxy(doEdit);
   doAddBtn = new KPushButton(KIcon("list-add"),"",this);
   timeBox = new QComboBox(this);

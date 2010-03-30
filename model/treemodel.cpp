@@ -46,9 +46,11 @@ void TreeModel::addTodo(const TodoObject &object)
   TreeItem* item;
   // Invalid:
   if( object.getDate().isNull() ){
-    item = new TreeItem( object, rootItem->child( rootItem->childCount()-1 ) );
+    int last = rootItem->childCount()-1;
+    item = new TreeItem( object, rootItem->child( last ) );
+    beginInsertRows( index(last,0,QModelIndex()), rootItem->child(last)->childCount(), rootItem->child(last)->childCount() );
     rootItem->child( rootItem->childCount()-1 )->appendChild(item);
-    reset();
+    endInsertRows();
     return;
   }
   for( int i=0; i < rootItem->childCount(); i++ ){

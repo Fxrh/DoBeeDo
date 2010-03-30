@@ -72,6 +72,9 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       painter->drawText( QRect(originPoint,option.rect.bottomRight()), map["name"].toString() );
     } else {
       painter->drawText( QRect(originPoint,option.rect.bottomRight()), map["date"].toDate().toString());
+      if(map["date"].toDate().isNull()){
+        painter->drawText( QRect(originPoint,option.rect.bottomRight()), "-");
+      }
     }
   }
 }
