@@ -25,9 +25,9 @@
 
 int main( int argc, char** argv )
 {
-  KAboutData aboutData( "kdo",
+  KAboutData aboutData( "dobeedo",
                         0,
-                        ki18n( "KDo" ),
+                        ki18n( "DoBeeDo" ),
                         "0.1",
                         ki18n( "Eine einfache, wenig störende ToDo-Liste" ),
                         KAboutData::License_GPL_V3,

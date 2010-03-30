@@ -53,6 +53,8 @@ class TreeModel : public QAbstractItemModel
     //QModelIndex addItem( QList<QVariant>& data, const QModelIndex& parent=QModelIndex() );
     
   private:
+    void addTodoToSection( TreeItem* item, TreeItem* section );
+    
     TreeItem* rootItem;
 };
 

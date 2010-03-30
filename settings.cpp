@@ -63,7 +63,8 @@ QList<TodoObject>* Settings::getTodoList()
   while( in.status() == QDataStream::Ok ){
     TodoObject obj("");
     in >> obj;
-    list->push_back(obj);
+    if( in.status() == QDataStream::Ok )
+      list->push_back(obj);
   }
   return list;
 }

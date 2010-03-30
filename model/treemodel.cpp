@@ -43,29 +43,27 @@ void TreeModel::addSection(QString name, int daysTo)
 
 void TreeModel::addTodo(const TodoObject &object)
 {
+  if( object.getName() == "" ){
+    qDebug() << "Empty Todo...";
+    return;
+  }
   TreeItem* item;
   // Invalid:
   if( object.getDate().isNull() ){
     int last = rootItem->childCount()-1;
     item = new TreeItem( object, rootItem->child( last ) );
-    beginInsertRows( index(last,0,QModelIndex()), rootItem->child(last)->childCount(), rootItem->child(last)->childCount() );
-    rootItem->child( rootItem->childCount()-1 )->appendChild(item);
-    endInsertRows();
+    addTodoToSection(item,rootItem->child(rootItem->childCount()-1));
     return;
   }
   for( int i=0; i < rootItem->childCount(); i++ ){
     if( rootItem->child(i)->sectionDaysTo() == -2 ){ // Again, we are at the end
       item = new TreeItem( object, rootItem->child(i) );
-      beginInsertRows(index(i,0,QModelIndex()), rootItem->child(i)->childCount(), rootItem->child(i)->childCount() );
-      rootItem->child(i)->appendChild(item);
-      endInsertRows();
+      addTodoToSection(item,rootItem->child(i));
       return;
     }
     if( rootItem->child(i)->sectionDaysTo() >= object.getDaysTo() ){
       item = new TreeItem( object, rootItem->child(i) );
-      beginInsertRows(index(i,0,QModelIndex()), rootItem->child(i)->childCount(), rootItem->child(i)->childCount() );
-      rootItem->child(i)->appendChild(item);
-      endInsertRows();
+      addTodoToSection(item,rootItem->child(i));
       return;
     }
   }
@@ -228,6 +226,21 @@ int TreeModel::rowCount(const QModelIndex &parent) const
     parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
   return parentItem->childCount();
+}
+
+void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
+{
+  int i=0;
+  while( i < section->childCount() ){
+    if( item->todo()->getDate() < section->child(i)->todo()->getDate() ){
+      break;
+    }
+    i++;
+  }
+  
+  beginInsertRows( index(section->row(),0,QModelIndex()), i, i );
+  section->insertChild(item, i);
+  endInsertRows();
 }
 
 //QModelIndex TreeModel::addItem( QList<QVariant>& data, const QModelIndex& parent )

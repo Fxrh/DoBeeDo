@@ -40,6 +40,7 @@ class TreeItem
     int sectionDaysTo() const { return daysTo; }
     
     void appendChild(TreeItem *child);
+    void insertChild(TreeItem *child, int pos);
     void removeChild(int row);
     
     TreeItem* child(int row);

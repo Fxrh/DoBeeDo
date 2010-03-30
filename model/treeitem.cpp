@@ -78,12 +78,24 @@ void TreeItem::appendChild(TreeItem *item)
         return;
       }
     }
+    childItems.append(item);
+  }
+  if( type == Section ){
+    childItems.append(item);
   }
   if( type == Todo ){
     qDebug() << "Todo objects should have no childs!";
     return;
   }
-  childItems.append(item);
+  
+}
+
+void TreeItem::insertChild(TreeItem *child, int pos)
+{
+  if( type == Todo )
+    return;
+  
+  childItems.insert(pos,child);
 }
 
 void TreeItem::removeChild(int row)
