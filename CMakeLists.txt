@@ -1,10 +1,10 @@
-project (KDo)
+project (DoBeeDo)
 cmake_minimum_required(VERSION 2.6)
 find_package( KDE4 REQUIRED )
 include( KDE4Defaults )
 include_directories( ${KDE4_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} )
 
-set( KDo_SRCS main.cpp
+set( DoBeeDo_SRCS main.cpp
               doapp.cpp
               mainwindow.cpp
               systray.cpp
@@ -19,7 +19,8 @@ set( KDo_SRCS main.cpp
 
       
 
-kde4_add_executable( kdo ${KDo_SRCS} )
-target_link_libraries( kdo ${KDE4_KDEUI_LIBS} )
+kde4_add_executable( dobeedo ${DoBeeDo_SRCS} )
+target_link_libraries( dobeedo ${KDE4_KDEUI_LIBS} )
 
-install(TARGETS kdo ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS dobeedo ${INSTALL_TARGETS_DEFAULT_ARGS} )
+
