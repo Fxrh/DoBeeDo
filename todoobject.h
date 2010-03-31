@@ -32,15 +32,24 @@ class TodoObject
     ~TodoObject();
     
     void setName( QString _name ) { name = _name; }
+    void setDescription( QString des ) { description = des; } 
     void setDate( QDate _date ) { date = _date; }
+    void setPriority( int num );
+    void setCategory( int cat );
     QString getName() const { return name; }
+    QString getDescription() const { return description; } 
     QDate getDate() const { return date; }
+    int getPriority() const { return priority; }
+    int getCategory() const { return category; }
     int getDaysTo() const;
     bool isValid() const { return (name != ""); }
     
   private:
     QString name;
+    QString description;
     QDate date;
+    int priority;
+    int category;
 };
 
 QDataStream& operator<<( QDataStream& out, const TodoObject& object );

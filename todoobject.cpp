@@ -18,22 +18,46 @@
  **************************************************************************/ 
 
 #include "todoobject.h"
+#include "settings.h"
 #include <QDebug>
+#include <QStringList>
 
 TodoObject::TodoObject( QString _name, QDate _date )
 {
   name = _name;
   date = _date;
+  description = "";
+  priority = 4;
+  category = 0;
 }
 
 TodoObject::TodoObject( const TodoObject& old )
 {
   name = old.getName();
   date = old.getDate();
+  description = old.getDescription();
+  priority = old.getPriority();
+  category = old.getCategory();
 }
 
 TodoObject::~TodoObject()
 {
+}
+
+void TodoObject::setPriority(int num)
+{
+  if( num > 4 || num < 1 ){
+    num = 4;
+  }
+  priority = num;
+}
+
+void TodoObject::setCategory(int cat)
+{
+  if( cat > Settings::self()->categories()->count() || cat < 0 ){
+    cat = 0;
+  }
+  category = cat;
 }
 
 int TodoObject::getDaysTo() const 
@@ -44,15 +68,21 @@ int TodoObject::getDaysTo() const
 
 QDataStream& operator<<( QDataStream& out, const TodoObject& object )
 {
-  out << object.getName() << object.getDate();
+  out << object.getName() << object.getDescription() << object.getDate() << object.getPriority() << object.getCategory();
   return out;
 }
 
 QDataStream& operator>>( QDataStream& in, TodoObject& object )
 {
   QString name;
+  QString description;
   QDate date;
-  in >> name >> date;
+  int priority;
+  int category;
+  in >> name >> description >> date >> priority >> category;
   object = TodoObject(name, date);
+  object.setDescription(description);
+  object.setPriority(priority);
+  object.setCategory(category);
   return in;
 }

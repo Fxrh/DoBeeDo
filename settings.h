@@ -24,6 +24,7 @@
 #include "todoobject.h"
 
 class QSettings;
+class QStringList;
 
 class Settings : public QObject
 {
@@ -32,6 +33,7 @@ public:
   static void destroy();
   
   QList<TodoObject>* getTodoList();
+  QStringList* categories() const { return categoriesList; }
   void setTodoList( QList<TodoObject>* list );
   
 private:
@@ -46,6 +48,7 @@ private:
   static Settings* instance;
   
   QSettings* settingsFile;
+  QStringList* categoriesList;
   
   const quint32 magicNumber;
   const quint16 dataVersion;// = 0x0001;

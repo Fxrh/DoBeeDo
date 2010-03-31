@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QDir>
 #include <QDebug>
+#include <QStringList>
 
 Settings* Settings::instance = 0;
 
@@ -102,12 +103,15 @@ Settings::~Settings()
 
 void Settings::load()
 {
-  settingsFile = new QSettings( "kdo", "kdo" ,this);
+  settingsFile = new QSettings( "dobeedo", "dobeedo" ,this);
+  categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
 
 void Settings::save()
 {
+  settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
+  delete categoriesList;
 }
 
 QString Settings::getPath()
