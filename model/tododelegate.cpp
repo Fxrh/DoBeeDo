@@ -94,11 +94,11 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
   if( map["type"] == 1 ){
     if( index.column() == 0 ){
       QString text = map["name"].toString();
-      if( map["priority"].toInt() == 4 ){
-        text.prepend("- ");
-      } else {
-        text.prepend( QString::number(map["priority"].toInt()) + " " );
-      }
+//      if( map["priority"].toInt() == 4 ){
+//        text.prepend("- ");
+//      } else {
+//        text.prepend( QString::number(map["priority"].toInt()) + " " );
+//      }
       text = cutString( text, QRect(originPoint,newOption.rect.bottomRight()), standardFont );
       painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), text );
     } else {
