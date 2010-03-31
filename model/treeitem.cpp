@@ -132,6 +132,7 @@ QVariant TreeItem::data(int column) const
     map[QString("type")] = QVariant::fromValue(1);
     map[QString("name")] = QVariant::fromValue(dataObj->getName());
     map[QString("date")] = QVariant::fromValue(dataObj->getDate());
+    map[QString("priority")] = QVariant::fromValue(dataObj->getPriority());
   }
   return map;
 //  if( type == Section ){

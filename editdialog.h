@@ -24,8 +24,11 @@
 
 class QLabel;
 class QLineEdit;
+class QComboBox;
+class QPlainTextEdit;
 class QVBoxLayout;
 class QHBoxLayout;
+class QGridLayout;
 
 class TodoObject;
 class KDatePicker;
@@ -46,14 +49,14 @@ private:
   
   QLabel* nameLabel;
   QLineEdit* nameEdit;
+  QLabel* priorityLabel;
+  QComboBox* priorityBox;
+  QLabel* descriptionLabel;
+  QPlainTextEdit* descriptionEdit;
   QLabel* dateLabel;
   KDatePicker* datePicker;
-  //KPushButton* acceptBtn;
-  //KPushButton* cancelBtn;
-  QVBoxLayout* nameLayout;
+  QGridLayout* nameLayout;
   QVBoxLayout* dateLayout;
-  //QHBoxLayout* optionsLayout;
-  //QHBoxLayout* bottomLayout;
   QHBoxLayout* mainLayout;
   
   TodoObject* todo;

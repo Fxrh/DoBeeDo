@@ -21,8 +21,11 @@
 
 #include <QLabel>
 #include <QLineEdit>
+#include <QComboBox>
+#include <QPlainTextEdit>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QGridLayout>
 #include <KPushButton>
 #include <KDatePicker>
 
@@ -40,6 +43,8 @@ void EditDialog::editTodo(TodoObject *object)
 {
   todo = object;
   nameEdit->setText( todo->getName() );
+  priorityBox->setCurrentIndex( todo->getPriority()-1 );
+  descriptionEdit->setPlainText( todo->getDescription() );
   datePicker->setDate( todo->getDate() );
 }
 
@@ -49,23 +54,34 @@ void EditDialog::accept()
     
   }
   todo->setName( nameEdit->text() );
+  todo->setPriority( priorityBox->currentIndex()+1 );
+  todo->setDescription( descriptionEdit->toPlainText() );
   todo->setDate( datePicker->date() );
   KDialog::accept();
 }
 
 void EditDialog::setupUi()
 {
-  nameLabel = new QLabel("Name");
+  nameLabel = new QLabel("Name: ");
   nameEdit = new QLineEdit;
+  priorityLabel = new QLabel("Priority: ");
+  priorityBox = new QComboBox();
+  priorityBox->addItem("1");
+  priorityBox->addItem("2");
+  priorityBox->addItem("3");
+  priorityBox->addItem("-");
+  descriptionLabel = new QLabel("Description: ");
+  descriptionEdit = new QPlainTextEdit();
   dateLabel = new QLabel("Date");
   datePicker = new KDatePicker();
-//  acceptBtn = new KPushButton(KIcon("dialog-ok-apply"),"Ok");
-//  cancelBtn = new KPushButton(KIcon("dialog-cancel"),"Cancel");
   
-  nameLayout = new QVBoxLayout();
-  nameLayout->addWidget(nameLabel);
-  nameLayout->addWidget(nameEdit);
-  nameLayout->addStretch();
+  nameLayout = new QGridLayout();
+  nameLayout->addWidget(nameLabel,0,0);
+  nameLayout->addWidget(nameEdit,0,1);
+  nameLayout->addWidget(priorityLabel,1,0);
+  nameLayout->addWidget(priorityBox,1,1);
+  nameLayout->addWidget(descriptionLabel,2,0,1,2);
+  nameLayout->addWidget(descriptionEdit,3,0,1,2);
   
   dateLayout = new QVBoxLayout();
   dateLayout->addWidget(dateLabel);

@@ -69,7 +69,13 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
   
   if( map["type"] == 1 ){
     if( index.column() == 0 ){
-      painter->drawText( QRect(originPoint,option.rect.bottomRight()), map["name"].toString() );
+      QString text = map["name"].toString();
+      if( map["priority"].toInt() == 4 ){
+        text.prepend("- ");
+      } else {
+        text.prepend( QString::number(map["priority"].toInt()) + " " );
+      }
+      painter->drawText( QRect(originPoint,option.rect.bottomRight()), text );
     } else {
       painter->drawText( QRect(originPoint,option.rect.bottomRight()), map["date"].toDate().toString());
       if(map["date"].toDate().isNull()){
@@ -91,7 +97,7 @@ QSize TodoDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
   if( map["type"] == 1 ){
     QFontMetrics metrics(standardFont);
     if( index.column() == 0 )
-      return metrics.boundingRect(map["name"].toString()).size();
+      return metrics.boundingRect("- "+map["name"].toString()).size();
     return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,2);
   }
   return QSize();

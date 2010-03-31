@@ -232,6 +232,13 @@ void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
 {
   int i=0;
   while( i < section->childCount() ){
+    if( item->todo()->getPriority() <= section->child(i)->todo()->getPriority() ){
+      break;
+    }
+    i++;
+  }
+  while( i < section->childCount() 
+         && item->todo()->getPriority() == section->child(i)->todo()->getPriority() ){
     if( item->todo()->getDate() < section->child(i)->todo()->getDate() ){
       break;
     }
