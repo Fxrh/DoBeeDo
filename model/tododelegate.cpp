@@ -23,6 +23,7 @@
 #include <QPoint>
 #include <QTreeView>
 #include <KIcon>
+#include <KColorScheme>
 #include <QDebug>
 #include "treeitem.h"
 
@@ -36,7 +37,8 @@ TodoDelegate::TodoDelegate( QTreeView* _view, QWidget* parent )
 
 void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-  QStyledItemDelegate::paint(painter,option,index);
+  KColorScheme colorScheme( option.palette.currentColorGroup() );
+  
 //  if( option.state & QStyle::State_Selected ){
 //    painter->fillRect(option.rect, option.palette.highlight() );
 //  }
@@ -46,6 +48,27 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
   originPoint.ry()++;
   
   QMap<QString,QVariant> map( index.data().toMap() );
+  
+  QStyleOptionViewItem newOption = option;
+  if( map["type"] == 1 ){
+    switch( map["priority"].toInt() ){
+    case 1:
+      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NegativeBackground).color());
+      painter->fillRect(newOption.rect, newOption.palette.background());
+      break;
+    case 2:
+      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NeutralBackground).color());
+      painter->fillRect(newOption.rect, newOption.palette.background());
+      break;
+    case 3:
+      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::PositiveBackground).color());
+      painter->fillRect(newOption.rect, newOption.palette.background());
+      break;
+    default:
+      break;
+    }
+  }  
+  QStyledItemDelegate::paint(painter,newOption,index);
   
   if( map["type"] == 0 ){
     if( index.column() != 0 ){
@@ -63,7 +86,7 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     painter->setFont(boldFont);
     QPoint writePoint( originPoint + QPoint(iconRect.size().width()+5,0) );
     QRect rect();
-    painter->drawText( QRect( writePoint, option.rect.bottomRight() ), map["name"].toString() );
+    painter->drawText( QRect( writePoint, newOption.rect.bottomRight() ), map["name"].toString() );
     painter->restore();
   }
   
@@ -75,11 +98,11 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         text.prepend( QString::number(map["priority"].toInt()) + " " );
       }
-      painter->drawText( QRect(originPoint,option.rect.bottomRight()), text );
+      painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), text );
     } else {
-      painter->drawText( QRect(originPoint,option.rect.bottomRight()), map["date"].toDate().toString());
+      painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), map["date"].toDate().toString());
       if(map["date"].toDate().isNull()){
-        painter->drawText( QRect(originPoint,option.rect.bottomRight()), "-");
+        painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), "-");
       }
     }
   }
