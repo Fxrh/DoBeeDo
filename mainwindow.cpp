@@ -32,6 +32,7 @@
 #include <QComboBox>
 #include <QAction>
 #include <QMenu>
+#include <QHeaderView>
 #include <QDebug>
 
 MainWindow::MainWindow( QWidget* parent )
@@ -138,7 +139,8 @@ void MainWindow::setupGui()
   view->setSortingEnabled(false);
   view->setAllColumnsShowFocus(true);
   view->setExpandsOnDoubleClick(true);
-  view->setColumnWidth(0,150);
+  view->header()->setStretchLastSection(false);
+  view->header()->setResizeMode(0,QHeaderView::Stretch);
   view->setItemDelegate(delegate);
   view->setContextMenuPolicy(Qt::CustomContextMenu);
   
