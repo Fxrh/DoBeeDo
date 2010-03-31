@@ -38,6 +38,8 @@ public:
   void paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
   
 private:
+  QString cutString( const QString& string, const QRect& size, const QFont& font ) const;
+  
   QFont boldFont;
   QFont standardFont;
   QTreeView* view;

@@ -86,7 +86,8 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     painter->setFont(boldFont);
     QPoint writePoint( originPoint + QPoint(iconRect.size().width()+5,0) );
     QRect rect();
-    painter->drawText( QRect( writePoint, newOption.rect.bottomRight() ), map["name"].toString() );
+    QString text = cutString( map["name"].toString(), QRect( writePoint, newOption.rect.bottomRight() ), boldFont );
+    painter->drawText( QRect( writePoint, newOption.rect.bottomRight() ), text );
     painter->restore();
   }
   
@@ -98,9 +99,11 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         text.prepend( QString::number(map["priority"].toInt()) + " " );
       }
+      text = cutString( text, QRect(originPoint,newOption.rect.bottomRight()), standardFont );
       painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), text );
     } else {
-      painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), map["date"].toDate().toString());
+      QString text = cutString( map["date"].toDate().toString(), QRect(originPoint,newOption.rect.bottomRight()), standardFont );
+      painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), text);
       if(map["date"].toDate().isNull()){
         painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), "-");
       }
@@ -124,4 +127,19 @@ QSize TodoDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
     return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,2);
   }
   return QSize();
+}
+
+QString TodoDelegate::cutString( const QString &string, const QRect &size, const QFont &font) const
+{
+  QString myString(string);
+  QFontMetrics metrics(font);
+  if( metrics.boundingRect(myString).width()+5 < size.width() ){ // I had to add 5, else it didn't work
+    return myString;
+  }
+  myString.append("...");
+  while( metrics.boundingRect(myString).width()+5 >= size.width() ){
+    myString.remove(myString.count()-4,1);
+  }
+  qDebug() << myString;
+  return myString;
 }
