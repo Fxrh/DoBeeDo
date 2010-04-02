@@ -99,12 +99,12 @@ void MainWindow::showContextMenu(QPoint point)
 
 void MainWindow::removeTodo()
 {
-  model->removeTodo( view->currentIndex() );
+  model->removeTodo( filterModel->mapToSource(view->currentIndex()) );
 }
 
 void MainWindow::editTodo()
 {
-  QModelIndex index = view->currentIndex();
+  QModelIndex index = filterModel->mapToSource(view->currentIndex());
   TodoObject object = model->getTodo(index);
   EditDialog dialog;
   dialog.editTodo(&object);
