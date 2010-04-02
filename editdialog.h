@@ -25,6 +25,7 @@
 class QLabel;
 class QLineEdit;
 class QComboBox;
+class QCheckBox;
 class QPlainTextEdit;
 class QVBoxLayout;
 class QHBoxLayout;
@@ -53,7 +54,8 @@ private:
   QComboBox* priorityBox;
   QLabel* descriptionLabel;
   QPlainTextEdit* descriptionEdit;
-  QLabel* dateLabel;
+  QCheckBox* dateBox;
+  //QLabel* dateLabel;
   KDatePicker* datePicker;
   QGridLayout* nameLayout;
   QVBoxLayout* dateLayout;
