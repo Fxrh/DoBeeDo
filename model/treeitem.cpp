@@ -63,31 +63,12 @@ TreeItem::~TreeItem()
 
 void TreeItem::appendChild(TreeItem *item)
 {
-  if( type == Root ){
-    if( item->sectionDaysTo() == -2 ){ // -2 == Future/Not set
-      childItems.append(item);
-      return;
-    }
-    for( int i=0; i < childItems.count(); i++ ){
-      if( childItems.at(i)->sectionDaysTo() == -2 ){ // Again, Future
-        childItems.insert(i, item);
-        return;
-      }
-      if( childItems.at(i)->sectionDaysTo() > item->sectionDaysTo() ){
-        childItems.insert(i, item);
-        return;
-      }
-    }
-    childItems.append(item);
-  }
-  if( type == Section ){
-    childItems.append(item);
-  }
   if( type == Todo ){
     qDebug() << "Todo objects should have no childs!";
     return;
   }
   
+  childItems.append(item);
 }
 
 void TreeItem::insertChild(TreeItem *child, int pos)

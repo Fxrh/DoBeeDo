@@ -37,8 +37,23 @@ TreeModel::~TreeModel()
 void TreeModel::addSection(QString name, int daysTo)
 {
   TreeItem* item = new TreeItem( name, daysTo, rootItem );
-  rootItem->appendChild(item);
-  reset();
+  
+  int i=0;
+  if( item->sectionDaysTo() == -2 ){ // -2 == Future/Not set
+    rootItem->appendChild(item);
+    return;
+  }
+  for( i=0; i < rootItem->childCount(); i++ ){
+    if( rootItem->child(i)->sectionDaysTo() == -2 ){ // Again, Future
+      break;
+    }
+    if( rootItem->child(i)->sectionDaysTo() > item->sectionDaysTo() ){
+      break;
+    }
+  }
+  beginInsertRows(QModelIndex(), i, i );
+  rootItem->insertChild(item, i);
+  endInsertRows();
 }
 
 void TreeModel::addTodo(const TodoObject &object)
