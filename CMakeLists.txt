@@ -14,6 +14,7 @@ set( DoBeeDo_SRCS main.cpp
               model/treeitem.cpp
               model/treemodel.cpp
               model/tododelegate.cpp
+              model/filtermodel.cpp
               )
  
 

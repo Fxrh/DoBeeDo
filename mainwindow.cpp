@@ -19,6 +19,7 @@
 
 #include "mainwindow.h"
 #include "model/treemodel.h"
+#include "model/filtermodel.h"
 #include "model/tododelegate.h"
 #include "todoobject.h"
 #include "settings.h"
@@ -121,9 +122,11 @@ void MainWindow::setupGui()
   model->addSection("Next week", 7);
   model->addSection("Next Month", 31);
   model->addSection("Future", -2);
+  filterModel = new FilterModel(this);
+  filterModel->setSourceModel(model);
   view = new QTreeView(this);
   delegate = new TodoDelegate(view, this);
-  view->setModel(model);
+  view->setModel(filterModel);
   view->setHeaderHidden(true);
   view->setIconSize(QSize(0,0));
   view->setAnimated(true);

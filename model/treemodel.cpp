@@ -248,6 +248,9 @@ void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   beginInsertRows( index(section->row(),0,QModelIndex()), i, i );
   section->insertChild(item, i);
   endInsertRows();
+  emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),1,QModelIndex()) );
+  reset();
+  qDebug() << "dataChanged: " << section->row();
 }
 
 //QModelIndex TreeModel::addItem( QList<QVariant>& data, const QModelIndex& parent )

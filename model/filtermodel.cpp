@@ -17,53 +17,51 @@
  *                                                                        *
  **************************************************************************/ 
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include "filtermodel.h"
+#include "settings.h"
 
-#include <QWidget>
+#include <QStringList>
+#include <QDebug>
 
-class KLineEdit;
-class KPushButton;
-class QGridLayout;
-class QVBoxLayout;
-class QHBoxLayout;
-class QTreeView;
-class QComboBox;
-class TreeModel;
-class FilterModel;
-class TodoDelegate;
-
-class MainWindow : public QWidget
+FilterModel::FilterModel(QObject *parent)
+  : QSortFilterProxyModel(parent)
 {
-    Q_OBJECT
-  public:
-    MainWindow( QWidget* parent = 0 );
-    ~MainWindow();
-    
-  private slots:
-    void newTodo();
-    void showContextMenu( QPoint point );
-    void removeTodo();
-    void editTodo();
-    
-  private:
-    void setupGui();
-    
-    TreeModel* model;
-    FilterModel* filterModel;
-    TodoDelegate* delegate;
-    QTreeView* view;
-    KLineEdit* doEdit;
-    KPushButton* doAddBtn;
-    KPushButton* doneBtn;
-    KPushButton* editBtn;
-    QComboBox* timeBox;
-    QGridLayout* addLayout;
-    QVBoxLayout* mainLayout;
-    QHBoxLayout* bottomLayout;
-    
-    QAction* doneAct;
-    QAction* editAct;
-};
+  catFilterNum = -1;
+}
 
-#endif //MAINWINDOW_H
+bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+{
+  if( !source_parent.isValid() ){ 
+    qDebug() << "filterSection: " << source_row;
+    // remove empty sections...
+    QModelIndex secIndex = sourceModel()->index(source_row, 0, source_parent);
+    if( sourceModel()->rowCount(secIndex) == 0 ){
+      return false;
+    }
+    return true;
+  }
+  
+  // now, filter the categories
+  if( catFilterNum == -1 ){
+    return true; //All categories -> no filtering
+  }
+  int cat = sourceModel()->index(source_row, 0, source_parent).data().toMap().value("category",0).toInt();
+  if( cat == catFilterNum ){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void FilterModel::setCategoryFilter(int cat_num)
+{
+  if( cat_num < -1 || cat_num > Settings::self()->categories()->count()-1 ){
+    cat_num = 0;
+  }
+  catFilterNum = cat_num;
+}
+
+int FilterModel::categoryFilter()
+{
+  return catFilterNum;
+}

@@ -17,53 +17,23 @@
  *                                                                        *
  **************************************************************************/ 
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef FILTERMODEL_H
+#define FILTERMODEL_H
 
-#include <QWidget>
+#include <QSortFilterProxyModel>
 
-class KLineEdit;
-class KPushButton;
-class QGridLayout;
-class QVBoxLayout;
-class QHBoxLayout;
-class QTreeView;
-class QComboBox;
-class TreeModel;
-class FilterModel;
-class TodoDelegate;
-
-class MainWindow : public QWidget
+class FilterModel : public QSortFilterProxyModel
 {
-    Q_OBJECT
-  public:
-    MainWindow( QWidget* parent = 0 );
-    ~MainWindow();
-    
-  private slots:
-    void newTodo();
-    void showContextMenu( QPoint point );
-    void removeTodo();
-    void editTodo();
-    
-  private:
-    void setupGui();
-    
-    TreeModel* model;
-    FilterModel* filterModel;
-    TodoDelegate* delegate;
-    QTreeView* view;
-    KLineEdit* doEdit;
-    KPushButton* doAddBtn;
-    KPushButton* doneBtn;
-    KPushButton* editBtn;
-    QComboBox* timeBox;
-    QGridLayout* addLayout;
-    QVBoxLayout* mainLayout;
-    QHBoxLayout* bottomLayout;
-    
-    QAction* doneAct;
-    QAction* editAct;
+  Q_OBJECT
+public:
+  FilterModel( QObject* parent=0 );
+  
+  bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+  void setCategoryFilter( int cat_num );
+  int categoryFilter();
+  
+private:
+  int catFilterNum;
 };
 
-#endif //MAINWINDOW_H
+#endif //FILTERMODEL_H
