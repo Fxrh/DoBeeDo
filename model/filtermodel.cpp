@@ -27,6 +27,7 @@ FilterModel::FilterModel(QObject *parent)
   : QSortFilterProxyModel(parent)
 {
   catFilterNum = -1;
+  setDynamicSortFilter(true);
 }
 
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const

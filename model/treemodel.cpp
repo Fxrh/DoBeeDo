@@ -89,6 +89,8 @@ void TreeModel::removeTodo(const QModelIndex &index)
   beginRemoveRows(index.parent(), itemToDelete->row(), itemToDelete->row() );
   parentDelete->removeChild( itemToDelete->row() );  
   endRemoveRows();
+  // Here we also have to update section
+  emit dataChanged( index.parent(), index.parent() );
 }
 
 void TreeModel::updateTodo(const TodoObject &newObj, const QModelIndex &oldIndex)
@@ -248,8 +250,8 @@ void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   beginInsertRows( index(section->row(),0,QModelIndex()), i, i );
   section->insertChild(item, i);
   endInsertRows();
-  emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),1,QModelIndex()) );
-  reset();
+  // check if section is empty now
+  emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),0,QModelIndex()) );
   qDebug() << "dataChanged: " << section->row();
 }
 
