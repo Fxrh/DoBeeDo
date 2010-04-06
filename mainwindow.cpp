@@ -113,6 +113,11 @@ void MainWindow::editTodo()
   }
 }
 
+void MainWindow::showCat(int comboIndex)
+{
+  filterModel->setCategoryFilter( comboIndex-1 );
+}
+
 void MainWindow::setupGui()
 {
   model = new TreeModel(this);
@@ -168,9 +173,15 @@ void MainWindow::setupGui()
   addLayout->addWidget(timeBox, 1,0);
   addLayout->addWidget(doAddBtn, 0,1,2,1);
   
+  categoryBox = new QComboBox();
+  categoryBox->addItem("All");
+  for( int i=0; i<Settings::self()->categories()->count(); i++ ){
+    categoryBox->addItem(Settings::self()->categories()->at(i));
+  }
   doneBtn = new KPushButton(KIcon("checkbox"),"Done");
   editBtn = new KPushButton(KIcon("document-edit"),"Edit");
   bottomLayout = new QHBoxLayout;
+  bottomLayout->addWidget(categoryBox);
   bottomLayout->addStretch();
   bottomLayout->addWidget(editBtn);
   bottomLayout->addWidget(doneBtn);
@@ -192,4 +203,5 @@ void MainWindow::setupGui()
   connect( doneBtn, SIGNAL(clicked()), this, SLOT(removeTodo()) );
   connect( editAct, SIGNAL(triggered()), this, SLOT(editTodo()) );
   connect( editBtn, SIGNAL(clicked()), this, SLOT(editTodo()) );
+  connect( categoryBox, SIGNAL(currentIndexChanged(int)), this, SLOT(showCat(int)) );
 }

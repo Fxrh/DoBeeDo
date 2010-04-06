@@ -45,6 +45,7 @@ class MainWindow : public QWidget
     void showContextMenu( QPoint point );
     void removeTodo();
     void editTodo();
+    void showCat( int comboIndex );
     
   private:
     void setupGui();
@@ -58,6 +59,7 @@ class MainWindow : public QWidget
     KPushButton* doneBtn;
     KPushButton* editBtn;
     QComboBox* timeBox;
+    QComboBox* categoryBox;
     QGridLayout* addLayout;
     QVBoxLayout* mainLayout;
     QHBoxLayout* bottomLayout;

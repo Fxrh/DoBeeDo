@@ -16,7 +16,7 @@ set( DoBeeDo_SRCS main.cpp
               model/tododelegate.cpp
               model/filtermodel.cpp
               )
- 
+  
 
       
 

@@ -52,10 +52,11 @@ private:
   QLineEdit* nameEdit;
   QLabel* priorityLabel;
   QComboBox* priorityBox;
+  QLabel* categoryLabel;
+  QComboBox* categoryBox;
   QLabel* descriptionLabel;
   QPlainTextEdit* descriptionEdit;
   QCheckBox* dateBox;
-  //QLabel* dateLabel;
   KDatePicker* datePicker;
   QGridLayout* nameLayout;
   QVBoxLayout* dateLayout;

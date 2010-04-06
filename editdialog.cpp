@@ -31,6 +31,7 @@
 #include <KDatePicker>
 
 #include "todoobject.h"
+#include "settings.h"
 
 EditDialog::EditDialog(QWidget *parent)
   : KDialog(parent)
@@ -45,6 +46,7 @@ void EditDialog::editTodo(TodoObject *object)
   todo = object;
   nameEdit->setText( todo->getName() );
   priorityBox->setCurrentIndex( todo->getPriority()-1 );
+  categoryBox->setCurrentIndex( object->getCategory() );
   descriptionEdit->setPlainText( todo->getDescription() );
   datePicker->setDate( todo->getDate() );
   if( object->getDate().isNull() ){
@@ -61,6 +63,7 @@ void EditDialog::accept()
   }
   todo->setName( nameEdit->text() );
   todo->setPriority( priorityBox->currentIndex()+1 );
+  todo->setCategory( categoryBox->currentIndex() );
   todo->setDescription( descriptionEdit->toPlainText() );
   if( dateBox->isChecked() ){
     todo->setDate( datePicker->date() );
@@ -80,11 +83,15 @@ void EditDialog::setupUi()
   priorityBox->addItem("2");
   priorityBox->addItem("3");
   priorityBox->addItem("-");
+  categoryLabel = new QLabel("Category: ");
+  categoryBox = new QComboBox();
+  for( int i=0; i<Settings::self()->categories()->count(); i++){
+    categoryBox->addItem(Settings::self()->categories()->at(i) );
+  }
   descriptionLabel = new QLabel("Description: ");
   descriptionEdit = new QPlainTextEdit();
   dateBox = new QCheckBox("select Date");
   dateBox->setChecked(true);
-  //dateLabel = new QLabel("Date");
   datePicker = new KDatePicker();
   
   nameLayout = new QGridLayout();
@@ -92,8 +99,10 @@ void EditDialog::setupUi()
   nameLayout->addWidget(nameEdit,0,1);
   nameLayout->addWidget(priorityLabel,1,0);
   nameLayout->addWidget(priorityBox,1,1);
-  nameLayout->addWidget(descriptionLabel,2,0,1,2);
-  nameLayout->addWidget(descriptionEdit,3,0,1,2);
+  nameLayout->addWidget(categoryLabel,2,0);
+  nameLayout->addWidget(categoryBox,2,1);
+  nameLayout->addWidget(descriptionLabel,3,0,1,2);
+  nameLayout->addWidget(descriptionEdit,4,0,1,2);
   
   dateLayout = new QVBoxLayout();
   dateLayout->addWidget(dateBox);
