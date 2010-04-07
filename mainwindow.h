@@ -29,6 +29,7 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QTreeView;
 class QComboBox;
+class QToolButton;
 class TreeModel;
 class FilterModel;
 class TodoDelegate;
@@ -55,7 +56,8 @@ class MainWindow : public QWidget
     TodoDelegate* delegate;
     QTreeView* view;
     KLineEdit* doEdit;
-    KPushButton* doAddBtn;
+    QToolButton* doAddBtn;
+    KPushButton* configBtn;
     KPushButton* doneBtn;
     KPushButton* editBtn;
     QComboBox* timeBox;

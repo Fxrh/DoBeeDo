@@ -31,6 +31,7 @@
 #include <QVBoxLayout>
 #include <QTreeView>
 #include <QComboBox>
+#include <QToolButton>
 #include <QAction>
 #include <QMenu>
 #include <QHeaderView>
@@ -155,7 +156,10 @@ void MainWindow::setupGui()
   doEdit = new KLineEdit(this);
   doEdit->setClickMessage("new task...");
   view->setFocusProxy(doEdit);
-  doAddBtn = new KPushButton(KIcon("list-add"),"",this);
+//  doAddBtn = new KPushButton(KIcon("list-add"),"",this);
+  doAddBtn = new QToolButton();
+  doAddBtn->setIcon(KIcon("list-add"));
+  doAddBtn->setIconSize(QSize(35,35));
   timeBox = new QComboBox(this);
   timeBox->addItem("Today");
   timeBox->addItem("Tomorrow");
@@ -171,24 +175,30 @@ void MainWindow::setupGui()
   addLayout = new QGridLayout;
   addLayout->addWidget(doEdit, 0,0);
   addLayout->addWidget(timeBox, 1,0);
-  addLayout->addWidget(doAddBtn, 0,1,2,1);
+  addLayout->addWidget(doAddBtn, 0,1,2,2);
   
   categoryBox = new QComboBox();
   categoryBox->addItem("All");
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
   }
+  selectLayout = new QHBoxLayout();
+  selectLayout->addWidget(categoryBox);
+  selectLayout->addStretch();
+  
   doneBtn = new KPushButton(KIcon("checkbox"),"Done");
   editBtn = new KPushButton(KIcon("document-edit"),"Edit");
+  configBtn = new KPushButton(KIcon("configure"), "Configure");
   bottomLayout = new QHBoxLayout;
-  bottomLayout->addWidget(categoryBox);
   bottomLayout->addStretch();
   bottomLayout->addWidget(editBtn);
   bottomLayout->addWidget(doneBtn);
+  bottomLayout->addWidget(configBtn);
   
   mainLayout = new QVBoxLayout;
   mainLayout->addLayout(addLayout);
   mainLayout->addWidget(view);
+  mainLayout->addLayout(selectLayout);
   mainLayout->addLayout(bottomLayout);
   setLayout(mainLayout);
   setWindowTitle("DoBeeDo");
