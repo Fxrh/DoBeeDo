@@ -70,6 +70,12 @@ QList<TodoObject>* Settings::getTodoList()
   return list;
 }
 
+void Settings::setCategories(QStringList *list)
+{
+  delete categoriesList;
+  categoriesList = list;
+}
+
 void Settings::setTodoList( QList<TodoObject>* list )
 {
   if( list == 0 ){

@@ -45,6 +45,7 @@ MainWindow::MainWindow( QWidget* parent )
   
   model->resetAllTodo( Settings::self()->getTodoList() );
   view->expandAll();
+  connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(expandSections(QModelIndex,QModelIndex)) );
 }
 
 MainWindow::~MainWindow()
@@ -117,6 +118,11 @@ void MainWindow::editTodo()
 void MainWindow::showCat(int comboIndex)
 {
   filterModel->setCategoryFilter( comboIndex-1 );
+}
+
+void MainWindow::expandSections(const QModelIndex &index, const QModelIndex &)
+{
+  view->expand( filterModel->mapFromSource(index) );
 }
 
 void MainWindow::setupGui()

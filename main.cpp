@@ -29,11 +29,11 @@ int main( int argc, char** argv )
                         0,
                         ki18n( "DoBeeDo" ),
                         "0.1",
-                        ki18n( "Eine einfache, wenig störende ToDo-Liste" ),
+                        ki18n( "A todo list manager for KDE" ),
                         KAboutData::License_GPL_V3,
                         ki18n( "(c) 2010 Felix Rohrbach" ),
                         ki18n(""), //further description
-                        "", //Website
+                        "http://github.com/fxrh/dobeedo/", //Website
                         "fxrh@gmx.de" );
   
   KCmdLineArgs::init( argc, argv, &aboutData );

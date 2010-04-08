@@ -34,6 +34,7 @@ public:
   
   QList<TodoObject>* getTodoList();
   QStringList* categories() const { return categoriesList; }
+  void setCategories( QStringList* list ); 
   void setTodoList( QList<TodoObject>* list );
   
 private:

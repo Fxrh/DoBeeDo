@@ -21,6 +21,7 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QModelIndex>
 
 class KLineEdit;
 class KPushButton;
@@ -47,6 +48,7 @@ class MainWindow : public QWidget
     void removeTodo();
     void editTodo();
     void showCat( int comboIndex );
+    void expandSections( const QModelIndex& index, const QModelIndex& );
     
   private:
     void setupGui();
@@ -64,6 +66,7 @@ class MainWindow : public QWidget
     QComboBox* categoryBox;
     QGridLayout* addLayout;
     QVBoxLayout* mainLayout;
+    QHBoxLayout* selectLayout;
     QHBoxLayout* bottomLayout;
     
     QAction* doneAct;
