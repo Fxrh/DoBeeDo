@@ -24,4 +24,5 @@ kde4_add_executable( dobeedo ${DoBeeDo_SRCS} )
 target_link_libraries( dobeedo ${KDE4_KDEUI_LIBS} )
 
 install(TARGETS dobeedo ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(FILES dobeedoui.rc DESTINATION  ${DATA_INSTALL_DIR}/dobeedo)
 
