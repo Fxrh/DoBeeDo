@@ -20,11 +20,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QWidget>
+#include <KXmlGuiWindow>
 #include <QModelIndex>
 
 class KLineEdit;
 class KPushButton;
+class KAction;
 class QGridLayout;
 class QVBoxLayout;
 class QHBoxLayout;
@@ -35,12 +36,15 @@ class TreeModel;
 class FilterModel;
 class TodoDelegate;
 
-class MainWindow : public QWidget
+class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
   public:
     MainWindow( QWidget* parent = 0 );
     ~MainWindow();
+    
+  protected:
+    void closeEvent(QCloseEvent *event);
     
   private slots:
     void newTodo();
@@ -53,24 +57,24 @@ class MainWindow : public QWidget
   private:
     void setupGui();
     
+    QWidget* mainWidget;
     TreeModel* model;
     FilterModel* filterModel;
     TodoDelegate* delegate;
     QTreeView* view;
     KLineEdit* doEdit;
     QToolButton* doAddBtn;
-    KPushButton* configBtn;
     KPushButton* doneBtn;
     KPushButton* editBtn;
     QComboBox* timeBox;
     QComboBox* categoryBox;
     QGridLayout* addLayout;
     QVBoxLayout* mainLayout;
-    QHBoxLayout* selectLayout;
     QHBoxLayout* bottomLayout;
     
-    QAction* doneAct;
-    QAction* editAct;
+    KAction* doneAct;
+    KAction* editAct;
+    KAction* configAct;
 };
 
 #endif //MAINWINDOW_H

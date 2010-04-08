@@ -27,6 +27,7 @@ DoApp::DoApp()
   this->setApplicationName("DoBeeDo");
   window = new MainWindow();
   systray = new SysTray(window);
+  this->setQuitOnLastWindowClosed(true);
 }
 
 DoApp::~DoApp()

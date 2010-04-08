@@ -32,6 +32,7 @@ TreeModel::TreeModel(QObject *parent)
 TreeModel::~TreeModel()
 {
   delete rootItem;
+  qDebug() << "TreeModel: Destroyed";
 }
 
 void TreeModel::addSection(QString name, int daysTo)

@@ -27,6 +27,10 @@
 
 #include <klineedit.h>
 #include <KPushButton>
+#include <KAction>
+#include <KActionCollection>
+#include <KStandardAction>
+#include <KApplication>
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QTreeView>
@@ -35,10 +39,11 @@
 #include <QAction>
 #include <QMenu>
 #include <QHeaderView>
+#include <QCloseEvent>
 #include <QDebug>
 
 MainWindow::MainWindow( QWidget* parent )
-    : QWidget(parent)
+  : KXmlGuiWindow(parent, Qt::Window )
 {
   setupGui();
   show();
@@ -52,6 +57,13 @@ MainWindow::~MainWindow()
 {
   Settings::self()->setTodoList( model->getAllTodo() );
   Settings::destroy();
+  qDebug() << "MainWindow: destroyed";
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+  event->ignore();
+  kapp->quit();
 }
 
 void MainWindow::newTodo()
@@ -187,30 +199,34 @@ void MainWindow::setupGui()
   categoryBox->addItem("All");
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
-  }
-  selectLayout = new QHBoxLayout();
-  selectLayout->addWidget(categoryBox);
-  selectLayout->addStretch();
-  
+  }  
   doneBtn = new KPushButton(KIcon("checkbox"),"Done");
   editBtn = new KPushButton(KIcon("document-edit"),"Edit");
-  configBtn = new KPushButton(KIcon("configure"), "Configure");
   bottomLayout = new QHBoxLayout;
+  bottomLayout->addWidget(categoryBox);
   bottomLayout->addStretch();
   bottomLayout->addWidget(editBtn);
   bottomLayout->addWidget(doneBtn);
-  bottomLayout->addWidget(configBtn);
   
   mainLayout = new QVBoxLayout;
   mainLayout->addLayout(addLayout);
   mainLayout->addWidget(view);
-  mainLayout->addLayout(selectLayout);
   mainLayout->addLayout(bottomLayout);
-  setLayout(mainLayout);
+  
+  mainWidget = new QWidget(this);
+  mainWidget->setLayout(mainLayout);
+  setCentralWidget(mainWidget);
   setWindowTitle("DoBeeDo");
   
-  doneAct = new QAction("Done", this);
-  editAct = new QAction("Edit", this);
+  doneAct = new KAction(KIcon("checkbox"),"Done", this);
+  editAct = new KAction(KIcon("document-edit"),"Edit", this);
+  configAct = new KAction(KIcon("configure"),"Configure DoBeeDo",this);
+  actionCollection()->addAction("done", doneAct);
+  actionCollection()->addAction("edit", editAct);
+  actionCollection()->addAction("configDobeedo", configAct);
+  KStandardAction::quit( kapp, SLOT(quit()), actionCollection() );
+  
+  KXmlGuiWindow::setupGUI(Default, "dobeedoui.rc");
   
   connect( view, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)) );
   connect( doEdit, SIGNAL(returnPressed()), doAddBtn, SLOT(animateClick()) );
