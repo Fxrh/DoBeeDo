@@ -119,6 +119,9 @@ void MainWindow::removeTodo()
 void MainWindow::editTodo()
 {
   QModelIndex index = filterModel->mapToSource(view->currentIndex());
+  if( index.parent() == QModelIndex() ){
+    return; //hey, it's named editTodo, not editSection!
+  }
   TodoObject object = model->getTodo(index);
   EditDialog dialog;
   dialog.editTodo(&object);
