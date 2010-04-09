@@ -3,6 +3,6 @@ Name=DoBeeDo
 Exec=dobeedo
 Icon=dobeedo
 Type=Application
-Categories=Qt;KDE;Office;PIM;
+Categories=Qt;KDE;Office;
 GenericName=A todo list manager for KDE
 Terminal=false
