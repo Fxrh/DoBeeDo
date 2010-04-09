@@ -45,6 +45,9 @@ public:
 public slots:
   void accept();
   
+private slots:
+  void configChanged();
+  
 private:
   void setupUi();
   

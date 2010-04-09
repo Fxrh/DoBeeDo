@@ -24,6 +24,7 @@
 #include "todoobject.h"
 #include "settings.h"
 #include "editdialog.h"
+#include "config/configdialog.h"
 
 #include <klineedit.h>
 #include <KPushButton>
@@ -45,12 +46,15 @@
 MainWindow::MainWindow( QWidget* parent )
   : KXmlGuiWindow(parent, Qt::Window )
 {
+  Settings::self();
+  configDialog = 0;
   setupGui();
   show();
   
   model->resetAllTodo( Settings::self()->getTodoList() );
   view->expandAll();
   connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(expandSections(QModelIndex,QModelIndex)) );
+  connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
 }
 
 MainWindow::~MainWindow()
@@ -138,6 +142,25 @@ void MainWindow::showCat(int comboIndex)
 void MainWindow::expandSections(const QModelIndex &index, const QModelIndex &)
 {
   view->expand( filterModel->mapFromSource(index) );
+}
+
+void MainWindow::showConfigDialog()
+{
+  if( configDialog == 0 ){
+    configDialog = new ConfigDialog(this);
+  }
+  configDialog->exec();
+}
+
+void MainWindow::configChanged()
+{
+  qDebug() << "MainWindow: Config Changed";
+  categoryBox->clear();
+  categoryBox->addItem("All");
+  for( int i=0; i<Settings::self()->categories()->count(); i++ ){
+    categoryBox->addItem(Settings::self()->categories()->at(i));
+  } 
+  qDebug() << "MainWindow: Config Changed";
 }
 
 void MainWindow::setupGui()
@@ -239,4 +262,5 @@ void MainWindow::setupGui()
   connect( editAct, SIGNAL(triggered()), this, SLOT(editTodo()) );
   connect( editBtn, SIGNAL(clicked()), this, SLOT(editTodo()) );
   connect( categoryBox, SIGNAL(currentIndexChanged(int)), this, SLOT(showCat(int)) );
+  connect( configAct, SIGNAL(triggered()), this, SLOT(showConfigDialog()) );
 }

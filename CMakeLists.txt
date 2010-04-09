@@ -15,6 +15,8 @@ set( DoBeeDo_SRCS main.cpp
               model/treemodel.cpp
               model/tododelegate.cpp
               model/filtermodel.cpp
+              config/configdialog.cpp
+              config/categorywidget.cpp
               )
   
 
@@ -25,4 +27,5 @@ target_link_libraries( dobeedo ${KDE4_KDEUI_LIBS} )
 
 install(TARGETS dobeedo ${INSTALL_TARGETS_DEFAULT_ARGS} )
 install(FILES dobeedoui.rc DESTINATION  ${DATA_INSTALL_DIR}/dobeedo)
+install( FILES dobeedo.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR} )
 

@@ -27,6 +27,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
+#include <QDebug>
 #include <KPushButton>
 #include <KDatePicker>
 
@@ -39,6 +40,7 @@ EditDialog::EditDialog(QWidget *parent)
   todo = 0;
   setButtons(KDialog::Ok | KDialog::Cancel);
   setupUi();
+  connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
 }
 
 void EditDialog::editTodo(TodoObject *object)
@@ -71,6 +73,17 @@ void EditDialog::accept()
     todo->setDate( QDate() );
   }
   KDialog::accept();
+}
+
+void EditDialog::configChanged()
+{
+  qDebug() << "EditDialog: configChanged";
+  int current = categoryBox->currentIndex();
+  categoryBox->clear();
+  for( int i=0; i<Settings::self()->categories()->count(); i++){
+    categoryBox->addItem(Settings::self()->categories()->at(i) );
+  }
+  categoryBox->setCurrentIndex(current);
 }
 
 void EditDialog::setupUi()

@@ -35,6 +35,7 @@ class QToolButton;
 class TreeModel;
 class FilterModel;
 class TodoDelegate;
+class ConfigDialog;
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -53,6 +54,8 @@ class MainWindow : public KXmlGuiWindow
     void editTodo();
     void showCat( int comboIndex );
     void expandSections( const QModelIndex& index, const QModelIndex& );
+    void showConfigDialog();
+    void configChanged();
     
   private:
     void setupGui();
@@ -61,6 +64,7 @@ class MainWindow : public KXmlGuiWindow
     TreeModel* model;
     FilterModel* filterModel;
     TodoDelegate* delegate;
+    ConfigDialog* configDialog;
     QTreeView* view;
     KLineEdit* doEdit;
     QToolButton* doAddBtn;

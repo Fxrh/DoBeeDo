@@ -30,7 +30,7 @@ Settings* Settings::instance = 0;
 Settings* Settings::self()
 {
   if( instance == 0 ){
-    return new Settings();
+    instance = new Settings();
   }
   return instance;
 }
@@ -73,7 +73,9 @@ QList<TodoObject>* Settings::getTodoList()
 void Settings::setCategories(QStringList *list)
 {
   delete categoriesList;
-  categoriesList = list;
+  categoriesList = new QStringList(*list);
+  //categoriesList = list;
+  qDebug() << *categoriesList;
 }
 
 void Settings::setTodoList( QList<TodoObject>* list )
@@ -95,6 +97,12 @@ void Settings::setTodoList( QList<TodoObject>* list )
   delete list;
 }
 
+void Settings::emitConfigChanged()
+{
+  emit sigConfigChanged();
+  qDebug() << "Emitted: " << *categoriesList;
+}
+
 Settings::Settings()
   : magicNumber(0x87F2468B),
   dataVersion(0x0001)
@@ -109,6 +117,7 @@ Settings::~Settings()
 
 void Settings::load()
 {
+  qDebug() << "Settings: load";
   settingsFile = new QSettings( "dobeedo", "dobeedo" ,this);
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();

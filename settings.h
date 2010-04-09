@@ -28,6 +28,7 @@ class QStringList;
 
 class Settings : public QObject
 {
+  Q_OBJECT
 public:
   static Settings* self();
   static void destroy();
@@ -36,6 +37,11 @@ public:
   QStringList* categories() const { return categoriesList; }
   void setCategories( QStringList* list ); 
   void setTodoList( QList<TodoObject>* list );
+  
+  void emitConfigChanged();// { emit configChanged(); qDebug("Emitted"); }
+  
+signals:
+  void sigConfigChanged();
   
 private:
   Settings();

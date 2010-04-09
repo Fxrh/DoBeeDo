@@ -33,7 +33,6 @@ FilterModel::FilterModel(QObject *parent)
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
   if( !source_parent.isValid() ){ 
-    qDebug() << "filterSection: " << source_row;
     // remove empty sections...
     QModelIndex secIndex = sourceModel()->index(source_row, 0, source_parent);
     if( sourceModel()->rowCount(secIndex) == 0 ){
@@ -60,6 +59,9 @@ void FilterModel::setCategoryFilter(int cat_num)
     cat_num = 0;
   }
   catFilterNum = cat_num;
+  qDebug() << "CategoryFilter: " << catFilterNum;
+  invalidate();
+  //sourceModel()->dataChanged( sourceModel()->index(0,0,QModelIndex()), sourceModel()->index( sourceModel()->rowCount(QModelIndex()), 0, QModelIndex() ) );
 }
 
 int FilterModel::categoryFilter()
