@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=DoBeeDo
+Exec=dobeedo
+Icon=dobeedo
+Type=Application
+Categories=Qt;KDE;Office;PIM;
+GenericName=A todo list manager for KDE
+Terminal=false
