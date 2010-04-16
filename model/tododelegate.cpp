@@ -123,7 +123,7 @@ QSize TodoDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
   if( map["type"] == 1 ){
     QFontMetrics metrics(standardFont);
     if( index.column() == 0 )
-      return metrics.boundingRect("- "+map["name"].toString()).size();
+      return metrics.boundingRect(map["name"].toString()).size()+QSize(0,2);
     return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,2);
   }
   return QSize();

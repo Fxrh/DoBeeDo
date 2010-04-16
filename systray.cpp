@@ -19,12 +19,30 @@
 
 #include "systray.h"
 
-SysTray::SysTray( QWidget* parent )
-    : KSystemTrayIcon(parent)
+SysTray::SysTray( QObject* parent )
+    : KStatusNotifierItem(parent)
 {
+  setCategory( ApplicationStatus );
+  setIconByName( "dobeedo" );
 }
 
 SysTray::~SysTray()
 {
+  qDebug("SysTray: destroyed");
+}
+
+void SysTray::updateStatusInformation(int overdue, int today, int tomorrow, int nextWeek, int nextMonth, int Future)
+{
+  if( overdue+today != 0 ){
+    setIconByName("dobeedo-today");
+  }
+  else {
+    if( tomorrow != 0 ){
+      setIconByName( "dobeedo-tomorrow" );
+    }
+    else{
+      setIconByName( "dobeedo" );
+    }
+  }
 }
 

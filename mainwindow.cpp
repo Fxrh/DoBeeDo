@@ -24,6 +24,7 @@
 #include "todoobject.h"
 #include "settings.h"
 #include "editdialog.h"
+#include "systray.h"
 #include "config/configdialog.h"
 
 #include <klineedit.h>
@@ -43,8 +44,9 @@
 #include <QCloseEvent>
 #include <QDebug>
 
-MainWindow::MainWindow( QWidget* parent )
-  : KXmlGuiWindow(parent, Qt::Window )
+MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
+  : KXmlGuiWindow(parent, Qt::Window ),
+  systray(_systray)
 {
   Settings::self();
   configDialog = 0;
@@ -53,6 +55,7 @@ MainWindow::MainWindow( QWidget* parent )
   
   model->resetAllTodo( Settings::self()->getTodoList() );
   view->expandAll();
+  todosChanged();
   connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(expandSections(QModelIndex,QModelIndex)) );
   connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
 }
@@ -103,6 +106,7 @@ void MainWindow::newTodo()
   QModelIndex index = model->addTodo(object);
   view->setCurrentIndex( filterModel->mapFromSource(index) );
   doEdit->setText("");
+  todosChanged();
 }
 
 void MainWindow::showContextMenu(QPoint point)
@@ -119,6 +123,7 @@ void MainWindow::showContextMenu(QPoint point)
 void MainWindow::removeTodo()
 {
   model->removeTodo( filterModel->mapToSource(view->currentIndex()) );
+  todosChanged();
 }
 
 void MainWindow::editTodo()
@@ -133,6 +138,7 @@ void MainWindow::editTodo()
   if( dialog.exec() == QDialog::Accepted ){
     QModelIndex newIndex = model->updateTodo(object, index);
     view->setCurrentIndex( filterModel->mapFromSource(newIndex) );
+    todosChanged();
   }
 }
 
@@ -156,13 +162,20 @@ void MainWindow::showConfigDialog()
 
 void MainWindow::configChanged()
 {
-  qDebug() << "MainWindow: Config Changed";
   categoryBox->clear();
   categoryBox->addItem("All");
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
   } 
-  qDebug() << "MainWindow: Config Changed";
+}
+
+void MainWindow::todosChanged()
+{
+  int array[6];
+  for( int i=0; i<=5; i++ ){
+    array[i] = model->rowCount( model->index(i,0,QModelIndex()) );
+  }
+  systray->updateStatusInformation( array[0], array[1], array[2], array[3], array[4], array[5] );
 }
 
 void MainWindow::setupGui()

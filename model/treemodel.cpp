@@ -265,7 +265,7 @@ QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   while( i < section->childCount() 
          && item->todo()->getPriority() == section->child(i)->todo()->getPriority()
          && item->todo()->getDate() == section->child(i)->todo()->getDate() ){
-    if( item->todo()->getName() < section->child(i)->todo()->getName() ){
+    if( item->todo()->getName().toLower() < section->child(i)->todo()->getName().toLower() ){
       break;
     }
     i++;

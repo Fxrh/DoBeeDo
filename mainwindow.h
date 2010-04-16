@@ -36,12 +36,13 @@ class TreeModel;
 class FilterModel;
 class TodoDelegate;
 class ConfigDialog;
+class SysTray;
 
 class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
   public:
-    MainWindow( QWidget* parent = 0 );
+    MainWindow( SysTray* _systray, QWidget* parent = 0 );
     ~MainWindow();
     
   protected:
@@ -58,6 +59,7 @@ class MainWindow : public KXmlGuiWindow
     void configChanged();
     
   private:
+    void todosChanged();
     void setupGui();
     
     QWidget* mainWidget;
@@ -65,6 +67,7 @@ class MainWindow : public KXmlGuiWindow
     FilterModel* filterModel;
     TodoDelegate* delegate;
     ConfigDialog* configDialog;
+    SysTray* systray;
     QTreeView* view;
     KLineEdit* doEdit;
     QToolButton* doAddBtn;

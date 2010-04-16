@@ -20,13 +20,15 @@
 #ifndef SYSTRAY_H
 #define SYSTRAY_H
 
-#include <ksystemtrayicon.h>
+#include <KStatusNotifierItem>
 
-class SysTray : public KSystemTrayIcon
+class SysTray : public KStatusNotifierItem
 {
   public:
-    SysTray( QWidget* parent = 0 );
+    SysTray( QObject* parent = 0 );
     ~SysTray();
+    
+    void updateStatusInformation( int overdue, int today, int tomorrow, int nextWeek, int nextMonth, int Future );
 };
 
 #endif //SYSTRAY_H

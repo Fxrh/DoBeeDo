@@ -25,12 +25,14 @@
 DoApp::DoApp()
 {
   this->setApplicationName("DoBeeDo");
-  window = new MainWindow();
-  systray = new SysTray(window);
+  systray = new SysTray();
+  window = new MainWindow(systray);
+  systray->setAssociatedWidget(window);
   this->setQuitOnLastWindowClosed(true);
 }
 
 DoApp::~DoApp()
 {
   delete window;
+  delete systray;
 }
