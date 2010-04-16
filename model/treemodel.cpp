@@ -249,15 +249,25 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
 {
   int i=0;
-  while( i < section->childCount() ){
+  while( i < section->childCount() ){ // sort by priority
     if( item->todo()->getPriority() <= section->child(i)->todo()->getPriority() ){
       break;
     }
     i++;
   }
+  // sort by date
   while( i < section->childCount() 
          && item->todo()->getPriority() == section->child(i)->todo()->getPriority() ){
-    if( item->todo()->getDate() < section->child(i)->todo()->getDate() ){
+    if( item->todo()->getDate() <= section->child(i)->todo()->getDate() ){
+      break;
+    }
+    i++;
+  }
+  // sort by name
+  while( i < section->childCount() 
+         && item->todo()->getPriority() == section->child(i)->todo()->getPriority()
+         && item->todo()->getDate() == section->child(i)->todo()->getDate() ){
+    if( item->todo()->getName() < section->child(i)->todo()->getName() ){
       break;
     }
     i++;
