@@ -35,9 +35,9 @@ class TreeModel : public QAbstractItemModel
     ~TreeModel();
     
     void addSection( QString name, int daysTo );
-    void addTodo( const TodoObject& object );
+    QModelIndex addTodo( const TodoObject& object );
     void removeTodo( const QModelIndex& index );
-    void updateTodo( const TodoObject& newObj, const QModelIndex& oldIndex);
+    QModelIndex updateTodo( const TodoObject& newObj, const QModelIndex& oldIndex);
     TodoObject getTodo( const QModelIndex& index );
     QList<TodoObject>* getAllTodo();
     void resetAllTodo( QList<TodoObject>* list );
@@ -56,7 +56,7 @@ class TreeModel : public QAbstractItemModel
     void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     
   private:
-    void addTodoToSection( TreeItem* item, TreeItem* section );
+    QModelIndex addTodoToSection( TreeItem* item, TreeItem* section );
     
     TreeItem* rootItem;
 };

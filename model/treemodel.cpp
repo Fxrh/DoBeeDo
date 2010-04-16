@@ -57,33 +57,31 @@ void TreeModel::addSection(QString name, int daysTo)
   endInsertRows();
 }
 
-void TreeModel::addTodo(const TodoObject &object)
+QModelIndex TreeModel::addTodo(const TodoObject &object)
 {
   if( object.getName() == "" ){
     qDebug() << "Empty Todo...";
-    return;
+    return QModelIndex();
   }
   TreeItem* item;
   // Invalid:
   if( object.getDate().isNull() ){
     int last = rootItem->childCount()-1;
     item = new TreeItem( object, rootItem->child( last ) );
-    addTodoToSection(item,rootItem->child(rootItem->childCount()-1));
-    return;
+    return addTodoToSection(item,rootItem->child(rootItem->childCount()-1));
   }
   for( int i=0; i < rootItem->childCount(); i++ ){
     if( rootItem->child(i)->sectionDaysTo() == -2 ){ // Again, we are at the end
       item = new TreeItem( object, rootItem->child(i) );
-      addTodoToSection(item,rootItem->child(i));
-      return;
+      return addTodoToSection(item,rootItem->child(i));
     }
     if( rootItem->child(i)->sectionDaysTo() >= object.getDaysTo() ){
       item = new TreeItem( object, rootItem->child(i) );
-      addTodoToSection(item,rootItem->child(i));
-      return;
+      return addTodoToSection(item,rootItem->child(i));
     }
   }
   qDebug() << "Whoops, your todo object was added nowhere..";
+  return QModelIndex();
 }
 
 void TreeModel::removeTodo(const QModelIndex &index)
@@ -109,10 +107,10 @@ void TreeModel::removeTodo(const QModelIndex &index)
   emit dataChanged( index.parent(), index.parent() );
 }
 
-void TreeModel::updateTodo(const TodoObject &newObj, const QModelIndex &oldIndex)
+QModelIndex TreeModel::updateTodo(const TodoObject &newObj, const QModelIndex &oldIndex)
 {
   removeTodo( oldIndex );
-  addTodo( newObj ); 
+  return addTodo( newObj ); 
 }
 
 TodoObject TreeModel::getTodo(const QModelIndex &index)
@@ -246,7 +244,7 @@ int TreeModel::rowCount(const QModelIndex &parent) const
   return parentItem->childCount();
 }
 
-void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
+QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
 {
   int i=0;
   while( i < section->childCount() ){ // sort by priority
@@ -279,6 +277,7 @@ void TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   // check if section is empty now
   emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),0,QModelIndex()) );
   qDebug() << "dataChanged: " << section->row();
+  return index( i, 0, index(section->row(), 0, QModelIndex()) ); // return index of new element
 }
 
 //QModelIndex TreeModel::addItem( QList<QVariant>& data, const QModelIndex& parent )

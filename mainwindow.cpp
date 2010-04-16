@@ -100,7 +100,8 @@ void MainWindow::newTodo()
     break;
   }
   TodoObject object( name, date );
-  model->addTodo(object);
+  QModelIndex index = model->addTodo(object);
+  view->setCurrentIndex( filterModel->mapFromSource(index) );
   doEdit->setText("");
 }
 
@@ -130,7 +131,8 @@ void MainWindow::editTodo()
   EditDialog dialog;
   dialog.editTodo(&object);
   if( dialog.exec() == QDialog::Accepted ){
-    model->updateTodo(object, index);
+    QModelIndex newIndex = model->updateTodo(object, index);
+    view->setCurrentIndex( filterModel->mapFromSource(newIndex) );
   }
 }
 
