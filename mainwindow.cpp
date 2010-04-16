@@ -270,6 +270,7 @@ void MainWindow::setupGui()
   KXmlGuiWindow::setupGUI(Default, "dobeedoui.rc");
   
   connect( view, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)) );
+  connect( view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editTodo()) );
   connect( doEdit, SIGNAL(returnPressed()), doAddBtn, SLOT(animateClick()) );
   connect( doAddBtn, SIGNAL(clicked()), this, SLOT(newTodo()) );
   connect( doneAct, SIGNAL(triggered()), this, SLOT(removeTodo()) );
