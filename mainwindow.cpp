@@ -48,6 +48,9 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   : KXmlGuiWindow(parent, Qt::Window ),
   systray(_systray)
 {
+  move( Settings::self()->getPosition() );
+  resize( Settings::self()->getSize() );
+  
   Settings::self();
   configDialog = 0;
   setupGui();
@@ -62,6 +65,8 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
 
 MainWindow::~MainWindow()
 {
+  Settings::self()->setPosition( this->pos() );
+  Settings::self()->setSize( this->size() );
   Settings::self()->setTodoList( model->getAllTodo() );
   Settings::destroy();
   qDebug() << "MainWindow: destroyed";
@@ -278,5 +283,6 @@ void MainWindow::setupGui()
   connect( editAct, SIGNAL(triggered()), this, SLOT(editTodo()) );
   connect( editBtn, SIGNAL(clicked()), this, SLOT(editTodo()) );
   connect( categoryBox, SIGNAL(currentIndexChanged(int)), this, SLOT(showCat(int)) );
+  connect( categoryBox, SIGNAL(currentIndexChanged(int)), view, SLOT(expandAll()) );
   connect( configAct, SIGNAL(triggered()), this, SLOT(showConfigDialog()) );
 }

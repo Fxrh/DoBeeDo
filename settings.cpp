@@ -119,12 +119,16 @@ void Settings::load()
 {
   qDebug() << "Settings: load";
   settingsFile = new QSettings( "dobeedo", "dobeedo" ,this);
+  position = settingsFile->value("WindowPosition", QVariant::fromValue(QPoint(0,0))).toPoint();
+  size = settingsFile->value("WindowSize", QVariant::fromValue(QSize(360,410))).toSize();
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
 
 void Settings::save()
 {
+  settingsFile->setValue("WindowPosition", QVariant::fromValue(position));
+  settingsFile->setValue("WindowSize", QVariant::fromValue(size));
   settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
   delete categoriesList;
 }

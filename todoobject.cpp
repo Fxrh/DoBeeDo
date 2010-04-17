@@ -62,7 +62,7 @@ void TodoObject::setCategory(int cat)
 
 int TodoObject::getDaysTo() const 
 {
-  qDebug() << name << ": " << QDate::currentDate().daysTo(date);
+  //qDebug() << name << ": " << QDate::currentDate().daysTo(date);
   return QDate::currentDate().daysTo(date);
 }
 

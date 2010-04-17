@@ -276,7 +276,6 @@ QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   endInsertRows();
   // check if section is empty now
   emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),0,QModelIndex()) );
-  qDebug() << "dataChanged: " << section->row();
   return index( i, 0, index(section->row(), 0, QModelIndex()) ); // return index of new element
 }
 

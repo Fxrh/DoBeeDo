@@ -21,6 +21,8 @@
 #define SETTINGS_H
 
 #include <QObject>
+#include <QPoint>
+#include <QSize>
 #include "todoobject.h"
 
 class QSettings;
@@ -33,8 +35,12 @@ public:
   static Settings* self();
   static void destroy();
   
+  QPoint getPosition() { return position; }
+  QSize getSize() { return size; }
   QList<TodoObject>* getTodoList();
   QStringList* categories() const { return categoriesList; }
+  void setPosition( QPoint pos ) { position = pos; }
+  void setSize( QSize _size ) { size = _size; }
   void setCategories( QStringList* list ); 
   void setTodoList( QList<TodoObject>* list );
   
@@ -55,6 +61,8 @@ private:
   static Settings* instance;
   
   QSettings* settingsFile;
+  QPoint position;
+  QSize size;
   QStringList* categoriesList;
   
   const quint32 magicNumber;

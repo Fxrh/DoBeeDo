@@ -32,11 +32,23 @@ FilterModel::FilterModel(QObject *parent)
 
 bool FilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
+  //sections
   if( !source_parent.isValid() ){ 
     // remove empty sections...
     QModelIndex secIndex = sourceModel()->index(source_row, 0, source_parent);
     if( sourceModel()->rowCount(secIndex) == 0 ){
       return false;
+    }
+    // test if section is empty after categories-specific removing
+    if( catFilterNum != -1 ){
+      bool hasChildren = false;
+      for( int i=0; i<sourceModel()->rowCount( sourceModel()->index(source_row,0,QModelIndex()) ); i++ ){
+        if( sourceModel()->index(i,0,secIndex).data().toMap().value("category",0).toInt() == catFilterNum ){
+          hasChildren = true;
+          break;
+        }
+      }
+      return hasChildren;
     }
     return true;
   }

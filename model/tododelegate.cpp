@@ -140,6 +140,5 @@ QString TodoDelegate::cutString( const QString &string, const QRect &size, const
   while( metrics.boundingRect(myString).width()+5 >= size.width() ){
     myString.remove(myString.count()-4,1);
   }
-  qDebug() << myString;
   return myString;
 }
