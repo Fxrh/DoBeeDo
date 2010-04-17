@@ -1,14 +1,19 @@
 				DoBeeDo
 
-DoBeeDo is a todo list manager for KDE, trying to be easy and fast to use.
+DoBeeDo is a todo list manager for KDE that tries to be easy and fast to use.
 
 Features
 --------
  * Tasks grouped by due date
-
+ * Categorize your tasks and show tasks from only one category
+ * Different priority levels
+ * save additional text for tasks
+ * tray icon that shows if you have tasks to do
 
 Installing
 ----------
+ NOTE: you need to have KDE 4.4 or higher installed
+
  mkdir build
  cd build
  cmake -DCMAKE_INSTALL_PREFIX=/usr ../

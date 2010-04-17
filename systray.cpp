@@ -23,7 +23,8 @@ SysTray::SysTray( QObject* parent )
     : KStatusNotifierItem(parent)
 {
   setCategory( ApplicationStatus );
-  setIconByName( "dobeedo" );
+  setToolTipIconByName("dobeedo");
+  setTitle("DoBeeDo");
 }
 
 SysTray::~SysTray()
@@ -35,14 +36,40 @@ void SysTray::updateStatusInformation(int overdue, int today, int tomorrow, int 
 {
   if( overdue+today != 0 ){
     setIconByName("dobeedo-today");
+    setStatus(Active);
   }
   else {
     if( tomorrow != 0 ){
       setIconByName( "dobeedo-tomorrow" );
+      setStatus(Active);
     }
     else{
       setIconByName( "dobeedo" );
+      setStatus(Passive);
     }
   }
+  
+  QString toolTip;
+  if( overdue != 0 ){
+    toolTip.append( QString("<font color=\"red\">Overdue:\t\t %1</font><br>").arg(overdue) );
+  }
+  if( today != 0 ){
+    toolTip.append( QString("<font color=\"red\">Today:  %1</font><br>").arg(today) );
+  }
+  if( tomorrow != 0 ){
+    toolTip.append( QString("<font color=\"orange\">Tomorrow:  %1</font><br>").arg(tomorrow) );
+  }
+  if( nextWeek != 0 ){
+    toolTip.append( QString("Next week:  %1<br>").arg(nextWeek) );
+  }
+  if( nextMonth != 0 ){
+    toolTip.append( QString("Next month:  %1<br>").arg(nextMonth) );
+  }
+  if( Future != 0 ){
+    toolTip.append( QString("Future:  %1<br>").arg(Future) );
+  }
+  
+  setToolTipTitle("DoBeeDo\n");
+  setToolTipSubTitle(toolTip);
 }
 
