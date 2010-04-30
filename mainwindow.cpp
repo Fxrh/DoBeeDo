@@ -162,7 +162,41 @@ void MainWindow::showConfigDialog()
   if( configDialog == 0 ){
     configDialog = new ConfigDialog(this);
   }
+  configDialog->clear();
   configDialog->exec();
+  
+  //Now, make all needed changes on the Todo category ids
+  const QStringList* opList = configDialog->getCatOpList();
+  const QList<int>* idList = configDialog->getCatIdList();
+  if( opList->isEmpty() ){
+    return;
+  }
+  QList<TodoObject>* todoList = model->getAllTodo();
+  for( int i=0; i<opList->count(); i++){
+    if( opList->at(i) == "REMOVE" ){
+//      foreach( TodoObject object, *todoList ){
+//        if( object.getCategory() == idList->at(i) ){
+//          object.setCategory(0);
+//        }
+//        if( object.getCategory() > idList->at(i) ){
+//          object.setCategory( object.getCategory()-1 );
+//        }
+//      }
+      QList<TodoObject>::iterator iter;
+      for( iter = todoList->begin(); iter != todoList->end(); iter++){
+        if( iter->getCategory() == idList->at(i) ){
+          qDebug() << iter->getName() << ": Set " << iter->getCategory() << " to 0.";
+          iter->setCategory(0);
+        }
+        if( iter->getCategory() > idList->at(i) ){
+          qDebug() << iter->getName() << ": Set " << iter->getCategory() << " to " << iter->getCategory()-1 << ".";
+          iter->setCategory( iter->getCategory()-1 );
+        }
+      }
+    }
+  }
+  model->resetAllTodo(todoList);
+  //model->resetAllTodo((new QList<TodoObject>()));
 }
 
 void MainWindow::configChanged()

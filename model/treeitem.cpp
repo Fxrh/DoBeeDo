@@ -57,7 +57,7 @@ TreeItem::TreeItem()
 
 TreeItem::~TreeItem()
 {
-  qDebug() << "Childs: " << childItems.count();
+  //qDebug() << "Childs: " << childItems.count();
   qDeleteAll(childItems);
 }
 

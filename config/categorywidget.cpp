@@ -33,7 +33,26 @@ CategoryWidget::CategoryWidget(QWidget *parent)
   : QWidget(parent)
 {
   setupUi();
+  catOpList = new QStringList();
+  catIdList = new QList<int>();
   model->setStringList(*Settings::self()->categories());
+  qDebug() << "CategoryWidget: Created.";
+}
+
+CategoryWidget::~CategoryWidget()
+{
+  delete catOpList;
+  delete catIdList;
+}
+
+const QStringList* CategoryWidget::getCatOpList()
+{
+  return catOpList;
+}
+
+const QList<int>* CategoryWidget::getCatIdList()
+{
+  return catIdList;
 }
 
 void CategoryWidget::save()
@@ -46,6 +65,8 @@ void CategoryWidget::save()
 void CategoryWidget::restore()
 {
   model->setStringList(*Settings::self()->categories());
+  catOpList->clear();
+  catIdList->clear();
 }
 
 void CategoryWidget::add()
@@ -55,6 +76,9 @@ void CategoryWidget::add()
   if( !ok || name == "" ){
     return; // cancel pressed
   }
+  // not needed, as there is no change to the Todos
+  //catOpList->push_back("ADD");
+  //catIdList->push_back(model->rowCount());
   model->insertRow( model->rowCount(), QModelIndex() );
   model->setData( model->index( model->rowCount()-1, 0, QModelIndex() ), name );
 }
@@ -66,6 +90,9 @@ void CategoryWidget::rename()
   if( !ok || name == "" ){
     return; // cancel pressed
   }
+  // not needed, as there is no change to the Todos
+  //catOpList->push_back("RENAME");
+  //catIdList->push_back(view->currentIndex().row());
   model->setData( model->index( view->currentIndex().row(), 0, QModelIndex() ), name );  
 }
 
@@ -74,6 +101,8 @@ void CategoryWidget::remove()
   if( view->currentIndex().row() == 0 ){
     return;
   }
+  catOpList->push_back("REMOVE");
+  catIdList->push_back(view->currentIndex().row() );
   model->removeRow( view->currentIndex().row(), QModelIndex() );
 }
 

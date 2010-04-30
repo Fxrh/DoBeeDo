@@ -33,6 +33,14 @@ class CategoryWidget : public QWidget
   Q_OBJECT
 public:
   CategoryWidget( QWidget* parent=0 );
+  ~CategoryWidget();
+  
+  /* catOpList contains operations done on the settings list, catIdList the associated
+   * ids of the categories. Apply those to the Todo objects (if removed set the Todo to 
+   * standard and all Todos with higher categories have to get a decreased category number 
+   */
+  const QStringList* getCatOpList();
+  const QList<int>* getCatIdList();
   
 public slots:
   void save();
@@ -46,7 +54,8 @@ private slots:
 private:
   void setupUi();
   
-  //QStringList* catList;
+  QStringList* catOpList;
+  QList<int>* catIdList;
   QStringListModel* model;
   QListView* view;
   KPushButton* addBtn;

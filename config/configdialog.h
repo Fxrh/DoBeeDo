@@ -32,6 +32,10 @@ public:
   
   void accept();
   void reject();
+  void clear();
+  
+  const QStringList* getCatOpList();
+  const QList<int>* getCatIdList();
   
 private:
   KPageWidgetItem* categoryPage;

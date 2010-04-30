@@ -138,12 +138,19 @@ QList<TodoObject>* TreeModel::getAllTodo()
 
 void TreeModel::resetAllTodo( QList<TodoObject>* list )
 {
-  for( int i=0; i<rootItem->childCount(); i++ ){
+  const int root_child_count = rootItem->childCount();
+  for( int i=0; i<root_child_count; i++ ){
     TreeItem* item = rootItem->child(i);
-    for( int j=0; j<item->childCount(); i++){
-      item->removeChild(j);
+    //const int item_child_count = item->childCount();
+    //for( int j=0; j<item_child_count; j++){
+    //  item->removeChild(j);
+    //}
+    while( item->childCount() != 0 ){
+      //qDebug() << "childs to delete: " << item->childCount();
+      item->removeChild(0);
     }
   }
+  reset();
   
   if( list == 0 ){
     return;

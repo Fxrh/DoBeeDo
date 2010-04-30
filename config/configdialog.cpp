@@ -42,3 +42,18 @@ void ConfigDialog::reject()
   categoryWidget->restore();
   KPageDialog::reject();
 }
+
+void ConfigDialog::clear()
+{
+  categoryWidget->restore();
+}
+
+const QStringList* ConfigDialog::getCatOpList()
+{
+  return categoryWidget->getCatOpList();
+}
+
+const QList<int>* ConfigDialog::getCatIdList()
+{
+  return categoryWidget->getCatIdList();
+}
