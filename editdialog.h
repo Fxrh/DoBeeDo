@@ -36,16 +36,24 @@ class KDatePicker;
 class KPushButton;
 
 class EditDialog : public KDialog
+  /* Edit the contents of one todo item (represented by an TodoObject).
+   * Call editTodo with a pointer to a TodoObject and execute the dialog.
+   * If the dialog is accepted by the user, the data of the TodoObject
+   * is changed.
+   */
 {
   Q_OBJECT
 public:
   EditDialog( QWidget* parent = 0 );
+  // call this before executing the dialog
   void editTodo( TodoObject* object );
   
 public slots:
+  // write back the inserted data to the TodoObject
   void accept();
   
 private slots:
+  // check if the categories have been changed
   void configChanged();
   
 private:

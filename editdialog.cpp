@@ -45,6 +45,7 @@ EditDialog::EditDialog(QWidget *parent)
 
 void EditDialog::editTodo(TodoObject *object)
 {
+  //TODO: check if object == 0
   todo = object;
   nameEdit->setText( todo->getName() );
   priorityBox->setCurrentIndex( todo->getPriority()-1 );
@@ -60,8 +61,9 @@ void EditDialog::editTodo(TodoObject *object)
 
 void EditDialog::accept()
 {
+  //TODO: check if todo == 0
   if( nameEdit->text() == "" ){
-    
+    // TODO: add a message box and return
   }
   todo->setName( nameEdit->text() );
   todo->setPriority( priorityBox->currentIndex()+1 );

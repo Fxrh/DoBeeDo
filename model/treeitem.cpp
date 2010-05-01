@@ -24,6 +24,7 @@
 
 TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
 {
+  // TODO: check if parent is a section
   parentItem = parent;
   dataObj = new TodoObject(data);
   type = Todo;
@@ -35,6 +36,7 @@ TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
 
 TreeItem::TreeItem(QString sectionName, int days, TreeItem* parent )
 {
+  // TODO: check if parent is root
   parentItem = parent;
   dataObj = 0;
   type = Section;

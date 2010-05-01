@@ -26,6 +26,10 @@ class MainWindow;
 class SysTray;
 
 class DoApp : public KApplication
+  /* DoApp represents the instance of the application, created in main().
+   * It does not much here, it just takes care of the creating and destroying
+   * of the main window and the system tray icon.
+   */
 {
   public:
     DoApp();

@@ -86,6 +86,7 @@ void CategoryWidget::add()
 void CategoryWidget::rename()
 {
   bool ok=false;
+  //TODO: set the input dialog text to the actual category name
   QString name = KInputDialog::getText( "Rename category", "Enter the new name for the category:", "", &ok );
   if( !ok || name == "" ){
     return; // cancel pressed

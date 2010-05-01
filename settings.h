@@ -29,15 +29,25 @@ class QSettings;
 class QStringList;
 
 class Settings : public QObject
+  /* Settings is the configuration manager of DoBeeDo. It is a sigleton class,
+   * so if you want to use it, call for an instance with Settings::self().
+   * To save the changes you have to call destroy() when exiting the application.
+   */
 {
   Q_OBJECT
 public:
+  // call to get an instance of the Settings class
   static Settings* self();
+  // delete the instance and save all data
   static void destroy();
   
+  // Position of the main window
   QPoint getPosition() { return position; }
+  // Size of the main window
   QSize getSize() { return size; }
+  // The saved list of the todo items, saved in todo.data
   QList<TodoObject>* getTodoList();
+  // The categories we have atm
   QStringList* categories() const { return categoriesList; }
   void setPosition( QPoint pos ) { position = pos; }
   void setSize( QSize _size ) { size = _size; }

@@ -29,17 +29,25 @@ class QHBoxLayout;
 class KPushButton;
 
 class CategoryWidget : public QWidget
+  /* This class is part of the config dialog. Here, the user can edit the
+   * categories. Be sure to adjust all TodoObjects after editing the categories
+   * (see getCatOpList() and getCatIdList() for more information). Call restore()
+   * if you want to use this dialog a second time.
+   */
 {
   Q_OBJECT
 public:
   CategoryWidget( QWidget* parent=0 );
   ~CategoryWidget();
   
-  /* catOpList contains operations done on the settings list, catIdList the associated
-   * ids of the categories. Apply those to the Todo objects (if removed set the Todo to 
-   * standard and all Todos with higher categories have to get a decreased category number 
-   */
+  // catOpList contains the operations done to the category list. At the moment, the only
+  // operation is "REMOVE". Together with getCatIdList, you can adjust the category number 
+  // of all TodoObjects (you need to set all TodoObjects with where assigned to the removed
+  // category to the category Standard (0), and you have to decrease all category numbers of
+  // TodoObjects with a category number higher than the one just removed).
   const QStringList* getCatOpList();
+  // returns a list of category numbers on which the user made modifictions. Together with 
+  // getCatOpList you can adjust the category numbers of the TodoObjects.
   const QList<int>* getCatIdList();
   
 public slots:
@@ -47,8 +55,11 @@ public slots:
   void restore();
   
 private slots:
+  // open a dialog to add a category
   void add();
+  // open a dialog to rename the selected category
   void rename();
+  // removes the selected category
   void remove();
   
 private:

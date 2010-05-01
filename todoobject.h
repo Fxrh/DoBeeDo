@@ -25,6 +25,10 @@
 #include <QDataStream>
 
 class TodoObject
+  /* TodoObject contains the data of one todo item, including its name, 
+   * due date, longer description, the number of the category it is assigned
+   * to and its priority (priority of 4 means no priority).
+   */
 {
   public:
     TodoObject( QString _name, QDate _date=QDate::currentDate() );
@@ -41,7 +45,11 @@ class TodoObject
     QDate getDate() const { return date; }
     int getPriority() const { return priority; }
     int getCategory() const { return category; }
+    // returns the amount of days until this task have to be done (0 == today)
+    // daysTo == -2 means that the TodoObjects have no date set ("future")
     int getDaysTo() const;
+    // check if the TodoObject has a name. I don't want any TodoObjects without
+    // a name, so they will be likely sorted out by other classes
     bool isValid() const { return (name != ""); }
     
   private:
@@ -52,6 +60,7 @@ class TodoObject
     int category;
 };
 
+// To save the todo data as binary file
 QDataStream& operator<<( QDataStream& out, const TodoObject& object );
 QDataStream& operator>>( QDataStream& in, TodoObject& object );
 

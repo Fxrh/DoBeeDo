@@ -23,13 +23,21 @@
 #include <QSortFilterProxyModel>
 
 class FilterModel : public QSortFilterProxyModel
+  /* FilterModel is between the view and the model desiding which row 
+   * should be shown. Empty sections are fitered out. Furthermore, if set,
+   * it only shows todo items from a special category (see setCategoryFilter).
+   */
 {
   Q_OBJECT
 public:
   FilterModel( QObject* parent=0 );
   
+  // decide if a row should be shown
   bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+  // set the category which should be exclusivly shown. If cat_num is -1, then all
+  // categories are shown.
   void setCategoryFilter( int cat_num );
+  // returns the number of the category that is shown. Returns -1 if all are shown.
   int categoryFilter();
   
 private:

@@ -29,6 +29,9 @@ class QPainter;
 class QTreeView;
 
 class TodoDelegate : public QStyledItemDelegate
+  /* The delegate class in this Qt Model/View architecture. It paints the data
+   * in the QTreeView. 
+   */
 {
   Q_OBJECT
 public:
@@ -38,6 +41,7 @@ public:
   void paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
   
 private:
+  // function that cuts strings to a suitable length using "..." at the end of the cutted string
   QString cutString( const QString& string, const QRect& size, const QFont& font ) const;
   
   QFont boldFont;

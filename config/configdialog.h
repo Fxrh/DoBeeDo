@@ -25,6 +25,8 @@
 class CategoryWidget;
 
 class ConfigDialog : public KPageDialog
+  /* The main config dialog. Has only one page to edit the categories at the moment
+   */
 {
   Q_OBJECT
 public:
@@ -32,9 +34,12 @@ public:
   
   void accept();
   void reject();
+  // Call this before you show this dialog
   void clear();
   
+  // see CategoryWidget::getCatOpList()
   const QStringList* getCatOpList();
+  // see CategoryWidget::getCatIdList()
   const QList<int>* getCatIdList();
   
 private:

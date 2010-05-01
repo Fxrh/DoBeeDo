@@ -23,11 +23,15 @@
 #include <KStatusNotifierItem>
 
 class SysTray : public KStatusNotifierItem
+  /* The system tray icon. It has different colors, depending of the tasks
+   * you have to do today and tomorrow.
+   */
 {
   public:
     SysTray( QObject* parent = 0 );
     ~SysTray();
     
+    // called by MainWindow to inform SysTray of the amount of tasks per section
     void updateStatusInformation( int overdue, int today, int tomorrow, int nextWeek, int nextMonth, int Future );
 };
 
