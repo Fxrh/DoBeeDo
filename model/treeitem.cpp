@@ -24,7 +24,9 @@
 
 TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
 {
-  // TODO: check if parent is a section
+  if( parent == 0 || !parent->isSection() ){
+    qDebug() << "TreeItem: "<< data.getName() <<" has bad parent.";
+  }
   parentItem = parent;
   dataObj = new TodoObject(data);
   type = Todo;
@@ -36,7 +38,9 @@ TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
 
 TreeItem::TreeItem(QString sectionName, int days, TreeItem* parent )
 {
-  // TODO: check if parent is root
+  if( parent == 0 || !parent->isRoot() ){
+    qDebug() << "TreeItem: "<< sectionName <<" has bad parent.";
+  }
   parentItem = parent;
   dataObj = 0;
   type = Section;
