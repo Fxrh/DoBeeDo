@@ -31,7 +31,7 @@ class TodoObject
    */
 {
   public:
-    TodoObject( QString _name, QDate _date=QDate::currentDate() );
+    explicit TodoObject( QString _name, QDate _date=QDate::currentDate() );
     TodoObject( const TodoObject& old );
     ~TodoObject();
     

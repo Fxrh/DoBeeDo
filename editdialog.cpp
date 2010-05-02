@@ -20,8 +20,8 @@
 #include "editdialog.h"
 
 #include <QLabel>
-#include <QLineEdit>
-#include <QComboBox>
+#include <KLineEdit>
+#include <KComboBox>
 #include <QCheckBox>
 #include <QPlainTextEdit>
 #include <QVBoxLayout>
@@ -69,7 +69,7 @@ void EditDialog::accept()
     qDebug("EditDialog: todo is null!");
     return;
   }
-  if( nameEdit->text() == "" ){
+  if( nameEdit->text().isEmpty() ){
     KMessageBox::error(this, "The name of the todo item can't be empty");
     return;
   }
@@ -99,15 +99,15 @@ void EditDialog::configChanged()
 void EditDialog::setupUi()
 {
   nameLabel = new QLabel("Name: ");
-  nameEdit = new QLineEdit;
+  nameEdit = new KLineEdit;
   priorityLabel = new QLabel("Priority: ");
-  priorityBox = new QComboBox();
+  priorityBox = new KComboBox();
   priorityBox->addItem("1");
   priorityBox->addItem("2");
   priorityBox->addItem("3");
   priorityBox->addItem("-");
   categoryLabel = new QLabel("Category: ");
-  categoryBox = new QComboBox();
+  categoryBox = new KComboBox();
   for( int i=0; i<Settings::self()->categories()->count(); i++){
     categoryBox->addItem(Settings::self()->categories()->at(i) );
   }

@@ -35,13 +35,13 @@ class TodoDelegate : public QStyledItemDelegate
 {
   Q_OBJECT
 public:
-  TodoDelegate( QTreeView* _view, QWidget* parent = 0  );
+  explicit TodoDelegate( QTreeView* _view, QWidget* parent = 0  );
   
   QSize sizeHint( const QStyleOptionViewItem &option, const QModelIndex &index ) const;
   void paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
   
 private:
-  // function that cuts strings to a suitable length using "..." at the end of the cutted string
+  // function that cuts strings to a suitable length using "..." at the end of the cut string
   QString cutString( const QString& string, const QRect& size, const QFont& font ) const;
   
   QFont boldFont;

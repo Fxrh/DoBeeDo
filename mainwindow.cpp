@@ -36,7 +36,7 @@
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QTreeView>
-#include <QComboBox>
+#include <KComboBox>
 #include <QToolButton>
 #include <QAction>
 #include <QMenu>
@@ -81,7 +81,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::newTodo()
 {
   QString name = doEdit->text();
-  if( name == "" ){
+  if( name.isEmpty() ){
     return;
   }
   QDate date;
@@ -183,7 +183,7 @@ void MainWindow::showConfigDialog()
 //        }
 //      }
       QList<TodoObject>::iterator iter;
-      for( iter = todoList->begin(); iter != todoList->end(); iter++){
+      for( iter = todoList->begin(); iter != todoList->end(); ++iter){
         if( iter->getCategory() == idList->at(i) ){
           qDebug() << iter->getName() << ": Set " << iter->getCategory() << " to 0.";
           iter->setCategory(0);
@@ -258,7 +258,7 @@ void MainWindow::setupGui()
   doAddBtn = new QToolButton();
   doAddBtn->setIcon(KIcon("list-add"));
   doAddBtn->setIconSize(QSize(35,35));
-  timeBox = new QComboBox(this);
+  timeBox = new KComboBox(this);
   timeBox->addItem("Today");
   timeBox->addItem("Tomorrow");
   timeBox->addItem("Next Monday");
@@ -275,7 +275,7 @@ void MainWindow::setupGui()
   addLayout->addWidget(timeBox, 1,0);
   addLayout->addWidget(doAddBtn, 0,1,2,2);
   
-  categoryBox = new QComboBox();
+  categoryBox = new KComboBox();
   categoryBox->addItem("All");
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));

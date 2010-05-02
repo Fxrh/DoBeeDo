@@ -30,7 +30,7 @@ class QGridLayout;
 class QVBoxLayout;
 class QHBoxLayout;
 class QTreeView;
-class QComboBox;
+class KComboBox;
 class QToolButton;
 class TreeModel;
 class FilterModel;
@@ -47,7 +47,7 @@ class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
   public:
-    MainWindow( SysTray* _systray, QWidget* parent = 0 );
+    explicit MainWindow( SysTray* _systray, QWidget* parent = 0 );
     ~MainWindow();
     
   protected:
@@ -84,8 +84,8 @@ class MainWindow : public KXmlGuiWindow
     QToolButton* doAddBtn;
     KPushButton* doneBtn;
     KPushButton* editBtn;
-    QComboBox* timeBox;
-    QComboBox* categoryBox;
+    KComboBox* timeBox;
+    KComboBox* categoryBox;
     QGridLayout* addLayout;
     QVBoxLayout* mainLayout;
     QHBoxLayout* bottomLayout;

@@ -90,7 +90,7 @@ void Settings::setTodoList( QList<TodoObject>* list )
   QDataStream out(&file);
   out << magicNumber << dataVersion;
   
-  foreach( TodoObject obj, *list ){
+  foreach( const TodoObject &obj, *list ){
     out << obj;
   }
   //file.flush();

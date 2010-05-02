@@ -23,8 +23,8 @@
 #include <KDialog>
 
 class QLabel;
-class QLineEdit;
-class QComboBox;
+class KLineEdit;
+class KComboBox;
 class QCheckBox;
 class QPlainTextEdit;
 class QVBoxLayout;
@@ -60,11 +60,11 @@ private:
   void setupUi();
   
   QLabel* nameLabel;
-  QLineEdit* nameEdit;
+  KLineEdit* nameEdit;
   QLabel* priorityLabel;
-  QComboBox* priorityBox;
+  KComboBox* priorityBox;
   QLabel* categoryLabel;
-  QComboBox* categoryBox;
+  KComboBox* categoryBox;
   QLabel* descriptionLabel;
   QPlainTextEdit* descriptionEdit;
   QCheckBox* dateBox;

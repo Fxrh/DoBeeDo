@@ -73,7 +73,7 @@ void CategoryWidget::add()
 {
   bool ok=false;
   QString name = KInputDialog::getText( "New category", "Enter the name for the new category:", "", &ok );
-  if( !ok || name == "" ){
+  if( !ok || name.isEmpty() ){
     return; // cancel pressed
   }
   // not needed, as there is no change to the Todos
@@ -88,7 +88,7 @@ void CategoryWidget::rename()
   bool ok=false;
   QString name = model->data( view->currentIndex(), Qt::DisplayRole ).toString();
   name = KInputDialog::getText( "Rename category", "Enter the new name for the category:", name, &ok );
-  if( !ok || name == "" ){
+  if( !ok || name.isEmpty() ){
     return; // cancel pressed
   }
   // not needed, as there is no change to the Todos

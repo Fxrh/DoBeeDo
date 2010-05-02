@@ -17,8 +17,8 @@
  *                                                                        *
  **************************************************************************/ 
 
-#include "treeitem.h"
 #include "treemodel.h"
+#include "treeitem.h"
 
 #include <QDebug>
 
@@ -59,7 +59,7 @@ void TreeModel::addSection(QString name, int daysTo)
 
 QModelIndex TreeModel::addTodo(const TodoObject &object)
 {
-  if( object.getName() == "" ){
+  if( object.getName().isEmpty() ){
     qDebug() << "Empty Todo...";
     return QModelIndex();
   }
@@ -146,7 +146,7 @@ void TreeModel::resetAllTodo( QList<TodoObject>* list )
     //  item->removeChild(j);
     //}
     while( item->childCount() != 0 ){
-      //qDebug() << "childs to delete: " << item->childCount();
+      //qDebug() << "children to delete: " << item->childCount();
       item->removeChild(0);
     }
   }
@@ -156,7 +156,7 @@ void TreeModel::resetAllTodo( QList<TodoObject>* list )
     return;
   }
   
-  foreach( TodoObject obj, *list ){
+  foreach( const TodoObject& obj, *list ){
     addTodo( obj );
   } 
   delete list;

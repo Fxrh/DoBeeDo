@@ -17,10 +17,10 @@
  *                                                                        *
  **************************************************************************/ 
 
+#include "treeitem.h"
+
 #include <QStringList>
 #include <QDebug>
-
-#include "treeitem.h"
 
 TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
 {
@@ -63,14 +63,14 @@ TreeItem::TreeItem()
 
 TreeItem::~TreeItem()
 {
-  //qDebug() << "Childs: " << childItems.count();
+  //qDebug() << "Children: " << childItems.count();
   qDeleteAll(childItems);
 }
 
 void TreeItem::appendChild(TreeItem *item)
 {
   if( type == Todo ){
-    qDebug() << "Todo objects should have no childs!";
+    qDebug() << "Todo objects should have no children!";
     return;
   }
   
