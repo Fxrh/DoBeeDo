@@ -125,6 +125,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
       qDebug() << "dawn of a new day...";
       model->resetAllTodo( model->getAllTodo() );
       todosChanged();
+      *curDate = QDate::currentDate();
     }
   }
 }
