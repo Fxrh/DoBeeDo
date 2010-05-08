@@ -52,6 +52,7 @@ class MainWindow : public KXmlGuiWindow
     
   protected:
     void closeEvent(QCloseEvent *event);
+    void timerEvent(QTimerEvent *event);
     
   private slots:
     // adds todo item by reading from doEdit and categoryBox
@@ -93,6 +94,10 @@ class MainWindow : public KXmlGuiWindow
     KAction* doneAct;
     KAction* editAct;
     KAction* configAct;
+    
+    // to check for day change
+    QDate* curDate;
+    int dateCheckTimer;
 };
 
 #endif //MAINWINDOW_H

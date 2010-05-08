@@ -42,6 +42,7 @@
 #include <QMenu>
 #include <QHeaderView>
 #include <QCloseEvent>
+#include <QTimerEvent>
 #include <QDebug>
 
 MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
@@ -55,6 +56,9 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   configDialog = 0;
   setupGui();
   show();
+  
+  curDate = new QDate(QDate::currentDate());
+  dateCheckTimer = startTimer(60*1000);
   
   model->resetAllTodo( Settings::self()->getTodoList() );
   view->expandAll();
@@ -112,6 +116,17 @@ void MainWindow::newTodo()
   view->setCurrentIndex( filterModel->mapFromSource(index) );
   doEdit->setText("");
   todosChanged();
+}
+
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+  if( event->timerId() == dateCheckTimer ){
+    if( *curDate != QDate::currentDate() ){
+      qDebug() << "dawn of a new day...";
+      model->resetAllTodo( model->getAllTodo() );
+      todosChanged();
+    }
+  }
 }
 
 void MainWindow::showContextMenu(QPoint point)
