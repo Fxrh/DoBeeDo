@@ -87,6 +87,7 @@ class MainWindow : public KXmlGuiWindow
     KPushButton* editBtn;
     KComboBox* timeBox;
     KComboBox* categoryBox;
+    KComboBox* addSelectCatBox;
     QGridLayout* addLayout;
     QVBoxLayout* mainLayout;
     QHBoxLayout* bottomLayout;

@@ -112,6 +112,7 @@ void MainWindow::newTodo()
     break;
   }
   TodoObject object( name, date );
+  object.setCategory( addSelectCatBox->currentIndex() );
   QModelIndex index = model->addTodo(object);
   view->setCurrentIndex( filterModel->mapFromSource(index) );
   doEdit->setText("");
@@ -218,10 +219,14 @@ void MainWindow::showConfigDialog()
 void MainWindow::configChanged()
 {
   categoryBox->clear();
+  addSelectCatBox->clear();
   categoryBox->addItem("All");
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
+    addSelectCatBox->addItem(Settings::self()->categories()->at(i));
   } 
+  categoryBox->setCurrentIndex(0);
+  addSelectCatBox->setCurrentIndex(0);
 }
 
 void MainWindow::todosChanged()
@@ -286,10 +291,17 @@ void MainWindow::setupGui()
   timeBox->addItem("Next Sunday");
   timeBox->addItem("Future");
   timeBox->setFocusProxy(doEdit);
+  addSelectCatBox = new KComboBox(this);
+  for( int i=0; i<Settings::self()->categories()->count(); i++ ){
+    addSelectCatBox->addItem(Settings::self()->categories()->at(i));
+  } 
+  addSelectCatBox->setCurrentIndex(0);
+  addSelectCatBox->setFocusProxy(doEdit);
   addLayout = new QGridLayout;
-  addLayout->addWidget(doEdit, 0,0);
+  addLayout->addWidget(doEdit, 0,0,1,2);
   addLayout->addWidget(timeBox, 1,0);
-  addLayout->addWidget(doAddBtn, 0,1,2,2);
+  addLayout->addWidget(addSelectCatBox, 1, 1);
+  addLayout->addWidget(doAddBtn, 0,2,2,1);
   
   categoryBox = new KComboBox();
   categoryBox->addItem("All");
