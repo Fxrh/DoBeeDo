@@ -79,7 +79,7 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
   event->ignore();
-  kapp->quit();
+  this->hide();
 }
 
 void MainWindow::newTodo()
