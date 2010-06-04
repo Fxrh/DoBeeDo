@@ -23,6 +23,7 @@
 #include <QObject>
 #include <QPoint>
 #include <QSize>
+#include <QColor>
 #include "todoobject.h"
 
 class QSettings;
@@ -47,11 +48,20 @@ public:
   QSize getSize() { return size; }
   // The saved list of the todo items, saved in todo.data
   QList<TodoObject>* getTodoList();
+  // use own background colors for the different priorities 
+  bool getUseOwnColor() { return useOwnColor; }
+  const QColor& getPriority1() { return priority1; }
+  const QColor& getPriority2() { return priority2; }
+  const QColor& getPriority3() { return priority3; }
   // The categories we have atm
   QStringList* categories() const { return categoriesList; }
   void setPosition( QPoint pos ) { position = pos; }
   void setSize( QSize _size ) { size = _size; }
   void setCategories( QStringList* list ); 
+  void setUseOwnColor( bool use ) { useOwnColor = use; }
+  void setPriority1( const QColor& color ) { priority1 = color; }
+  void setPriority2( const QColor& color ) { priority2 = color; }
+  void setPriority3( const QColor& color ) { priority3 = color; }
   void setTodoList( QList<TodoObject>* list );
   
   void emitConfigChanged();// { emit configChanged(); qDebug("Emitted"); }
@@ -73,6 +83,10 @@ private:
   QSettings* settingsFile;
   QPoint position;
   QSize size;
+  bool useOwnColor;
+  QColor priority1;
+  QColor priority2;
+  QColor priority3;
   QStringList* categoriesList;
   
   const quint32 magicNumber;

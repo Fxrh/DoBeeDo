@@ -121,6 +121,10 @@ void Settings::load()
   settingsFile = new QSettings( "dobeedo", "dobeedo" ,this);
   position = settingsFile->value("WindowPosition", QVariant::fromValue(QPoint(0,0))).toPoint();
   size = settingsFile->value("WindowSize", QVariant::fromValue(QSize(360,410))).toSize();
+  useOwnColor = settingsFile->value("UseOwnPriorityColor", QVariant::fromValue(false)).toBool();
+  priority1 = settingsFile->value("Priority1Color", QColor::fromRgbF(0.917327, 0.854505, 0.863172)).value<QColor>();
+  priority2 = settingsFile->value("Priority2Color", QColor::fromRgbF(0.985306, 0.946593, 0.900237)).value<QColor>();
+  priority3 = settingsFile->value("Priority3Color", QColor::fromRgbF(0.875319, 0.938064, 0.800534)).value<QColor>();
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
@@ -129,6 +133,10 @@ void Settings::save()
 {
   settingsFile->setValue("WindowPosition", QVariant::fromValue(position));
   settingsFile->setValue("WindowSize", QVariant::fromValue(size));
+  settingsFile->setValue("UseOwnPriorityColor", useOwnColor);
+  settingsFile->setValue("Priority1Color", priority1 );
+  settingsFile->setValue("Priority2Color", priority2 );
+  settingsFile->setValue("Priority3Color", priority3 );
   settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
   delete categoriesList;
 }

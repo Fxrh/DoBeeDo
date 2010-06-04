@@ -17,38 +17,41 @@
  *                                                                        *
  **************************************************************************/ 
 
-#ifndef CONFIGDIALOG_H
-#define CONFIGDIALOG_H
+#ifndef PRIORITYWIDGET_H
+#define PRIORITYWIDGET_H
 
-#include <KPageDialog>
+#include <QWidget>
 
-class CategoryWidget;
-class PriorityWidget;
+class QCheckBox;
+class QLabel;
+class QGridLayout;
+class KColorButton;
 
-class ConfigDialog : public KPageDialog
-  /* The main config dialog. It has one page to edit the categories and one
-   * to edit the colors of the priorities at the moment. 
-   */
+class PriorityWidget : public QWidget
+    /* In this part of the config dialog, the user can choose the background
+     * colors of the different priorities if he don't want to use the 
+     * standard system colors. Call restore before reusing this widget.
+     */
 {
-  Q_OBJECT
-public:
-  ConfigDialog(QWidget *parent = 0);
+    Q_OBJECT
+  public:
+    PriorityWidget( QWidget* parent=0 );
   
-  void accept();
-  void reject();
-  // Call this before you show this dialog
-  void clear();
-  
-  // see CategoryWidget::getCatOpList()
-  const QStringList* getCatOpList();
-  // see CategoryWidget::getCatIdList()
-  const QList<int>* getCatIdList();
-  
-private:
-  KPageWidgetItem* categoryPage;
-  CategoryWidget* categoryWidget;
-  KPageWidgetItem* priorityPage;
-  PriorityWidget* priorityWidget;
+  public slots:
+    void save();
+    void restore();
+    
+  private:
+    void setupUi();
+    
+    QCheckBox* useOwnBox;
+    QLabel* pri1Label;
+    QLabel* pri2Label;
+    QLabel* pri3Label;
+    KColorButton* pri1Button;
+    KColorButton* pri2Button;
+    KColorButton* pri3Button;
+    QGridLayout* mainLayout;
 };
 
-#endif // CONFIGDIALOG_H
+#endif //PRIORITYWIDGET_H

@@ -26,6 +26,7 @@
 #include <KColorScheme>
 #include <QDebug>
 #include "treeitem.h"
+#include "../settings.h"
 
 TodoDelegate::TodoDelegate( QTreeView* _view, QWidget* parent )
   : QStyledItemDelegate(parent),
@@ -53,15 +54,27 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
   if( map["type"] == 1 ){
     switch( map["priority"].toInt() ){
     case 1:
-      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NegativeBackground).color());
+      if( Settings::self()->getUseOwnColor() ){
+        newOption.palette.setColor(QPalette::Background, Settings::self()->getPriority1() );
+      } else {
+        newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NegativeBackground).color());
+      }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 2:
-      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NeutralBackground).color());
+      if( Settings::self()->getUseOwnColor() ){
+        newOption.palette.setColor(QPalette::Background, Settings::self()->getPriority2() );
+      } else {
+        newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NeutralBackground).color());
+      }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 3:
-      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::PositiveBackground).color());
+      if( Settings::self()->getUseOwnColor() ){
+        newOption.palette.setColor(QPalette::Background, Settings::self()->getPriority3() );
+      } else {
+        newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::PositiveBackground).color());
+      }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     default:

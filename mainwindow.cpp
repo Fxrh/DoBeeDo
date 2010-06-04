@@ -227,6 +227,7 @@ void MainWindow::configChanged()
   } 
   categoryBox->setCurrentIndex(0);
   addSelectCatBox->setCurrentIndex(0);
+  view->repaint();
 }
 
 void MainWindow::todosChanged()

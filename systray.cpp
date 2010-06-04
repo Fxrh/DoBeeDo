@@ -45,7 +45,7 @@ void SysTray::updateStatusInformation(int overdue, int today, int tomorrow, int 
     }
     else{
       setIconByName( "dobeedo" );
-      setStatus(Passive);
+      setStatus(Active);
     }
   }
   

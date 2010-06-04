@@ -19,6 +19,7 @@
 
 #include "configdialog.h"
 #include "categorywidget.h"
+#include "prioritywidget.h"
 
 #include <QLabel>
 
@@ -27,25 +28,31 @@ ConfigDialog::ConfigDialog(QWidget *parent)
 {
   categoryWidget = new CategoryWidget();
   categoryPage = new KPageWidgetItem(categoryWidget, "Categories");
+  priorityWidget = new PriorityWidget();
+  priorityPage = new KPageWidgetItem(priorityWidget, "Priorities");
   
   addPage(categoryPage);
+  addPage(priorityPage);
 }
 
 void ConfigDialog::accept()
 {
   categoryWidget->save();
+  priorityWidget->save();
   KPageDialog::accept();
 }
 
 void ConfigDialog::reject()
 {
   categoryWidget->restore();
+  priorityWidget->restore();
   KPageDialog::reject();
 }
 
 void ConfigDialog::clear()
 {
   categoryWidget->restore();
+  priorityWidget->restore();
 }
 
 const QStringList* ConfigDialog::getCatOpList()
