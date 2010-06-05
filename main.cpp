@@ -36,6 +36,9 @@ int main( int argc, char** argv )
                         "http://github.com/fxrh/dobeedo/", //Website
                         "fxrh@gmx.de" );
   
+  aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"),
+                          ki18nc("EMAIL OF TRANSLATORS", "Your emails"));
+  
   KCmdLineArgs::init( argc, argv, &aboutData );
   DoApp app;
   return app.exec();

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-06-05 16:00+0200\n"
-"PO-Revision-Date: 2010-06-05 16:04+0200\n"
+"POT-Creation-Date: 2010-06-05 16:25+0200\n"
+"PO-Revision-Date: 2010-06-05 16:26+0200\n"
 "Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
 "Language-Team: German <>\n"
 "Language: \n"
@@ -109,6 +109,16 @@ msgstr "(c) 2010 Felix Rohrbach"
 msgid " "
 msgstr " "
 
+#: main.cpp:39
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Felix Rohrbach"
+
+#: main.cpp:40
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "fxrh@gmx.de"
+
 #: mainwindow.cpp:224 mainwindow.cpp:309
 msgctxt "category, show all items"
 msgid "All"
@@ -192,12 +202,12 @@ msgstr "Datum"
 
 #: po/rc.cpp:1 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
-msgid "Felix Rohrbach"
+msgid "your names"
 msgstr "Felix Rohrbach"
 
 #: po/rc.cpp:2 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
-msgid "fxrh@gmx.de"
+msgid "your emails"
 msgstr "fxrh@gmx.de"
 
 #: systray.cpp:55
@@ -224,3 +234,10 @@ msgstr "Nächster Monat:  %1<br>"
 msgid "Future:  %1<br>"
 msgstr "Zukunft:  %1<br>"
 
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Felix Rohrbach"
+#~ msgstr "Felix Rohrbach"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "fxrh@gmx.de"
+#~ msgstr "fxrh@gmx.de"
