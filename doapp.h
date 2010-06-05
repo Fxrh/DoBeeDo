@@ -35,6 +35,8 @@ class DoApp : public KApplication
     DoApp();
     ~DoApp();
     
+    void commitData(QSessionManager& sm);
+    
   private:
     MainWindow* window;
     SysTray* systray;

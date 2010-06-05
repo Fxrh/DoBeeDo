@@ -31,6 +31,14 @@ DoApp::DoApp()
   this->setQuitOnLastWindowClosed(true);
 }
 
+void DoApp::commitData(QSessionManager& /*sm*/)
+{
+  delete window;
+  window = 0;
+  delete systray;
+  systray = 0;
+}
+
 DoApp::~DoApp()
 {
   delete window;
