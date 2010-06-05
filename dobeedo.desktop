@@ -5,4 +5,5 @@ Icon=dobeedo
 Type=Application
 Categories=Qt;KDE;Office;
 GenericName=A todo list manager for KDE
+GenericName[de]=Ein Aufgabenmanager für KDE
 Terminal=false
