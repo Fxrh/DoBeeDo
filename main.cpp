@@ -32,7 +32,7 @@ int main( int argc, char** argv )
                         ki18n( "A todo list manager for KDE" ),
                         KAboutData::License_GPL_V3,
                         ki18n( "(c) 2010 Felix Rohrbach" ),
-                        ki18n(""), //further description
+                        ki18n(" "), //further description
                         "http://github.com/fxrh/dobeedo/", //Website
                         "fxrh@gmx.de" );
   

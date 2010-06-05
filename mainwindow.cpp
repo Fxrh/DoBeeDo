@@ -44,6 +44,7 @@
 #include <QCloseEvent>
 #include <QTimerEvent>
 #include <QDebug>
+#include <klocalizedstring.h>
 
 MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   : KXmlGuiWindow(parent, Qt::Window ),
@@ -220,7 +221,7 @@ void MainWindow::configChanged()
 {
   categoryBox->clear();
   addSelectCatBox->clear();
-  categoryBox->addItem("All");
+  categoryBox->addItem(i18nc("category, show all items", "All"));
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
     addSelectCatBox->addItem(Settings::self()->categories()->at(i));
@@ -242,12 +243,12 @@ void MainWindow::todosChanged()
 void MainWindow::setupGui()
 {
   model = new TreeModel(this);
-  model->addSection("Overdue", -1 );
-  model->addSection("Today", 0);
-  model->addSection("Tomorrow", 1 );
-  model->addSection("Next week", 7);
-  model->addSection("Next Month", 31);
-  model->addSection("Future", -2);
+  model->addSection(i18n("Overdue"), -1 );
+  model->addSection(i18n("Today"), 0);
+  model->addSection(i18n("Tomorrow"), 1 );
+  model->addSection(i18n("Next week"), 7);
+  model->addSection(i18n("Next month"), 31);
+  model->addSection(i18n("Future"), -2);
   filterModel = new FilterModel(this);
   filterModel->setSourceModel(model);
   view = new QTreeView(this);
@@ -274,23 +275,23 @@ void MainWindow::setupGui()
   view->setContextMenuPolicy(Qt::CustomContextMenu);
   
   doEdit = new KLineEdit(this);
-  doEdit->setClickMessage("new task...");
+  doEdit->setClickMessage(i18n("new task..."));
   view->setFocusProxy(doEdit);
 //  doAddBtn = new KPushButton(KIcon("list-add"),"",this);
   doAddBtn = new QToolButton();
   doAddBtn->setIcon(KIcon("list-add"));
   doAddBtn->setIconSize(QSize(35,35));
   timeBox = new KComboBox(this);
-  timeBox->addItem("Today");
-  timeBox->addItem("Tomorrow");
-  timeBox->addItem("Next Monday");
-  timeBox->addItem("Next Tuesday");
-  timeBox->addItem("Next Wednesday");
-  timeBox->addItem("Next Thursday");
-  timeBox->addItem("Next Friday");
-  timeBox->addItem("Next Saturday");
-  timeBox->addItem("Next Sunday");
-  timeBox->addItem("Future");
+  timeBox->addItem(i18n("Today"));
+  timeBox->addItem(i18n("Tomorrow"));
+  timeBox->addItem(i18n("Next Monday"));
+  timeBox->addItem(i18n("Next Tuesday"));
+  timeBox->addItem(i18n("Next Wednesday"));
+  timeBox->addItem(i18n("Next Thursday"));
+  timeBox->addItem(i18n("Next Friday"));
+  timeBox->addItem(i18n("Next Saturday"));
+  timeBox->addItem(i18n("Next Sunday"));
+  timeBox->addItem(i18n("Future"));
   timeBox->setFocusProxy(doEdit);
   addSelectCatBox = new KComboBox(this);
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
@@ -305,12 +306,12 @@ void MainWindow::setupGui()
   addLayout->addWidget(doAddBtn, 0,2,2,1);
   
   categoryBox = new KComboBox();
-  categoryBox->addItem("All");
+  categoryBox->addItem(i18nc("category, show all items", "All"));
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
   }  
-  doneBtn = new KPushButton(KIcon("checkbox"),"Done");
-  editBtn = new KPushButton(KIcon("document-edit"),"Edit");
+  doneBtn = new KPushButton(KIcon("checkbox"),i18n("Done"));
+  editBtn = new KPushButton(KIcon("document-edit"),i18n("Edit"));
   bottomLayout = new QHBoxLayout;
   bottomLayout->addWidget(categoryBox);
   bottomLayout->addStretch();
@@ -327,9 +328,9 @@ void MainWindow::setupGui()
   setCentralWidget(mainWidget);
   setWindowTitle("DoBeeDo");
   
-  doneAct = new KAction(KIcon("checkbox"),"Done", this);
-  editAct = new KAction(KIcon("document-edit"),"Edit", this);
-  configAct = new KAction(KIcon("configure"),"Configure DoBeeDo",this);
+  doneAct = new KAction(KIcon("checkbox"),i18n("Done"), this);
+  editAct = new KAction(KIcon("document-edit"),i18n("Edit"), this);
+  configAct = new KAction(KIcon("configure"),i18n("Configure DoBeeDo"),this);
   actionCollection()->addAction("done", doneAct);
   actionCollection()->addAction("edit", editAct);
   actionCollection()->addAction("configDobeedo", configAct);

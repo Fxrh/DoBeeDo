@@ -22,14 +22,15 @@
 #include "prioritywidget.h"
 
 #include <QLabel>
+#include <klocalizedstring.h>
 
 ConfigDialog::ConfigDialog(QWidget *parent)
   : KPageDialog(parent)
 {
   categoryWidget = new CategoryWidget();
-  categoryPage = new KPageWidgetItem(categoryWidget, "Categories");
+  categoryPage = new KPageWidgetItem(categoryWidget, i18n("Categories"));
   priorityWidget = new PriorityWidget();
-  priorityPage = new KPageWidgetItem(priorityWidget, "Priorities");
+  priorityPage = new KPageWidgetItem(priorityWidget, i18n("Priorities"));
   
   addPage(categoryPage);
   addPage(priorityPage);

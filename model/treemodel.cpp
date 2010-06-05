@@ -21,6 +21,7 @@
 #include "treeitem.h"
 
 #include <QDebug>
+#include <klocalizedstring.h>
 
 TreeModel::TreeModel(QObject *parent)
     : QAbstractItemModel(parent)
@@ -195,9 +196,9 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int rol
 {
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole){
     if( section == 0 ){
-      return "Name";
+      return i18n("Name");
     } else {
-      return "Date";
+      return i18n("Date");
     }
   }
 

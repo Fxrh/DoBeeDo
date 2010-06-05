@@ -18,6 +18,7 @@
  **************************************************************************/ 
 
 #include "systray.h"
+#include <klocalizedstring.h>
 
 SysTray::SysTray( QObject* parent )
     : KStatusNotifierItem(parent)
@@ -51,22 +52,22 @@ void SysTray::updateStatusInformation(int overdue, int today, int tomorrow, int 
   
   QString toolTip;
   if( overdue != 0 ){
-    toolTip.append( QString("<font color=\"red\">Overdue:\t\t %1</font><br>").arg(overdue) );
+    toolTip.append( QString(i18n("<font color=\"red\">Overdue:\t\t %1</font><br>")).arg(overdue) );
   }
   if( today != 0 ){
-    toolTip.append( QString("<font color=\"red\">Today:  %1</font><br>").arg(today) );
+    toolTip.append( QString(i18n("<font color=\"red\">Today:  %1</font><br>")).arg(today) );
   }
   if( tomorrow != 0 ){
-    toolTip.append( QString("<font color=\"orange\">Tomorrow:  %1</font><br>").arg(tomorrow) );
+    toolTip.append( QString(i18n("<font color=\"orange\">Tomorrow:  %1</font><br>")).arg(tomorrow) );
   }
   if( nextWeek != 0 ){
-    toolTip.append( QString("Next week:  %1<br>").arg(nextWeek) );
+    toolTip.append( QString(i18n("Next week:  %1<br>")).arg(nextWeek) );
   }
   if( nextMonth != 0 ){
-    toolTip.append( QString("Next month:  %1<br>").arg(nextMonth) );
+    toolTip.append( QString(i18n("Next month:  %1<br>")).arg(nextMonth) );
   }
   if( Future != 0 ){
-    toolTip.append( QString("Future:  %1<br>").arg(Future) );
+    toolTip.append( QString(i18n("Future:  %1<br>")).arg(Future) );
   }
   
   setToolTipTitle("DoBeeDo\n");

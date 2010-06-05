@@ -1,0 +1,225 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
+"POT-Creation-Date: 2010-06-05 16:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: config/categorywidget.cpp:76
+msgid "New category"
+msgstr ""
+
+#: config/categorywidget.cpp:76
+msgid "Enter the name for the new category:"
+msgstr ""
+
+#: config/categorywidget.cpp:91
+msgid "Rename category"
+msgstr ""
+
+#: config/categorywidget.cpp:91
+msgid "Enter the new name for the category:"
+msgstr ""
+
+#: config/categorywidget.cpp:116
+msgid "Add"
+msgstr ""
+
+#: config/categorywidget.cpp:117
+msgid "Rename"
+msgstr ""
+
+#: config/categorywidget.cpp:118
+msgid "Remove"
+msgstr ""
+
+#: config/configdialog.cpp:31
+msgid "Categories"
+msgstr ""
+
+#: config/configdialog.cpp:33
+msgid "Priorities"
+msgstr ""
+
+#: config/prioritywidget.cpp:63
+msgid "Use own background colors"
+msgstr ""
+
+#: config/prioritywidget.cpp:64
+msgid "Color for priority 1: "
+msgstr ""
+
+#: config/prioritywidget.cpp:65
+msgid "Color for priority 2: "
+msgstr ""
+
+#: config/prioritywidget.cpp:66
+msgid "Color for priority 3: "
+msgstr ""
+
+#: editdialog.cpp:74
+msgid "The name of the todo item can't be empty"
+msgstr ""
+
+#: editdialog.cpp:102
+msgid "Name: "
+msgstr ""
+
+#: editdialog.cpp:104
+msgid "Priority: "
+msgstr ""
+
+#: editdialog.cpp:110
+msgid "Category: "
+msgstr ""
+
+#: editdialog.cpp:115
+msgid "Description: "
+msgstr ""
+
+#: editdialog.cpp:117
+msgid "select Date"
+msgstr ""
+
+#: main.cpp:30
+msgid "DoBeeDo"
+msgstr ""
+
+#: main.cpp:32
+msgid "A todo list manager for KDE"
+msgstr ""
+
+#: main.cpp:34
+msgid "(c) 2010 Felix Rohrbach"
+msgstr ""
+
+#: main.cpp:35
+msgid " "
+msgstr ""
+
+#: mainwindow.cpp:224 mainwindow.cpp:309
+msgctxt "category, show all items"
+msgid "All"
+msgstr ""
+
+#: mainwindow.cpp:246
+msgid "Overdue"
+msgstr ""
+
+#: mainwindow.cpp:247 mainwindow.cpp:285
+msgid "Today"
+msgstr ""
+
+#: mainwindow.cpp:248 mainwindow.cpp:286
+msgid "Tomorrow"
+msgstr ""
+
+#: mainwindow.cpp:249
+msgid "Next week"
+msgstr ""
+
+#: mainwindow.cpp:250
+msgid "Next month"
+msgstr ""
+
+#: mainwindow.cpp:251 mainwindow.cpp:294
+msgid "Future"
+msgstr ""
+
+#: mainwindow.cpp:278
+msgid "new task..."
+msgstr ""
+
+#: mainwindow.cpp:287
+msgid "Next Monday"
+msgstr ""
+
+#: mainwindow.cpp:288
+msgid "Next Tuesday"
+msgstr ""
+
+#: mainwindow.cpp:289
+msgid "Next Wednesday"
+msgstr ""
+
+#: mainwindow.cpp:290
+msgid "Next Thursday"
+msgstr ""
+
+#: mainwindow.cpp:291
+msgid "Next Friday"
+msgstr ""
+
+#: mainwindow.cpp:292
+msgid "Next Saturday"
+msgstr ""
+
+#: mainwindow.cpp:293
+msgid "Next Sunday"
+msgstr ""
+
+#: mainwindow.cpp:313 mainwindow.cpp:331
+msgid "Done"
+msgstr ""
+
+#: mainwindow.cpp:314 mainwindow.cpp:332
+msgid "Edit"
+msgstr ""
+
+#: mainwindow.cpp:333
+msgid "Configure DoBeeDo"
+msgstr ""
+
+#: model/treemodel.cpp:199
+msgid "Name"
+msgstr ""
+
+#: model/treemodel.cpp:201
+msgid "Date"
+msgstr ""
+
+#: po/rc.cpp:1 rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Felix Rohrbach"
+msgstr ""
+
+#: po/rc.cpp:2 rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "fxrh@gmx.de"
+msgstr ""
+
+#: systray.cpp:55
+msgid "<font color=\"red\">Overdue:\t\t %1</font><br>"
+msgstr ""
+
+#: systray.cpp:58
+msgid "<font color=\"red\">Today:  %1</font><br>"
+msgstr ""
+
+#: systray.cpp:61
+msgid "<font color=\"orange\">Tomorrow:  %1</font><br>"
+msgstr ""
+
+#: systray.cpp:64
+msgid "Next week:  %1<br>"
+msgstr ""
+
+#: systray.cpp:67
+msgid "Next month:  %1<br>"
+msgstr ""
+
+#: systray.cpp:70
+msgid "Future:  %1<br>"
+msgstr ""

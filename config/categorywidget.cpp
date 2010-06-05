@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <KPushButton>
 #include <KInputDialog>
+#include <klocalizedstring.h>
 
 #include "../settings.h"
 
@@ -72,7 +73,7 @@ void CategoryWidget::restore()
 void CategoryWidget::add()
 {
   bool ok=false;
-  QString name = KInputDialog::getText( "New category", "Enter the name for the new category:", "", &ok );
+  QString name = KInputDialog::getText( i18n("New category"), i18n("Enter the name for the new category:"), "", &ok );
   if( !ok || name.isEmpty() ){
     return; // cancel pressed
   }
@@ -87,7 +88,7 @@ void CategoryWidget::rename()
 {
   bool ok=false;
   QString name = model->data( view->currentIndex(), Qt::DisplayRole ).toString();
-  name = KInputDialog::getText( "Rename category", "Enter the new name for the category:", name, &ok );
+  name = KInputDialog::getText( i18n("Rename category"), i18n("Enter the new name for the category:"), name, &ok );
   if( !ok || name.isEmpty() ){
     return; // cancel pressed
   }
@@ -112,9 +113,9 @@ void CategoryWidget::setupUi()
   model = new QStringListModel(this);
   view = new QListView();
   view->setModel(model);
-  addBtn = new KPushButton(KIcon("list-add"),"Add");
-  renameBtn = new KPushButton(KIcon("edit-rename"),"Rename");
-  removeBtn = new KPushButton(KIcon("list-remove"),"Remove");
+  addBtn = new KPushButton(KIcon("list-add"),i18n("Add"));
+  renameBtn = new KPushButton(KIcon("edit-rename"),i18n("Rename"));
+  removeBtn = new KPushButton(KIcon("list-remove"),i18n("Remove"));
   
   buttonLayout = new QVBoxLayout();
   buttonLayout->addWidget(addBtn);

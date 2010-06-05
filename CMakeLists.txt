@@ -5,6 +5,7 @@ include( KDE4Defaults )
 include_directories( ${KDE4_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} )
 
 add_subdirectory( icons )
+add_subdirectory( po )
 
 set( DoBeeDo_SRCS main.cpp
               doapp.cpp

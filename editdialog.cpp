@@ -31,6 +31,7 @@
 #include <KPushButton>
 #include <KDatePicker>
 #include <KMessageBox>
+#include <klocalizedstring.h>
 
 #include "todoobject.h"
 #include "settings.h"
@@ -70,7 +71,7 @@ void EditDialog::accept()
     return;
   }
   if( nameEdit->text().isEmpty() ){
-    KMessageBox::error(this, "The name of the todo item can't be empty");
+    KMessageBox::error(this, i18n("The name of the todo item can't be empty"));
     return;
   }
   todo->setName( nameEdit->text() );
@@ -98,22 +99,22 @@ void EditDialog::configChanged()
 
 void EditDialog::setupUi()
 {
-  nameLabel = new QLabel("Name: ");
+  nameLabel = new QLabel(i18n("Name: "));
   nameEdit = new KLineEdit;
-  priorityLabel = new QLabel("Priority: ");
+  priorityLabel = new QLabel(i18n("Priority: "));
   priorityBox = new KComboBox();
   priorityBox->addItem("1");
   priorityBox->addItem("2");
   priorityBox->addItem("3");
   priorityBox->addItem("-");
-  categoryLabel = new QLabel("Category: ");
+  categoryLabel = new QLabel(i18n("Category: "));
   categoryBox = new KComboBox();
   for( int i=0; i<Settings::self()->categories()->count(); i++){
     categoryBox->addItem(Settings::self()->categories()->at(i) );
   }
-  descriptionLabel = new QLabel("Description: ");
+  descriptionLabel = new QLabel(i18n("Description: "));
   descriptionEdit = new QPlainTextEdit();
-  dateBox = new QCheckBox("select Date");
+  dateBox = new QCheckBox(i18n("select Date"));
   dateBox->setChecked(true);
   datePicker = new KDatePicker();
   

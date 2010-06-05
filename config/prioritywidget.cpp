@@ -23,6 +23,7 @@
 #include <QGridLayout>
 #include <KColorButton>
 #include <KColorDialog>
+#include <klocalizedstring.h>
 #include "../settings.h"
 
 PriorityWidget::PriorityWidget(QWidget* parent)
@@ -59,10 +60,10 @@ void PriorityWidget::restore()
 
 void PriorityWidget::setupUi()
 {
-  useOwnBox = new QCheckBox("Use own background colors");
-  pri1Label = new QLabel("Color for priority 1: ");
-  pri2Label = new QLabel("Color for priority 2: ");
-  pri3Label = new QLabel("Color for priority 3: ");
+  useOwnBox = new QCheckBox(i18n("Use own background colors"));
+  pri1Label = new QLabel(i18n("Color for priority 1: "));
+  pri2Label = new QLabel(i18n("Color for priority 2: "));
+  pri3Label = new QLabel(i18n("Color for priority 3: "));
   pri1Button = new KColorButton();
   pri2Button = new KColorButton();
   pri3Button = new KColorButton();
