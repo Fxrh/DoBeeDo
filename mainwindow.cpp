@@ -270,7 +270,9 @@ void MainWindow::setupGui()
   view->setAllColumnsShowFocus(true);
   view->setExpandsOnDoubleClick(true);
   view->header()->setStretchLastSection(false);
-  view->header()->setResizeMode(0,QHeaderView::Stretch);
+  view->header()->setMinimumSectionSize(0);
+  view->header()->setResizeMode(0,QHeaderView::ResizeToContents);
+  view->header()->setResizeMode(1,QHeaderView::Stretch);
   view->setItemDelegate(delegate);
   view->setContextMenuPolicy(Qt::CustomContextMenu);
   

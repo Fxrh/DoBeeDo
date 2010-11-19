@@ -176,12 +176,36 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
   if (!index.isValid())
     return QVariant();
   
-  if (role != Qt::DisplayRole)
-    return QVariant();
-  
   TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+  if( role == Qt::CheckStateRole ){
+    if( item->isTodo() && index.column() == 0 ){
+      return Qt::Checked;
+    }
+    else {
+      return QVariant();
+    }
+  }
   
-  return item->data(index.column());
+  if( role == Qt::DisplayRole ){
+    return item->data(index.column());
+  }
+  return QVariant();
+}
+
+bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+  if( !index.isValid() || index.column() != 0 ){
+    return false;
+  }
+  
+  TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
+  if( item ){
+    if( item->isTodo() ){
+      qDebug() << "Got checkchange function";
+      return true;
+    }
+  }
+  return false;
 }
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
@@ -192,7 +216,10 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
   TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
   if( item ){
     if( item->isTodo() ){
-      flags |= Qt::ItemIsEditable;
+      //flags |= Qt::ItemIsEditable;
+      if( index.column() == 0 ){
+        flags |= Qt::ItemIsUserCheckable;
+      }
     }
   }
   
@@ -202,10 +229,18 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole){
-    if( section == 0 ){
-      return i18n("Name");
-    } else {
-      return i18n("Date");
+    switch( section ){
+      case 1:
+        return "";
+        break;
+      case 2:
+        return i18n("Name");
+        break;
+      case 3:
+        return i18n("Date");
+        break;
+      default:
+        break;
     }
   }
 

@@ -60,7 +60,6 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NegativeBackground).color());
       }
-      painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 2:
       if( Settings::self()->getUseOwnColor() ){
@@ -68,7 +67,6 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NeutralBackground).color());
       }
-      painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 3:
       if( Settings::self()->getUseOwnColor() ){
@@ -76,11 +74,11 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::PositiveBackground).color());
       }
-      painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     default:
       break;
     }
+    painter->fillRect(newOption.rect, newOption.palette.background());
   }  
   QStyledItemDelegate::paint(painter,newOption,index);
   
@@ -107,6 +105,9 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
   
   if( map["type"] == 1 ){
     if( index.column() == 0 ){
+      return QStyledItemDelegate::paint(painter, newOption, index); 
+    }
+    if( index.column() == 1 ){
       QString text = map["name"].toString();
 //      if( map["priority"].toInt() == 4 ){
 //        text.prepend("- ");
@@ -148,6 +149,9 @@ QWidget* TodoDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem 
   QMap<QString,QVariant> map( index.data().toMap() );
   if( map["type"] == 1 ){
     if( index.column() == 0 ){
+      return QStyledItemDelegate::createEditor(parent, option, index);
+    }
+    if( index.column() == 1 ){
       return new QCheckBox(parent);
     }
   }

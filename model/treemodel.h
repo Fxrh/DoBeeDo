@@ -63,6 +63,8 @@ class TreeModel : public QAbstractItemModel
     // change anything in the model/view architecture, you don't need to care about these.
     
     QVariant data(const QModelIndex &index, int role) const;
+    // used to let the user change the checked-state
+    bool setData(const QModelIndex &index, const QVariant &value, int role);
     Qt::ItemFlags flags(const QModelIndex &index) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;

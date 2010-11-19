@@ -32,7 +32,7 @@ TreeItem::TreeItem(const TodoObject& data, TreeItem* parent)
   type = Todo;
   name = "";
   daysTo = -2;
-  numColumns = 2;
+  numColumns = 3;
   childItems.clear();
 }
 
@@ -46,7 +46,7 @@ TreeItem::TreeItem(QString sectionName, int days, TreeItem* parent )
   type = Section;
   name = sectionName;
   daysTo = days;
-  numColumns = 2;
+  numColumns = 3;
   childItems.clear();
 }
 
@@ -57,7 +57,7 @@ TreeItem::TreeItem()
   type = Root;
   name = "";
   daysTo = -2;
-  numColumns = 2;
+  numColumns = 3;
   childItems.clear();
 }
 
