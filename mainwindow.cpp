@@ -260,7 +260,7 @@ void MainWindow::setupGui()
   view->setStyleSheet("QTreeView::branch{border-image: none; image: none;border-left: 0px;}");
   view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
   view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-  view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+  view->setEditTriggers(QAbstractItemView::AllEditTriggers);
   //view->setTabKeyNavigation(true);
   view->setSelectionMode(QAbstractItemView::SingleSelection);
   view->setSelectionBehavior(QAbstractItemView::SelectRows);

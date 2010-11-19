@@ -25,6 +25,7 @@
 #include <KIcon>
 #include <KColorScheme>
 #include <QDebug>
+#include <QCheckBox>
 #include "treeitem.h"
 #include "../settings.h"
 
@@ -140,6 +141,17 @@ QSize TodoDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
     return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,2);
   }
   return QSize();
+}
+
+QWidget* TodoDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+  QMap<QString,QVariant> map( index.data().toMap() );
+  if( map["type"] == 1 ){
+    if( index.column() == 0 ){
+      return new QCheckBox(parent);
+    }
+  }
+  return 0;
 }
 
 QString TodoDelegate::cutString( const QString &string, const QRect &size, const QFont &font) const

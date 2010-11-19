@@ -188,8 +188,15 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 {
   if (!index.isValid())
     return 0;
+  Qt::ItemFlags flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+  TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
+  if( item ){
+    if( item->isTodo() ){
+      flags |= Qt::ItemIsEditable;
+    }
+  }
   
-  return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+  return flags;
 }
 
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const
