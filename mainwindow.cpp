@@ -310,7 +310,7 @@ void MainWindow::setupGui()
   for( int i=0; i<Settings::self()->categories()->count(); i++ ){
     categoryBox->addItem(Settings::self()->categories()->at(i));
   }  
-  doneBtn = new KPushButton(KIcon("checkbox"),i18n("Done"));
+  doneBtn = new KPushButton(KIcon("edit-delete"),i18n("Remove"));
   editBtn = new KPushButton(KIcon("document-edit"),i18n("Edit"));
   bottomLayout = new QHBoxLayout;
   bottomLayout->addWidget(categoryBox);
