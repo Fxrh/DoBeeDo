@@ -76,11 +76,15 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       }
       break;
     default:
+      newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NormalBackground).color());
       break;
     }
     painter->fillRect(newOption.rect, newOption.palette.background());
+    //qDebug() << newOption.palette.background().color().toRgb();
   }  
+  painter->save();
   QStyledItemDelegate::paint(painter,newOption,index);
+  painter->restore();
   
   if( map["type"] == 0 ){
     if( index.column() != 0 ){
@@ -97,17 +101,15 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     painter->save();
     painter->setFont(boldFont);
     QPoint writePoint( originPoint + QPoint(iconRect.size().width()+5,0) );
-    QRect rect();
     QString text = cutString( map["name"].toString(), QRect( writePoint, newOption.rect.bottomRight() ), boldFont );
     painter->drawText( QRect( writePoint, newOption.rect.bottomRight() ), text );
     painter->restore();
   }
   
   if( map["type"] == 1 ){
+    originPoint.ry()++;
     if( index.column() == 0 ){
-      return QStyledItemDelegate::paint(painter, newOption, index); 
-    }
-    if( index.column() == 1 ){
+      originPoint.rx() += 25; // for the checkbox
       QString text = map["name"].toString();
 //      if( map["priority"].toInt() == 4 ){
 //        text.prepend("- ");
@@ -138,25 +140,25 @@ QSize TodoDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
   if( map["type"] == 1 ){
     QFontMetrics metrics(standardFont);
     if( index.column() == 0 )
-      return metrics.boundingRect(map["name"].toString()).size()+QSize(0,2);
-    return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,2);
+      return metrics.boundingRect(map["name"].toString()).size()+QSize(0,5);
+    return metrics.boundingRect(map["date"].toDate().toString()).size()+QSize(2,5);
   }
   return QSize();
 }
 
-QWidget* TodoDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-  QMap<QString,QVariant> map( index.data().toMap() );
-  if( map["type"] == 1 ){
-    if( index.column() == 0 ){
-      return QStyledItemDelegate::createEditor(parent, option, index);
-    }
-    if( index.column() == 1 ){
-      return new QCheckBox(parent);
-    }
-  }
-  return 0;
-}
+//QWidget* TodoDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+//{
+//  QMap<QString,QVariant> map( index.data().toMap() );
+//  if( map["type"] == 1 ){
+//    if( index.column() == 0 ){
+//      return QStyledItemDelegate::createEditor(parent, option, index);
+//    }
+//    if( index.column() == 1 ){
+//      return new QCheckBox(parent);
+//    }
+//  }
+//  return 0;
+//}
 
 QString TodoDelegate::cutString( const QString &string, const QRect &size, const QFont &font) const
 {

@@ -231,12 +231,9 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int rol
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole){
     switch( section ){
       case 1:
-        return "";
-        break;
-      case 2:
         return i18n("Name");
         break;
-      case 3:
+      case 2:
         return i18n("Date");
         break;
       default:

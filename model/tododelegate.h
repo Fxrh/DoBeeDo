@@ -39,7 +39,7 @@ public:
   
   QSize sizeHint( const QStyleOptionViewItem &option, const QModelIndex &index ) const;
   void paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
-  QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+//  QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
   
 private:
   // function that cuts strings to a suitable length using "..." at the end of the cut string
