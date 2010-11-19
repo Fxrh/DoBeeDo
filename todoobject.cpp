@@ -29,6 +29,7 @@ TodoObject::TodoObject( QString _name, QDate _date )
   description = "";
   priority = 4;
   category = 0;
+  isChecked = false;
 }
 
 TodoObject::TodoObject( const TodoObject& old )
@@ -38,6 +39,7 @@ TodoObject::TodoObject( const TodoObject& old )
   description = old.getDescription();
   priority = old.getPriority();
   category = old.getCategory();
+  isChecked = old.getChecked();
 }
 
 TodoObject::~TodoObject()
@@ -84,5 +86,6 @@ QDataStream& operator>>( QDataStream& in, TodoObject& object )
   object.setDescription(description);
   object.setPriority(priority);
   object.setCategory(category);
+  object.setChecked(false);
   return in;
 }

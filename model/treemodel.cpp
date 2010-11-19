@@ -179,7 +179,12 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
   TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
   if( role == Qt::CheckStateRole ){
     if( item->isTodo() && index.column() == 0 ){
-      return Qt::Checked;
+      if( item->todo()->getChecked() ){
+        return Qt::Checked;
+      }
+      else {
+        return Qt::Unchecked;
+      }
     }
     else {
       return QVariant();
@@ -194,14 +199,15 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-  if( !index.isValid() || index.column() != 0 ){
+  if( !index.isValid() || role != Qt::CheckStateRole || index.column() != 0 ){
     return false;
   }
   
   TreeItem* item = static_cast<TreeItem*>(index.internalPointer());
   if( item ){
     if( item->isTodo() ){
-      qDebug() << "Got checkchange function";
+      item->todo()->setChecked(value.toBool());
+      emit dataChanged(index, index);
       return true;
     }
   }
