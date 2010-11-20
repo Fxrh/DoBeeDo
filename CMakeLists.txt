@@ -19,6 +19,7 @@ set( DoBeeDo_SRCS main.cpp
               model/tododelegate.cpp
               model/filtermodel.cpp
               config/configdialog.cpp
+              config/generalwidget.cpp
               config/categorywidget.cpp
               config/prioritywidget.cpp
               )

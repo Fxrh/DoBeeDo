@@ -42,6 +42,8 @@ public:
   // delete the instance and save all data
   static void destroy();
   
+  enum RemoveTaskStyle { NeverRemove=0, RemoveAfterSession=1, RemoveImmediately=10 };
+  
   // Position of the main window
   QPoint getPosition() { return position; }
   // Size of the main window
@@ -53,6 +55,7 @@ public:
   const QColor& getPriority1() { return priority1; }
   const QColor& getPriority2() { return priority2; }
   const QColor& getPriority3() { return priority3; }
+  RemoveTaskStyle getRemoveTaskStyle() const { return removeTaskStyle; }
   // The categories we have atm
   QStringList* categories() const { return categoriesList; }
   void setPosition( QPoint pos ) { position = pos; }
@@ -62,6 +65,7 @@ public:
   void setPriority1( const QColor& color ) { priority1 = color; }
   void setPriority2( const QColor& color ) { priority2 = color; }
   void setPriority3( const QColor& color ) { priority3 = color; }
+  void setRemoveTaskStyle( RemoveTaskStyle style ) { removeTaskStyle = style; }
   void setTodoList( QList<TodoObject>* list );
   
   void emitConfigChanged();// { emit configChanged(); qDebug("Emitted"); }
@@ -87,6 +91,7 @@ private:
   QColor priority1;
   QColor priority2;
   QColor priority3;
+  RemoveTaskStyle removeTaskStyle;
   QStringList* categoriesList;
   
   const quint32 magicNumber;
