@@ -39,6 +39,7 @@ TodoDelegate::TodoDelegate( QTreeView* _view, QWidget* parent )
 void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
   KColorScheme colorScheme( option.palette.currentColorGroup() );
+  QPen pen;
   
 //  if( option.state & QStyle::State_Selected ){
 //    painter->fillRect(option.rect, option.palette.highlight() );
@@ -59,6 +60,9 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NegativeBackground).color());
       }
+      if( Settings::self()->getUseOwnFontColor() ){
+        pen.setColor( Settings::self()->getPriority1Font() );
+      }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 2:
@@ -67,6 +71,9 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::NeutralBackground).color());
       }
+      if( Settings::self()->getUseOwnFontColor() ){
+        pen.setColor( Settings::self()->getPriority2Font() );
+      }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
     case 3:
@@ -74,6 +81,9 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         newOption.palette.setColor(QPalette::Background, Settings::self()->getPriority3() );
       } else {
         newOption.palette.setColor(QPalette::Background, colorScheme.background(KColorScheme::PositiveBackground).color());
+      }
+      if( Settings::self()->getUseOwnFontColor() ){
+        pen.setColor( Settings::self()->getPriority3Font() );
       }
       painter->fillRect(newOption.rect, newOption.palette.background());
       break;
@@ -98,13 +108,14 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     painter->save();
     painter->setFont(boldFont);
     QPoint writePoint( originPoint + QPoint(iconRect.size().width()+5,0) );
-    QRect rect();
     QString text = cutString( map["name"].toString(), QRect( writePoint, newOption.rect.bottomRight() ), boldFont );
     painter->drawText( QRect( writePoint, newOption.rect.bottomRight() ), text );
     painter->restore();
   }
   
   if( map["type"] == 1 ){
+    painter->save();
+    painter->setPen(pen);
     if( index.column() == 0 ){
       QString text = map["name"].toString();
 //      if( map["priority"].toInt() == 4 ){
@@ -121,6 +132,7 @@ void TodoDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         painter->drawText( QRect(originPoint,newOption.rect.bottomRight()), "-");
       }
     }
+    painter->restore();
   }
 }
 
