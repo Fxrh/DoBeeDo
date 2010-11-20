@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-20 14:14+0100\n"
+"POT-Creation-Date: 2010-11-20 14:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,25 +201,25 @@ msgid "Date"
 msgstr ""
 
 #: systray.cpp:55
-msgid "<font color=\"red\">Overdue:\t\t %1</font><br>"
+msgid "Overdue:\t\t %1"
 msgstr ""
 
 #: systray.cpp:58
-msgid "<font color=\"red\">Today:  %1</font><br>"
+msgid "Today:  %1"
 msgstr ""
 
 #: systray.cpp:61
-msgid "<font color=\"orange\">Tomorrow:  %1</font><br>"
+msgid "Tomorrow:  %1"
 msgstr ""
 
 #: systray.cpp:64
-msgid "Next week:  %1<br>"
+msgid "Next week:  %1"
 msgstr ""
 
 #: systray.cpp:67
-msgid "Next month:  %1<br>"
+msgid "Next month:  %1"
 msgstr ""
 
 #: systray.cpp:70
-msgid "Future:  %1<br>"
+msgid "Future:  %1"
 msgstr ""
