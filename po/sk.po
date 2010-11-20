@@ -1,225 +1,245 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Slovak translations for dobeedo package
+# Slovenské preklady pre balík dobeedo.
+# Copyright (C) 2010 THE dobeedo'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dobeedo package.
 #
-#, fuzzy
+# Slavko <linux@slavino.sk>, 2010.
+# Felix Rohrbach <felix-rohrbach@gmx.de>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: dobeedo 0.2.0\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
 "POT-Creation-Date: 2010-11-20 14:53+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2010-11-20 14:59+0100\n"
+"Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
+"Language-Team: Slovak <nomail>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: config/categorywidget.cpp:76
 msgid "New category"
-msgstr ""
+msgstr "Nová kategória"
 
 #: config/categorywidget.cpp:76
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Zadajte meno novej kategórie:"
 
 #: config/categorywidget.cpp:91
 msgid "Rename category"
-msgstr ""
+msgstr "Premenovať kategóriu"
 
 #: config/categorywidget.cpp:91
 msgid "Enter the new name for the category:"
-msgstr ""
+msgstr "Zadajte nové meno kategórie:"
 
 #: config/categorywidget.cpp:116
 msgid "Add"
-msgstr ""
+msgstr "Pridať"
 
 #: config/categorywidget.cpp:117
 msgid "Rename"
-msgstr ""
+msgstr "Premenovať"
 
 #: config/categorywidget.cpp:118
 msgid "Remove"
-msgstr ""
+msgstr "Odstrániť"
 
 #: config/configdialog.cpp:31
 msgid "Categories"
-msgstr ""
+msgstr "Kategórie"
 
 #: config/configdialog.cpp:33
 msgid "Priorities"
-msgstr ""
+msgstr "Vlastnosti"
 
 #: config/prioritywidget.cpp:63
 msgid "Use own background colors"
-msgstr ""
+msgstr "Použiť vlastné farby pozadia"
 
 #: config/prioritywidget.cpp:64
 msgid "Color for priority 1: "
-msgstr ""
+msgstr "Farba priority 1:"
 
 #: config/prioritywidget.cpp:65
 msgid "Color for priority 2: "
-msgstr ""
+msgstr "Farba priority 2:"
 
 #: config/prioritywidget.cpp:66
 msgid "Color for priority 3: "
-msgstr ""
+msgstr "Farba priority 3:"
 
 #: editdialog.cpp:74
 msgid "The name of the todo item can't be empty"
-msgstr ""
+msgstr "Položka ToDo musí mať meno"
 
 #: editdialog.cpp:102
 msgid "Name: "
-msgstr ""
+msgstr "Meno:"
 
 #: editdialog.cpp:104
 msgid "Priority: "
-msgstr ""
+msgstr "Priorita:"
 
 #: editdialog.cpp:110
 msgid "Category: "
-msgstr ""
+msgstr "Kategória:"
 
 #: editdialog.cpp:115
 msgid "Description: "
-msgstr ""
+msgstr "Popis:"
 
 #: editdialog.cpp:117
 msgid "Select Date"
-msgstr ""
+msgstr "Nastaviť dátum"
 
 #: main.cpp:30
 msgid "DoBeeDo"
-msgstr ""
+msgstr "DoBeeDo"
 
 #: main.cpp:32
 msgid "A todo list manager for KDE"
-msgstr ""
+msgstr "Správca ToDo pre KDE"
 
 #: main.cpp:34
 msgid "(c) 2010 Felix Rohrbach"
-msgstr ""
+msgstr "© 2010 Felix Rohrbach"
 
 #: main.cpp:35
 msgid " "
-msgstr ""
+msgstr "Správca zoznamu úloh pre KDE"
 
 #: main.cpp:39 po/rc.cpp:1 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Slavko"
 
 #: main.cpp:40 po/rc.cpp:2 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "linux@slavino.sk"
 
 #: mainwindow.cpp:224 mainwindow.cpp:309
 msgctxt "category, show all items"
 msgid "All"
-msgstr ""
+msgstr "Všetky"
 
 #: mainwindow.cpp:246
 msgid "Overdue"
-msgstr ""
+msgstr "Zmeškané"
 
 #: mainwindow.cpp:247 mainwindow.cpp:285
 msgid "Today"
-msgstr ""
+msgstr "Dnes"
 
 #: mainwindow.cpp:248 mainwindow.cpp:286
 msgid "Tomorrow"
-msgstr ""
+msgstr "Zajtra"
 
 #: mainwindow.cpp:249
 msgid "Next week"
-msgstr ""
+msgstr "Butúci týždeň"
 
 #: mainwindow.cpp:250
 msgid "Next month"
-msgstr ""
+msgstr "Budúci mesiac"
 
 #: mainwindow.cpp:251 mainwindow.cpp:294
 msgid "Future"
-msgstr ""
+msgstr "Neskôr..."
 
 #: mainwindow.cpp:278
 msgid "new task..."
-msgstr ""
+msgstr "nová úloha..."
 
 #: mainwindow.cpp:287
 msgid "Next Monday"
-msgstr ""
+msgstr "Budúci pondelok"
 
 #: mainwindow.cpp:288
 msgid "Next Tuesday"
-msgstr ""
+msgstr "Budúci utorok"
 
 #: mainwindow.cpp:289
 msgid "Next Wednesday"
-msgstr ""
+msgstr "Budúca streda"
 
 #: mainwindow.cpp:290
 msgid "Next Thursday"
-msgstr ""
+msgstr "Budúci štvrtok"
 
 #: mainwindow.cpp:291
 msgid "Next Friday"
-msgstr ""
+msgstr "Budúci piatok"
 
 #: mainwindow.cpp:292
 msgid "Next Saturday"
-msgstr ""
+msgstr "Budúca sobota"
 
 #: mainwindow.cpp:293
 msgid "Next Sunday"
-msgstr ""
+msgstr "Budúca nedeľa"
 
 #: mainwindow.cpp:313 mainwindow.cpp:331
 msgid "Done"
-msgstr ""
+msgstr "Hotovo"
 
 #: mainwindow.cpp:314 mainwindow.cpp:332
 msgid "Edit"
-msgstr ""
+msgstr "Upraviť"
 
 #: mainwindow.cpp:333
 msgid "Configure DoBeeDo"
-msgstr ""
+msgstr "Nastaviť DoBeeDo"
 
 #: model/treemodel.cpp:199
 msgid "Name"
-msgstr ""
+msgstr "Meno"
 
 #: model/treemodel.cpp:201
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 #: systray.cpp:55
 msgid "Overdue:\t\t %1"
-msgstr ""
+msgstr "Zmeškané:\t\t %1"
 
 #: systray.cpp:58
 msgid "Today:  %1"
-msgstr ""
+msgstr "Dnes:  %1"
 
 #: systray.cpp:61
 msgid "Tomorrow:  %1"
-msgstr ""
+msgstr "Zajtra:  %1"
 
 #: systray.cpp:64
 msgid "Next week:  %1"
-msgstr ""
+msgstr "Budúci týždeň:  %1"
 
 #: systray.cpp:67
 msgid "Next month:  %1"
-msgstr ""
+msgstr "Budúci mesiac:  %1"
 
 #: systray.cpp:70
 msgid "Future:  %1"
-msgstr ""
+msgstr "Neskôr:  %1"
+
+#~ msgid "<font color=\"red\">Overdue:\t\t %1</font><br>"
+#~ msgstr "<font color=\"red\">Zmeškané:\t\t %1</font><br>"
+
+#~ msgid "<font color=\"red\">Today:  %1</font><br>"
+#~ msgstr "<font color=\"red\">Dnes:  %1</font><br>"
+
+#~ msgid "<font color=\"orange\">Tomorrow:  %1</font><br>"
+#~ msgstr "<font color=\"orange\">Zajtra:  %1</font><br>"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "your names"
+#~ msgstr "Slavko"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "your emails"
+#~ msgstr "linux@slavino.sk"
