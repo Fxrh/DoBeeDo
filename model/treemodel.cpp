@@ -19,8 +19,10 @@
 
 #include "treemodel.h"
 #include "treeitem.h"
+#include "../settings.h"
 
 #include <QDebug>
+#include <QTimer>
 #include <klocalizedstring.h>
 
 TreeModel::TreeModel(QObject *parent)
@@ -92,6 +94,9 @@ void TreeModel::removeTodo(const QModelIndex &index)
     return;
   }
   TreeItem* itemToDelete = static_cast<TreeItem*>(index.internalPointer());
+  if( !itemToDelete ){
+    return;
+  }
   if( !itemToDelete->isTodo() ){
     return;
   }
@@ -101,11 +106,13 @@ void TreeModel::removeTodo(const QModelIndex &index)
     qDebug() << "Trying to delete root";
     return; //We cannot remove root item
   }
+  QModelIndex parentIndex = index.parent();
   beginRemoveRows(index.parent(), itemToDelete->row(), itemToDelete->row() );
   parentDelete->removeChild( itemToDelete->row() );  
   endRemoveRows();
+  emit todosChanged();
   // Here we also have to update section
-  emit dataChanged( index.parent(), index.parent() );
+  emit dataChanged( parentIndex, parentIndex );
 }
 
 QModelIndex TreeModel::updateTodo(const TodoObject &newObj, const QModelIndex &oldIndex)
@@ -207,7 +214,12 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
   if( item ){
     if( item->isTodo() ){
       item->todo()->setChecked(value.toBool());
-      emit dataChanged(index, index);
+      if( item->todo()->getChecked() && Settings::self()->getRemoveTaskStyle() == Settings::RemoveImmediately ){
+        removeTodo(index);
+      } 
+      else {
+        emit dataChanged(index, this->index(index.row(), 1, index.parent()) );
+      }
       return true;
     }
   }
@@ -329,6 +341,7 @@ QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   endInsertRows();
   // check if section is empty now
   emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),0,QModelIndex()) );
+  emit todosChanged();
   return index( i, 0, index(section->row(), 0, QModelIndex()) ); // return index of new element
 }
 

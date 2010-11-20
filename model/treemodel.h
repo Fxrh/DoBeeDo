@@ -76,6 +76,7 @@ class TreeModel : public QAbstractItemModel
     
   signals:
     void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+    void todosChanged();
     
   private:
     QModelIndex addTodoToSection( TreeItem* item, TreeItem* section );

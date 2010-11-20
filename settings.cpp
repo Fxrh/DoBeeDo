@@ -91,6 +91,9 @@ void Settings::setTodoList( QList<TodoObject>* list )
   out << magicNumber << dataVersion;
   
   foreach( const TodoObject &obj, *list ){
+    if( Settings::self()->getRemoveTaskStyle() == Settings::RemoveAfterSession && obj.getChecked() ){
+      continue; // don't save that object
+    }
     out << obj;
   }
   //file.flush();

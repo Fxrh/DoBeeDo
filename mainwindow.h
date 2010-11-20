@@ -68,10 +68,10 @@ class MainWindow : public KXmlGuiWindow
     void expandSections( const QModelIndex& index, const QModelIndex& );
     void showConfigDialog();
     void configChanged();
-    
-  private:
     // inform the system tray about changes
     void todosChanged();
+    
+  private:
     void setupGui();
     
     QWidget* mainWidget;

@@ -77,5 +77,6 @@ void GeneralWidget::setupUi()
   mainLayout = new QVBoxLayout();
   mainLayout->addWidget(removeTaskLabel);
   mainLayout->addWidget(removeTaskBox);
+  mainLayout->addStretch();
   setLayout(mainLayout);
 }

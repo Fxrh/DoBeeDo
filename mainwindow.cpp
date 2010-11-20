@@ -65,6 +65,7 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   view->expandAll();
   todosChanged();
   connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(expandSections(QModelIndex,QModelIndex)) );
+  connect( model, SIGNAL(todosChanged()), this, SLOT(todosChanged()) );
   connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
 }
 
@@ -117,7 +118,6 @@ void MainWindow::newTodo()
   QModelIndex index = model->addTodo(object);
   view->setCurrentIndex( filterModel->mapFromSource(index) );
   doEdit->setText("");
-  todosChanged();
 }
 
 void MainWindow::timerEvent(QTimerEvent *event)
@@ -146,7 +146,6 @@ void MainWindow::showContextMenu(QPoint point)
 void MainWindow::removeTodo()
 {
   model->removeTodo( filterModel->mapToSource(view->currentIndex()) );
-  todosChanged();
 }
 
 void MainWindow::editTodo()
@@ -161,7 +160,6 @@ void MainWindow::editTodo()
   if( dialog.exec() == QDialog::Accepted ){
     QModelIndex newIndex = model->updateTodo(object, index);
     view->setCurrentIndex( filterModel->mapFromSource(newIndex) );
-    todosChanged();
   }
 }
 
