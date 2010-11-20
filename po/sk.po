@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dobeedo 0.2.0\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-20 14:43+0100\n"
-"PO-Revision-Date: 2010-11-20 14:48+0100\n"
+"POT-Creation-Date: 2010-11-20 14:53+0100\n"
+"PO-Revision-Date: 2010-11-20 14:59+0100\n"
 "Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
 "Language-Team: Slovak <nomail>\n"
 "Language: sk\n"
@@ -93,7 +93,7 @@ msgid "Description: "
 msgstr "Popis:"
 
 #: editdialog.cpp:117
-msgid "select Date"
+msgid "Select Date"
 msgstr "Nastaviť dátum"
 
 #: main.cpp:30

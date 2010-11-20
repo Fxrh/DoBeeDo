@@ -114,7 +114,7 @@ void EditDialog::setupUi()
   }
   descriptionLabel = new QLabel(i18n("Description: "));
   descriptionEdit = new QPlainTextEdit();
-  dateBox = new QCheckBox(i18n("select Date"));
+  dateBox = new QCheckBox(i18n("Select Date"));
   dateBox->setChecked(true);
   datePicker = new KDatePicker();
   
