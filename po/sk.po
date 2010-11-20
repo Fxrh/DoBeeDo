@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dobeedo 0.2.0\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-20 10:03+0100\n"
+"POT-Creation-Date: 2010-11-20 14:14+0100\n"
 "PO-Revision-Date: 2010-11-20 10:40+0100\n"
 "Last-Translator: Slavko <linux@slavino.sk>\n"
 "Language-Team: Slovak <nomail>\n"
@@ -110,12 +110,12 @@ msgstr "© 2010 Felix Rohrbach"
 msgid " "
 msgstr "Správca zoznamu úloh pre KDE"
 
-#: main.cpp:39
+#: main.cpp:39 po/rc.cpp:1 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Slavko"
 
-#: main.cpp:40
+#: main.cpp:40 po/rc.cpp:2 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "linux@slavino.sk"
@@ -201,16 +201,6 @@ msgstr "Meno"
 msgid "Date"
 msgstr "Dátum"
 
-#: po/rc.cpp:1 rc.cpp:1
-msgctxt "NAME OF TRANSLATORS"
-msgid "your names"
-msgstr "Slavko"
-
-#: po/rc.cpp:2 rc.cpp:2
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "your emails"
-msgstr "linux@slavino.sk"
-
 #: systray.cpp:55
 msgid "<font color=\"red\">Overdue:\t\t %1</font><br>"
 msgstr "<font color=\"red\">Zmeškané:\t\t %1</font><br>"
@@ -234,3 +224,11 @@ msgstr "Budúci mesiac:  %1<br>"
 #: systray.cpp:70
 msgid "Future:  %1<br>"
 msgstr "Neskôr:  %1<br>"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "your names"
+#~ msgstr "Slavko"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "your emails"
+#~ msgstr "linux@slavino.sk"
