@@ -122,9 +122,13 @@ void Settings::load()
   position = settingsFile->value("WindowPosition", QVariant::fromValue(QPoint(0,0))).toPoint();
   size = settingsFile->value("WindowSize", QVariant::fromValue(QSize(360,410))).toSize();
   useOwnColor = settingsFile->value("UseOwnPriorityColor", QVariant::fromValue(false)).toBool();
+  useOwnFontColor = settingsFile->value("UseOwnPriorityFontColor", QVariant::fromValue(false)).toBool();
   priority1 = settingsFile->value("Priority1Color", QColor::fromRgbF(0.917327, 0.854505, 0.863172)).value<QColor>();
   priority2 = settingsFile->value("Priority2Color", QColor::fromRgbF(0.985306, 0.946593, 0.900237)).value<QColor>();
   priority3 = settingsFile->value("Priority3Color", QColor::fromRgbF(0.875319, 0.938064, 0.800534)).value<QColor>();
+  priority1Font = settingsFile->value("Priority1FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
+  priority2Font = settingsFile->value("Priority2FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
+  priority3Font = settingsFile->value("Priority3FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
@@ -134,9 +138,13 @@ void Settings::save()
   settingsFile->setValue("WindowPosition", QVariant::fromValue(position));
   settingsFile->setValue("WindowSize", QVariant::fromValue(size));
   settingsFile->setValue("UseOwnPriorityColor", useOwnColor);
+  settingsFile->setValue("UseOwnPriorityFontColor", useOwnFontColor);
   settingsFile->setValue("Priority1Color", priority1 );
   settingsFile->setValue("Priority2Color", priority2 );
   settingsFile->setValue("Priority3Color", priority3 );
+  settingsFile->setValue("Priority1FontColor", priority1Font);
+  settingsFile->setValue("Priority2FontColor", priority2Font);
+  settingsFile->setValue("Priority3FontColor", priority3Font);
   settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
   delete categoriesList;
 }

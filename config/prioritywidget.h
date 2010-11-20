@@ -45,12 +45,19 @@ class PriorityWidget : public QWidget
     void setupUi();
     
     QCheckBox* useOwnBox;
+    QCheckBox* useOwnFontBox;
     QLabel* pri1Label;
     QLabel* pri2Label;
     QLabel* pri3Label;
+    QLabel* pri1FontLabel;
+    QLabel* pri2FontLabel;
+    QLabel* pri3FontLabel;
     KColorButton* pri1Button;
     KColorButton* pri2Button;
     KColorButton* pri3Button;
+    KColorButton* pri1FontButton;
+    KColorButton* pri2FontButton;
+    KColorButton* pri3FontButton;
     QGridLayout* mainLayout;
 };
 

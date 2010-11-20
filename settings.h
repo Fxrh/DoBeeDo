@@ -50,18 +50,26 @@ public:
   QList<TodoObject>* getTodoList();
   // use own background colors for the different priorities 
   bool getUseOwnColor() { return useOwnColor; }
+  bool getUseOwnFontColor() { return useOwnFontColor; }
   const QColor& getPriority1() { return priority1; }
   const QColor& getPriority2() { return priority2; }
   const QColor& getPriority3() { return priority3; }
+  const QColor& getPriority1Font() { return priority1Font; }
+  const QColor& getPriority2Font() { return priority2Font; }
+  const QColor& getPriority3Font() { return priority3Font; }
   // The categories we have atm
   QStringList* categories() const { return categoriesList; }
   void setPosition( QPoint pos ) { position = pos; }
   void setSize( QSize _size ) { size = _size; }
   void setCategories( QStringList* list ); 
   void setUseOwnColor( bool use ) { useOwnColor = use; }
+  void setUseOwnFontColor( bool use ) { useOwnFontColor = use; }
   void setPriority1( const QColor& color ) { priority1 = color; }
   void setPriority2( const QColor& color ) { priority2 = color; }
   void setPriority3( const QColor& color ) { priority3 = color; }
+  void setPriority1Font( const QColor& color ) { priority1Font = color; }
+  void setPriority2Font( const QColor& color ) { priority2Font = color; }
+  void setPriority3Font( const QColor& color ) { priority3Font = color; }
   void setTodoList( QList<TodoObject>* list );
   
   void emitConfigChanged();// { emit configChanged(); qDebug("Emitted"); }
@@ -84,9 +92,13 @@ private:
   QPoint position;
   QSize size;
   bool useOwnColor;
+  bool useOwnFontColor;
   QColor priority1;
   QColor priority2;
   QColor priority3;
+  QColor priority1Font;
+  QColor priority2Font;
+  QColor priority3Font;
   QStringList* categoriesList;
   
   const quint32 magicNumber;
