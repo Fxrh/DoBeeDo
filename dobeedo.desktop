@@ -6,4 +6,5 @@ Type=Application
 Categories=Qt;KDE;Office;
 GenericName=A todo list manager for KDE
 GenericName[de]=Ein Aufgabenmanager für KDE
+GenericName[sk]=Správca zoznamu úloh
 Terminal=false
