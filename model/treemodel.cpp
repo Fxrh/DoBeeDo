@@ -29,12 +29,14 @@ TreeModel::TreeModel(QObject *parent)
     : QAbstractItemModel(parent)
 {
   rootItem = new TreeItem();
+  removeDelayList = new QList<QModelIndex>();
   reset();
  }
 
 TreeModel::~TreeModel()
 {
   delete rootItem;
+  delete removeDelayList;
   qDebug() << "TreeModel: Destroyed";
 }
 
@@ -213,8 +215,16 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
   if( item ){
     if( item->isTodo() ){
       item->todo()->setChecked(value.toBool());
-      if( item->todo()->getChecked() && Settings::self()->getRemoveTaskStyle() == Settings::RemoveImmediately ){
-        removeTodo(index);
+      if( Settings::self()->getRemoveTaskStyle() == Settings::RemoveImmediately ){
+        if( item->todo()->getChecked() ){
+          removeDelayList->push_back(index);
+          QTimer::singleShot(150, this, SLOT(delayedRemove()));
+        } else {
+          int pos = removeDelayList->indexOf(index);
+          if( pos != -1 ){
+            (*removeDelayList)[pos] = QModelIndex();
+          }
+        }
       } 
       else {
         emit dataChanged(index, this->index(index.row(), 1, index.parent()) );
@@ -330,6 +340,14 @@ int TreeModel::rowCountActive(const QModelIndex &parent) const
     }
   }
   return count;
+}
+
+void TreeModel::delayedRemove()
+{
+  if( removeDelayList->first().isValid() ){
+    removeTodo(removeDelayList->first());
+  }
+  removeDelayList->removeFirst();
 }
 
 QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)

@@ -78,10 +78,15 @@ class TreeModel : public QAbstractItemModel
   signals:
     void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     
+  private slots:
+    // remove checked todos
+    void delayedRemove();
+    
   private:
     QModelIndex addTodoToSection( TreeItem* item, TreeItem* section );
     
     TreeItem* rootItem;
+    QList<QModelIndex>* removeDelayList;
 };
 
 #endif //TREEMODEL_H
