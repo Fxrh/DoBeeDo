@@ -70,13 +70,13 @@ class TreeModel : public QAbstractItemModel
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &index) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCountActive(const QModelIndex &parent = QModelIndex() ) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     
     //QModelIndex addItem( QList<QVariant>& data, const QModelIndex& parent=QModelIndex() );
     
   signals:
     void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
-    void todosChanged();
     
   private:
     QModelIndex addTodoToSection( TreeItem* item, TreeItem* section );

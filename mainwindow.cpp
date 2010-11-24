@@ -65,7 +65,7 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   view->expandAll();
   todosChanged();
   connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(expandSections(QModelIndex,QModelIndex)) );
-  connect( model, SIGNAL(todosChanged()), this, SLOT(todosChanged()) );
+  connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(todosChanged()) );
   connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
 }
 
@@ -233,7 +233,8 @@ void MainWindow::todosChanged()
 {
   int array[6];
   for( int i=0; i<=5; i++ ){
-    array[i] = model->rowCount( model->index(i,0,QModelIndex()) );
+    array[i] = model->rowCountActive( model->index(i, 0, QModelIndex()) );
+    //array[i] = model->rowCount( model->index(i,0,QModelIndex()) );
   }
   systray->updateStatusInformation( array[0], array[1], array[2], array[3], array[4], array[5] );
 }

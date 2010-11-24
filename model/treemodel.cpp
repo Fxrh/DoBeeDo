@@ -110,7 +110,6 @@ void TreeModel::removeTodo(const QModelIndex &index)
   beginRemoveRows(index.parent(), itemToDelete->row(), itemToDelete->row() );
   parentDelete->removeChild( itemToDelete->row() );  
   endRemoveRows();
-  emit todosChanged();
   // Here we also have to update section
   emit dataChanged( parentIndex, parentIndex );
 }
@@ -309,6 +308,30 @@ int TreeModel::rowCount(const QModelIndex &parent) const
   return parentItem->childCount();
 }
 
+int TreeModel::rowCountActive(const QModelIndex &parent) const
+{
+  TreeItem *parentItem;
+  if (parent.column() > 0)
+    return 0;
+  
+  if (!parent.isValid())
+    parentItem = rootItem;
+  else
+    parentItem = static_cast<TreeItem*>(parent.internalPointer());
+  
+  if( !parentItem->isSection() ){
+    return parentItem->childCount();
+  }
+  
+  int count = 0;
+  for( int i=0; i<parentItem->childCount(); ++i ){
+    if( !parentItem->child(i)->todo()->getChecked() ){
+      ++count;
+    }
+  }
+  return count;
+}
+
 QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
 {
   int i=0;
@@ -341,7 +364,6 @@ QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)
   endInsertRows();
   // check if section is empty now
   emit dataChanged( index(section->row(),0,QModelIndex()), index(section->row(),0,QModelIndex()) );
-  emit todosChanged();
   return index( i, 0, index(section->row(), 0, QModelIndex()) ); // return index of new element
 }
 
