@@ -56,7 +56,9 @@ MainWindow::MainWindow( SysTray* _systray, QWidget* parent )
   Settings::self();
   configDialog = 0;
   setupGui();
-  show();
+  if( !Settings::self()->getStartInTray() && !Settings::self()->getAlwaysStartInTray() ){
+    show();
+  }
   
   curDate = new QDate(QDate::currentDate());
   dateCheckTimer = startTimer(60*1000);
@@ -73,6 +75,7 @@ MainWindow::~MainWindow()
 {
   Settings::self()->setPosition( this->pos() );
   Settings::self()->setSize( this->size() );
+  Settings::self()->setStartInTray(isHidden());
   Settings::self()->setTodoList( model->getAllTodo() );
   Settings::destroy();
   qDebug() << "MainWindow: destroyed";

@@ -59,6 +59,8 @@ public:
   const QColor& getPriority1Font() { return priority1Font; }
   const QColor& getPriority2Font() { return priority2Font; }
   const QColor& getPriority3Font() { return priority3Font; }
+  bool getAlwaysStartInTray() { return alwaysStartInTray; }
+  bool getStartInTray() { return startInTray; }
   RemoveTaskStyle getRemoveTaskStyle() const { return removeTaskStyle; }
   // The categories we have atm
   QStringList* categories() const { return categoriesList; }
@@ -74,6 +76,8 @@ public:
   void setPriority2Font( const QColor& color ) { priority2Font = color; }
   void setPriority3Font( const QColor& color ) { priority3Font = color; }
   void setRemoveTaskStyle( RemoveTaskStyle style ) { removeTaskStyle = style; }
+  void setAlwaysStartInTray( bool tray ) { alwaysStartInTray = tray; }
+  void setStartInTray( bool tray ) { startInTray = tray; }
   void setTodoList( QList<TodoObject>* list );
   
   void emitConfigChanged();// { emit configChanged(); qDebug("Emitted"); }
@@ -104,6 +108,8 @@ private:
   QColor priority2Font;
   QColor priority3Font;
   RemoveTaskStyle removeTaskStyle;
+  bool alwaysStartInTray;
+  bool startInTray;
   QStringList* categoriesList;
   
   const quint32 magicNumber;

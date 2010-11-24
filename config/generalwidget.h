@@ -24,6 +24,7 @@
 
 class QLabel;
 class QComboBox;
+class QCheckBox;
 class QVBoxLayout;
 
 class GeneralWidget : public QWidget
@@ -46,6 +47,7 @@ class GeneralWidget : public QWidget
     
     QLabel* removeTaskLabel;
     QComboBox* removeTaskBox;
+    QCheckBox* startInTrayBox;
     QVBoxLayout* mainLayout;
 };
 

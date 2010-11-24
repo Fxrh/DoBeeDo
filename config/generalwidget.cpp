@@ -19,8 +19,10 @@
 
 #include <QLabel>
 #include <QComboBox>
+#include <QCheckBox>
 #include <QVBoxLayout>
 #include <QDebug>
+#include <KLocalizedString>
 
 #include "../settings.h"
 #include "generalwidget.h"
@@ -49,6 +51,7 @@ void GeneralWidget::save()
       qDebug() << "GeneralWidget::save(): removeTaskBox should not have that value: " << num;
       break;
   }
+  Settings::self()->setAlwaysStartInTray(startInTrayBox->isChecked());
 }
 
 void GeneralWidget::restore()
@@ -64,19 +67,23 @@ void GeneralWidget::restore()
       removeTaskBox->setCurrentIndex(2);
       break;
   }
+  startInTrayBox->setChecked(Settings::self()->getAlwaysStartInTray());
 }
 
 void GeneralWidget::setupUi()
 {
-  removeTaskLabel = new QLabel("When to remove done tasks: ");
+  removeTaskLabel = new QLabel(i18n("When to remove done tasks: "));
   removeTaskBox = new QComboBox();
-  removeTaskBox->addItem("Never remove done tasks");
-  removeTaskBox->addItem("Remove done tasks after Session");
-  removeTaskBox->addItem("Remove done tasks immediately");
+  removeTaskBox->addItem(i18n("Never remove done tasks"));
+  removeTaskBox->addItem(i18n("Remove done tasks after session"));
+  removeTaskBox->addItem(i18n("Remove done tasks immediately"));
+  
+  startInTrayBox = new QCheckBox(i18n("Start hidden to system tray"));
   
   mainLayout = new QVBoxLayout();
   mainLayout->addWidget(removeTaskLabel);
   mainLayout->addWidget(removeTaskBox);
+  mainLayout->addWidget(startInTrayBox);
   mainLayout->addStretch();
   setLayout(mainLayout);
 }

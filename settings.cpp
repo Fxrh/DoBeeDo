@@ -133,6 +133,8 @@ void Settings::load()
   priority2Font = settingsFile->value("Priority2FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
   priority3Font = settingsFile->value("Priority3FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
   removeTaskStyle = RemoveTaskStyle(settingsFile->value("RemoveTaskStyle", RemoveAfterSession).toInt());
+  alwaysStartInTray = settingsFile->value("AlwaysStartInTray", false).toBool();
+  startInTray = settingsFile->value("StartInTray", false).toBool();
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
@@ -150,6 +152,8 @@ void Settings::save()
   settingsFile->setValue("Priority2FontColor", priority2Font);
   settingsFile->setValue("Priority3FontColor", priority3Font);
   settingsFile->setValue("RemoveTaskStyle", removeTaskStyle);
+  settingsFile->setValue("AlwaysStartInTray", alwaysStartInTray);
+  settingsFile->setValue("StartInTray", startInTray);
   settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
   delete categoriesList;
 }
