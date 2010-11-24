@@ -68,9 +68,24 @@ int TodoObject::getDaysTo() const
   return QDate::currentDate().daysTo(date);
 }
 
+void TodoObject::loadDataVersion1(TodoObject &obj, QDataStream &stream)
+{
+  QString name;
+  QString description;
+  QDate date;
+  int priority;
+  int category;
+  stream >> name >> description >> date >> priority >> category;
+  obj = TodoObject(name, date);
+  obj.setDescription(description);
+  obj.setPriority(priority);
+  obj.setCategory(category);
+  obj.setChecked(false);
+}
+
 QDataStream& operator<<( QDataStream& out, const TodoObject& object )
 {
-  out << object.getName() << object.getDescription() << object.getDate() << object.getPriority() << object.getCategory();
+  out << object.getName() << object.getDescription() << object.getDate() << object.getPriority() << object.getCategory() << object.getChecked();
   return out;
 }
 
@@ -81,11 +96,12 @@ QDataStream& operator>>( QDataStream& in, TodoObject& object )
   QDate date;
   int priority;
   int category;
-  in >> name >> description >> date >> priority >> category;
+  bool checked;
+  in >> name >> description >> date >> priority >> category >> checked;
   object = TodoObject(name, date);
   object.setDescription(description);
   object.setPriority(priority);
   object.setCategory(category);
-  object.setChecked(false);
+  object.setChecked(checked);
   return in;
 }

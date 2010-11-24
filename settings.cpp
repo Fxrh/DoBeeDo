@@ -61,11 +61,25 @@ QList<TodoObject>* Settings::getTodoList()
     return (QList<TodoObject>*)0;
   }
   
-  while( in.status() == QDataStream::Ok ){
-    TodoObject obj("");
-    in >> obj;
-    if( in.status() == QDataStream::Ok )
-      list->push_back(obj);
+  if( data == dataVersion ){
+    while( in.status() == QDataStream::Ok ){
+      TodoObject obj("");
+      in >> obj;
+      if( in.status() == QDataStream::Ok )
+        list->push_back(obj);
+    }
+  } else {
+    if( data != dataVersion-1 ){
+      qDebug() << "todo.data: Unknown version";
+      return list;
+    }
+    while( in.status() == QDataStream::Ok ){
+      TodoObject obj("");
+      TodoObject::loadDataVersion1(obj, in);
+      if( in.status() == QDataStream::Ok ){
+        list->push_back(obj);
+      }
+    }
   }
   return list;
 }
@@ -108,7 +122,7 @@ void Settings::emitConfigChanged()
 
 Settings::Settings()
   : magicNumber(0x87F2468B),
-  dataVersion(0x0001)
+  dataVersion(0x0002)
 {
   load();
 }

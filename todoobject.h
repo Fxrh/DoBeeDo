@@ -54,6 +54,9 @@ class TodoObject
     // a name, so they will be likely sorted out by other classes
     bool isValid() const { return (name != ""); }
     
+    //load from data file, if data file is version 1
+    static void loadDataVersion1(TodoObject& obj, QDataStream& stream);
+    
   private:
     QString name;
     QString description;
