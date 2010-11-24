@@ -17,58 +17,36 @@
  *                                                                        *
  **************************************************************************/ 
 
-#include "configdialog.h"
-#include "generalwidget.h"
-#include "categorywidget.h"
-#include "prioritywidget.h"
+#ifndef GENERALWIDGET_H
+#define GENERALWIDGET_H
 
-#include <QLabel>
-#include <klocalizedstring.h>
+#include <QWidget>
 
-ConfigDialog::ConfigDialog(QWidget *parent)
-  : KPageDialog(parent)
+class QLabel;
+class QComboBox;
+class QVBoxLayout;
+
+class GeneralWidget : public QWidget
+    /* This Widget is part of the config dialog. Here, you can decide
+       what happens to done (checked) tasks (never remove automatically,
+       remove after closing this application or remove immediately).
+     */
 {
-  generalWidget = new GeneralWidget();
-  generalPage = new KPageWidgetItem(generalWidget, i18nc("configuration page","General"));
-  categoryWidget = new CategoryWidget();
-  categoryPage = new KPageWidgetItem(categoryWidget, i18n("Categories"));
-  priorityWidget = new PriorityWidget();
-  priorityPage = new KPageWidgetItem(priorityWidget, i18n("Priorities"));
-  
-  addPage(generalPage);
-  addPage(categoryPage);
-  addPage(priorityPage);
-}
+    Q_OBJECT
+  public:
+    GeneralWidget( QWidget* parent=0 );
+    
+    // save current state in the settings
+    void save();
+    // load the settings to the widgets
+    void restore();
+    
+  private:
+    void setupUi();
+    
+    QLabel* removeTaskLabel;
+    QComboBox* removeTaskBox;
+    QVBoxLayout* mainLayout;
+};
 
-void ConfigDialog::accept()
-{
-  generalWidget->save();
-  categoryWidget->save();
-  priorityWidget->save();
-  KPageDialog::accept();
-}
-
-void ConfigDialog::reject()
-{
-  generalWidget->restore();
-  categoryWidget->restore();
-  priorityWidget->restore();
-  KPageDialog::reject();
-}
-
-void ConfigDialog::clear()
-{
-  generalWidget->restore();
-  categoryWidget->restore();
-  priorityWidget->restore();
-}
-
-const QStringList* ConfigDialog::getCatOpList()
-{
-  return categoryWidget->getCatOpList();
-}
-
-const QList<int>* ConfigDialog::getCatIdList()
-{
-  return categoryWidget->getCatIdList();
-}
+#endif //GENERALWIDGET_H

@@ -22,6 +22,7 @@
 
 #include <KPageDialog>
 
+class GeneralWidget;
 class CategoryWidget;
 class PriorityWidget;
 
@@ -45,6 +46,8 @@ public:
   const QList<int>* getCatIdList();
   
 private:
+  KPageWidgetItem* generalPage;
+  GeneralWidget* generalWidget;
   KPageWidgetItem* categoryPage;
   CategoryWidget* categoryWidget;
   KPageWidgetItem* priorityPage;

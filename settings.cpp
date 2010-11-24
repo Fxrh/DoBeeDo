@@ -91,6 +91,9 @@ void Settings::setTodoList( QList<TodoObject>* list )
   out << magicNumber << dataVersion;
   
   foreach( const TodoObject &obj, *list ){
+    if( Settings::self()->getRemoveTaskStyle() == Settings::RemoveAfterSession && obj.getChecked() ){
+      continue; // don't save that object
+    }
     out << obj;
   }
   //file.flush();
@@ -129,6 +132,7 @@ void Settings::load()
   priority1Font = settingsFile->value("Priority1FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
   priority2Font = settingsFile->value("Priority2FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
   priority3Font = settingsFile->value("Priority3FontColor", QColor::fromRgb(0,0,0)).value<QColor>();
+  removeTaskStyle = RemoveTaskStyle(settingsFile->value("RemoveTaskStyle", RemoveAfterSession).toInt());
   categoriesList = new QStringList( settingsFile->value("categories", QVariant::fromValue(QStringList("Standard"))).toStringList() );
   settingsFile->sync();
 }
@@ -145,6 +149,7 @@ void Settings::save()
   settingsFile->setValue("Priority1FontColor", priority1Font);
   settingsFile->setValue("Priority2FontColor", priority2Font);
   settingsFile->setValue("Priority3FontColor", priority3Font);
+  settingsFile->setValue("RemoveTaskStyle", removeTaskStyle);
   settingsFile->setValue("categories", QVariant::fromValue(*categoriesList));
   delete categoriesList;
 }

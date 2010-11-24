@@ -40,11 +40,13 @@ class TodoObject
     void setDate( QDate _date ) { date = _date; }
     void setPriority( int num );
     void setCategory( int cat );
+    void setChecked( bool checked ) { isChecked = checked; }
     QString getName() const { return name; }
     QString getDescription() const { return description; } 
     QDate getDate() const { return date; }
     int getPriority() const { return priority; }
     int getCategory() const { return category; }
+    bool getChecked() const { return isChecked; }
     // returns the amount of days until this task have to be done (0 == today)
     // daysTo == -2 means that the TodoObjects have no date set ("future")
     int getDaysTo() const;
@@ -58,6 +60,8 @@ class TodoObject
     QDate date;
     int priority;
     int category;
+    // It depends on the config options if done tasks are removed immediately
+    bool isChecked;
 };
 
 // To save the todo data as binary file
