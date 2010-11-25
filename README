@@ -6,6 +6,7 @@ Features
 --------
  * Tasks grouped by due date
  * Categorize your tasks and show tasks from only one category
+ * select when your done tasks are removed (never, after session, immediately)
  * Different priority levels
  * save additional text for tasks
  * tray icon that shows if you have tasks to do

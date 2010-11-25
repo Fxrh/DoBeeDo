@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dobeedo 0.2.0\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-25 16:07+0100\n"
+"POT-Creation-Date: 2010-11-25 16:33+0100\n"
 "PO-Revision-Date: 2010-11-20 14:59+0100\n"
 "Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
 "Language-Team: Slovak <nomail>\n"
@@ -85,15 +85,15 @@ msgstr ""
 msgid "Use own background colors"
 msgstr "Použiť vlastné farby pozadia"
 
-#: config/prioritywidget.cpp:81
+#: config/prioritywidget.cpp:81 config/prioritywidget.cpp:89
 msgid "Color for priority 1: "
 msgstr "Farba priority 1:"
 
-#: config/prioritywidget.cpp:82
+#: config/prioritywidget.cpp:82 config/prioritywidget.cpp:90
 msgid "Color for priority 2: "
 msgstr "Farba priority 2:"
 
-#: config/prioritywidget.cpp:83
+#: config/prioritywidget.cpp:83 config/prioritywidget.cpp:91
 msgid "Color for priority 3: "
 msgstr "Farba priority 3:"
 

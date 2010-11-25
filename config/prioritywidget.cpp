@@ -86,9 +86,9 @@ void PriorityWidget::setupUi()
   pri3Button = new KColorButton();
   
   useOwnFontBox = new QCheckBox(i18n("Use own font colors"));
-  pri1FontLabel = new QLabel("Color for priority 1: ");
-  pri2FontLabel = new QLabel("Color for priority 2: ");
-  pri3FontLabel = new QLabel("Color for priority 3: ");
+  pri1FontLabel = new QLabel(i18n("Color for priority 1: "));
+  pri2FontLabel = new QLabel(i18n("Color for priority 2: "));
+  pri3FontLabel = new QLabel(i18n("Color for priority 3: "));
   pri1FontButton = new KColorButton();
   pri2FontButton = new KColorButton();
   pri3FontButton = new KColorButton();

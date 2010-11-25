@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-25 16:07+0100\n"
+"POT-Creation-Date: 2010-11-25 16:33+0100\n"
 "PO-Revision-Date: 2010-11-25 16:21+0100\n"
 "Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
 "Language-Team: German <>\n"
@@ -82,15 +82,15 @@ msgstr "In die Systemkontrollleiste minimiert starten"
 msgid "Use own background colors"
 msgstr "Benutze eigene Hintergrundfarben"
 
-#: config/prioritywidget.cpp:81
+#: config/prioritywidget.cpp:81 config/prioritywidget.cpp:89
 msgid "Color for priority 1: "
 msgstr "Farbe für Priorität 1: "
 
-#: config/prioritywidget.cpp:82
+#: config/prioritywidget.cpp:82 config/prioritywidget.cpp:90
 msgid "Color for priority 2: "
 msgstr "Farbe für Priorität 2: "
 
-#: config/prioritywidget.cpp:83
+#: config/prioritywidget.cpp:83 config/prioritywidget.cpp:91
 msgid "Color for priority 3: "
 msgstr "Farbe für Priorität 3: "
 

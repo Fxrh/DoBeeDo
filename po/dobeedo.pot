@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-25 16:07+0100\n"
+"POT-Creation-Date: 2010-11-25 16:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,15 +82,15 @@ msgstr ""
 msgid "Use own background colors"
 msgstr ""
 
-#: config/prioritywidget.cpp:81
+#: config/prioritywidget.cpp:81 config/prioritywidget.cpp:89
 msgid "Color for priority 1: "
 msgstr ""
 
-#: config/prioritywidget.cpp:82
+#: config/prioritywidget.cpp:82 config/prioritywidget.cpp:90
 msgid "Color for priority 2: "
 msgstr ""
 
-#: config/prioritywidget.cpp:83
+#: config/prioritywidget.cpp:83 config/prioritywidget.cpp:91
 msgid "Color for priority 3: "
 msgstr ""
 
