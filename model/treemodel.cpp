@@ -30,6 +30,7 @@ TreeModel::TreeModel(QObject *parent)
 {
   rootItem = new TreeItem();
   removeDelayList = new QList<QModelIndex>();
+  connect( Settings::self(), SIGNAL(sigConfigChanged()), this, SLOT(configChanged()) );
   reset();
  }
 
@@ -97,9 +98,11 @@ void TreeModel::removeTodo(const QModelIndex &index)
   }
   TreeItem* itemToDelete = static_cast<TreeItem*>(index.internalPointer());
   if( !itemToDelete ){
+    qDebug() << "removeTodo: Got bad pointer";
     return;
   }
   if( !itemToDelete->isTodo() ){
+    qDebug() << "removeTodo: is no todo";
     return;
   }
   TreeItem* parentDelete = itemToDelete->parent();
@@ -348,6 +351,24 @@ void TreeModel::delayedRemove()
     removeTodo(removeDelayList->first());
   }
   removeDelayList->removeFirst();
+}
+
+void TreeModel::configChanged()
+{
+  if( Settings::self()->getRemoveTaskStyle() != Settings::RemoveImmediately ){
+    return;
+  }
+  // remove all checked todos
+  for( int i=0; i<rootItem->childCount(); ++i ){
+    TreeItem* section = rootItem->child(i);
+    for( int j=0; j<section->childCount(); ++j ){
+      TreeItem* todo = section->child(j);
+      if( todo->todo()->getChecked() ){
+        QTimer::singleShot(0, this, SLOT(delayedRemove()) );
+        removeDelayList->push_back(index(j, 0, index(i, 0, QModelIndex())));
+      }
+    }
+  }
 }
 
 QModelIndex TreeModel::addTodoToSection(TreeItem* item, TreeItem *section)

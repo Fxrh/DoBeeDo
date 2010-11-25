@@ -81,6 +81,8 @@ class TreeModel : public QAbstractItemModel
   private slots:
     // remove checked todos
     void delayedRemove();
+    // signal from Settings
+    void configChanged();
     
   private:
     QModelIndex addTodoToSection( TreeItem* item, TreeItem* section );
