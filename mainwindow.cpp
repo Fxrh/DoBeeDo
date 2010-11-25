@@ -330,7 +330,7 @@ void MainWindow::setupGui()
   setCentralWidget(mainWidget);
   setWindowTitle("DoBeeDo");
   
-  doneAct = new KAction(KIcon("checkbox"),i18n("Done"), this);
+  doneAct = new KAction(KIcon("edit-delete"),i18n("Remove"), this);
   editAct = new KAction(KIcon("document-edit"),i18n("Edit"), this);
   configAct = new KAction(KIcon("configure"),i18n("Configure DoBeeDo"),this);
   actionCollection()->addAction("done", doneAct);
