@@ -3,15 +3,16 @@
 # Copyright (C) 2010 THE dobeedo'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dobeedo package.
 #
-# Slavko <linux@slavino.sk>, 2010.
 # Felix Rohrbach <felix-rohrbach@gmx.de>, 2010.
+# Slavko <linux@slavino.sk>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dobeedo 0.2.0\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-25 16:33+0100\n"
-"PO-Revision-Date: 2010-11-20 14:59+0100\n"
-"Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
+"POT-Creation-Date: 2010-11-25 17:09+0100\n"
+"PO-Revision-Date: 2010-11-25 17:11+0100\n"
+"Last-Translator: Slavko <linux@slavino.sk>\n"
 "Language-Team: Slovak <nomail>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +52,7 @@ msgstr "Odstrániť"
 #: config/configdialog.cpp:32
 msgctxt "configuration page"
 msgid "General"
-msgstr ""
+msgstr "Všeobecné"
 
 #: config/configdialog.cpp:34
 msgid "Categories"
@@ -63,23 +64,23 @@ msgstr "Vlastnosti"
 
 #: config/generalwidget.cpp:75
 msgid "When to remove done tasks: "
-msgstr ""
+msgstr "Kedy odstrániť skončené úlohy:"
 
 #: config/generalwidget.cpp:77
 msgid "Never remove done tasks"
-msgstr ""
+msgstr "Vždy ponechať skončené úlohy"
 
 #: config/generalwidget.cpp:78
 msgid "Remove done tasks after session"
-msgstr ""
+msgstr "Odstrániť skončené úlohy po skončení relácie"
 
 #: config/generalwidget.cpp:79
 msgid "Remove done tasks immediately"
-msgstr ""
+msgstr "Odstrániť skončené úlohy ihneď"
 
 #: config/generalwidget.cpp:81
 msgid "Start hidden to system tray"
-msgstr ""
+msgstr "Spustiť skryté v oznamovacej oblasti"
 
 #: config/prioritywidget.cpp:80
 msgid "Use own background colors"
@@ -98,9 +99,8 @@ msgid "Color for priority 3: "
 msgstr "Farba priority 3:"
 
 #: config/prioritywidget.cpp:88
-#, fuzzy
 msgid "Use own font colors"
-msgstr "Použiť vlastné farby pozadia"
+msgstr "Použiť vlastné farby písma"
 
 #: editdialog.cpp:74
 msgid "The name of the todo item can't be empty"
