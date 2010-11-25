@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-20 14:53+0100\n"
+"POT-Creation-Date: 2010-11-25 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,32 +41,61 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: config/categorywidget.cpp:118
+#: config/categorywidget.cpp:118 mainwindow.cpp:315
 msgid "Remove"
 msgstr ""
 
-#: config/configdialog.cpp:31
+#: config/configdialog.cpp:32
+msgctxt "configuration page"
+msgid "General"
+msgstr ""
+
+#: config/configdialog.cpp:34
 msgid "Categories"
 msgstr ""
 
-#: config/configdialog.cpp:33
+#: config/configdialog.cpp:36
 msgid "Priorities"
 msgstr ""
 
-#: config/prioritywidget.cpp:63
+#: config/generalwidget.cpp:75
+msgid "When to remove done tasks: "
+msgstr ""
+
+#: config/generalwidget.cpp:77
+msgid "Never remove done tasks"
+msgstr ""
+
+#: config/generalwidget.cpp:78
+msgid "Remove done tasks after session"
+msgstr ""
+
+#: config/generalwidget.cpp:79
+msgid "Remove done tasks immediately"
+msgstr ""
+
+#: config/generalwidget.cpp:81
+msgid "Start hidden to system tray"
+msgstr ""
+
+#: config/prioritywidget.cpp:80
 msgid "Use own background colors"
 msgstr ""
 
-#: config/prioritywidget.cpp:64
+#: config/prioritywidget.cpp:81
 msgid "Color for priority 1: "
 msgstr ""
 
-#: config/prioritywidget.cpp:65
+#: config/prioritywidget.cpp:82
 msgid "Color for priority 2: "
 msgstr ""
 
-#: config/prioritywidget.cpp:66
+#: config/prioritywidget.cpp:83
 msgid "Color for priority 3: "
+msgstr ""
+
+#: config/prioritywidget.cpp:88
+msgid "Use own font colors"
 msgstr ""
 
 #: editdialog.cpp:74
@@ -119,84 +148,84 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: mainwindow.cpp:224 mainwindow.cpp:309
+#: mainwindow.cpp:225 mainwindow.cpp:311
 msgctxt "category, show all items"
 msgid "All"
 msgstr ""
 
-#: mainwindow.cpp:246
+#: mainwindow.cpp:248
 msgid "Overdue"
 msgstr ""
 
-#: mainwindow.cpp:247 mainwindow.cpp:285
+#: mainwindow.cpp:249 mainwindow.cpp:287
 msgid "Today"
 msgstr ""
 
-#: mainwindow.cpp:248 mainwindow.cpp:286
+#: mainwindow.cpp:250 mainwindow.cpp:288
 msgid "Tomorrow"
 msgstr ""
 
-#: mainwindow.cpp:249
+#: mainwindow.cpp:251
 msgid "Next week"
 msgstr ""
 
-#: mainwindow.cpp:250
+#: mainwindow.cpp:252
 msgid "Next month"
 msgstr ""
 
-#: mainwindow.cpp:251 mainwindow.cpp:294
+#: mainwindow.cpp:253 mainwindow.cpp:296
 msgid "Future"
 msgstr ""
 
-#: mainwindow.cpp:278
+#: mainwindow.cpp:280
 msgid "new task..."
 msgstr ""
 
-#: mainwindow.cpp:287
+#: mainwindow.cpp:289
 msgid "Next Monday"
 msgstr ""
 
-#: mainwindow.cpp:288
+#: mainwindow.cpp:290
 msgid "Next Tuesday"
 msgstr ""
 
-#: mainwindow.cpp:289
+#: mainwindow.cpp:291
 msgid "Next Wednesday"
 msgstr ""
 
-#: mainwindow.cpp:290
+#: mainwindow.cpp:292
 msgid "Next Thursday"
 msgstr ""
 
-#: mainwindow.cpp:291
+#: mainwindow.cpp:293
 msgid "Next Friday"
 msgstr ""
 
-#: mainwindow.cpp:292
+#: mainwindow.cpp:294
 msgid "Next Saturday"
 msgstr ""
 
-#: mainwindow.cpp:293
+#: mainwindow.cpp:295
 msgid "Next Sunday"
 msgstr ""
 
-#: mainwindow.cpp:313 mainwindow.cpp:331
-msgid "Done"
-msgstr ""
-
-#: mainwindow.cpp:314 mainwindow.cpp:332
+#: mainwindow.cpp:316 mainwindow.cpp:334
 msgid "Edit"
 msgstr ""
 
 #: mainwindow.cpp:333
+msgid "Done"
+msgstr ""
+
+#: mainwindow.cpp:335
 msgid "Configure DoBeeDo"
 msgstr ""
 
-#: model/treemodel.cpp:199
+#: model/treemodel.cpp:264
 msgid "Name"
 msgstr ""
 
-#: model/treemodel.cpp:201
+#: model/treemodel.cpp:267
 msgid "Date"
 msgstr ""
 

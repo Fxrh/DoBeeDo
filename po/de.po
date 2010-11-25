@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://github.com/Fxrh/DoBeeDo/issues\n"
-"POT-Creation-Date: 2010-11-20 14:53+0100\n"
-"PO-Revision-Date: 2010-11-20 14:58+0100\n"
+"POT-Creation-Date: 2010-11-25 16:07+0100\n"
+"PO-Revision-Date: 2010-11-25 16:21+0100\n"
 "Last-Translator: Felix Rohrbach <felix-rohrbach@gmx.de>\n"
 "Language-Team: German <>\n"
 "Language: \n"
@@ -41,33 +41,62 @@ msgstr "Hinzufügen"
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: config/categorywidget.cpp:118
+#: config/categorywidget.cpp:118 mainwindow.cpp:315
 msgid "Remove"
 msgstr "Löschen"
 
-#: config/configdialog.cpp:31
+#: config/configdialog.cpp:32
+msgctxt "configuration page"
+msgid "General"
+msgstr "Allgemein"
+
+#: config/configdialog.cpp:34
 msgid "Categories"
 msgstr "Kategorien "
 
-#: config/configdialog.cpp:33
+#: config/configdialog.cpp:36
 msgid "Priorities"
 msgstr "Prioritäten "
 
-#: config/prioritywidget.cpp:63
+#: config/generalwidget.cpp:75
+msgid "When to remove done tasks: "
+msgstr "Wann sollen erledigte Aufgaben gelöscht werden? "
+
+#: config/generalwidget.cpp:77
+msgid "Never remove done tasks"
+msgstr "Niemals erledigte Aufgaben löschen"
+
+#: config/generalwidget.cpp:78
+msgid "Remove done tasks after session"
+msgstr "Erledigte Aufgaben nach dem Beenden löschen"
+
+#: config/generalwidget.cpp:79
+msgid "Remove done tasks immediately"
+msgstr "Erledigte Aufgaben sofort löschen"
+
+#: config/generalwidget.cpp:81
+msgid "Start hidden to system tray"
+msgstr "In die Systemkontrollleiste minimiert starten"
+
+#: config/prioritywidget.cpp:80
 msgid "Use own background colors"
 msgstr "Benutze eigene Hintergrundfarben"
 
-#: config/prioritywidget.cpp:64
+#: config/prioritywidget.cpp:81
 msgid "Color for priority 1: "
 msgstr "Farbe für Priorität 1: "
 
-#: config/prioritywidget.cpp:65
+#: config/prioritywidget.cpp:82
 msgid "Color for priority 2: "
 msgstr "Farbe für Priorität 2: "
 
-#: config/prioritywidget.cpp:66
+#: config/prioritywidget.cpp:83
 msgid "Color for priority 3: "
 msgstr "Farbe für Priorität 3: "
+
+#: config/prioritywidget.cpp:88
+msgid "Use own font colors"
+msgstr "Benutze eigene Schriftfarbe"
 
 #: editdialog.cpp:74
 msgid "The name of the todo item can't be empty"
@@ -119,84 +148,84 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fxrh@gmx.de"
 
-#: mainwindow.cpp:224 mainwindow.cpp:309
+#: mainwindow.cpp:225 mainwindow.cpp:311
 msgctxt "category, show all items"
 msgid "All"
 msgstr "Alle"
 
-#: mainwindow.cpp:246
+#: mainwindow.cpp:248
 msgid "Overdue"
 msgstr "Überfällig"
 
-#: mainwindow.cpp:247 mainwindow.cpp:285
+#: mainwindow.cpp:249 mainwindow.cpp:287
 msgid "Today"
 msgstr "Heute"
 
-#: mainwindow.cpp:248 mainwindow.cpp:286
+#: mainwindow.cpp:250 mainwindow.cpp:288
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#: mainwindow.cpp:249
+#: mainwindow.cpp:251
 msgid "Next week"
 msgstr "Nächste Woche"
 
-#: mainwindow.cpp:250
+#: mainwindow.cpp:252
 msgid "Next month"
 msgstr "Nächster Monat"
 
-#: mainwindow.cpp:251 mainwindow.cpp:294
+#: mainwindow.cpp:253 mainwindow.cpp:296
 msgid "Future"
 msgstr "Zukunft"
 
-#: mainwindow.cpp:278
+#: mainwindow.cpp:280
 msgid "new task..."
 msgstr "neue Aufgabe..."
 
-#: mainwindow.cpp:287
+#: mainwindow.cpp:289
 msgid "Next Monday"
 msgstr "Nächster Montag"
 
-#: mainwindow.cpp:288
+#: mainwindow.cpp:290
 msgid "Next Tuesday"
 msgstr "Nächster Dienstag"
 
-#: mainwindow.cpp:289
+#: mainwindow.cpp:291
 msgid "Next Wednesday"
 msgstr "Nächster Mittwoch"
 
-#: mainwindow.cpp:290
+#: mainwindow.cpp:292
 msgid "Next Thursday"
 msgstr "Nächster Donnerstag"
 
-#: mainwindow.cpp:291
+#: mainwindow.cpp:293
 msgid "Next Friday"
 msgstr "Nächster Freitag"
 
-#: mainwindow.cpp:292
+#: mainwindow.cpp:294
 msgid "Next Saturday"
 msgstr "Nächster Samstag"
 
-#: mainwindow.cpp:293
+#: mainwindow.cpp:295
 msgid "Next Sunday"
 msgstr "Nächster Sonntag"
 
-#: mainwindow.cpp:313 mainwindow.cpp:331
-msgid "Done"
-msgstr "Fertig"
-
-#: mainwindow.cpp:314 mainwindow.cpp:332
+#: mainwindow.cpp:316 mainwindow.cpp:334
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: mainwindow.cpp:333
+msgid "Done"
+msgstr "Fertig"
+
+#: mainwindow.cpp:335
 msgid "Configure DoBeeDo"
 msgstr "DoBeeDo einrichten"
 
-#: model/treemodel.cpp:199
+#: model/treemodel.cpp:264
 msgid "Name"
 msgstr "Name "
 
-#: model/treemodel.cpp:201
+#: model/treemodel.cpp:267
 msgid "Date"
 msgstr "Datum"
 
