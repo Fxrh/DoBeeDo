@@ -28,7 +28,7 @@ int main( int argc, char** argv )
   KAboutData aboutData( "dobeedo",
                         0,
                         ki18n( "DoBeeDo" ),
-                        "0.2.1",
+                        "0.3.0",
                         ki18n( "A todo list manager for KDE" ),
                         KAboutData::License_GPL_V3,
                         ki18n( "(c) 2010 Felix Rohrbach" ),
